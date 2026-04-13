@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-Pal — UWTSD Student Assistant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #1D9E75;
+      --green-light: #E6F7F1;
+      --green-mid:   #A8DEC9;
+      --green-dark:  #0A4D36;
+      --teal:        #17866A;
+      --ink:         #1A1A1A;
+      --ink-2:       #6B6B65;
+      --ink-3:       #B0B0A8;
+      --surface:     #FFFFFF;
+      --surface-2:   #F7F8F6;
+      --surface-3:   #EFF1EE;
+      --line:        rgba(0,0,0,0.08);
+      --line-md:     rgba(0,0,0,0.13);
+      --radius:      14px;
+      --radius-sm:   8px;
+      --sans:        'Nunito', sans-serif;
+      --mono:        'DM Mono', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Shell ── */
+    .shell {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 64px;
+      min-height: 64px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .brand-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+    .brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+    }
+    .brand-sub {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .online-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* header right actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feedback-btn {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--green-dark);
+      background: var(--green-light);
+      border: 1px solid var(--green-mid);
+      border-radius: 20px;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .feedback-btn:hover {
+      background: var(--green-mid);
+    }
+    .lang-pill {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid var(--line-md);
+      border-radius: 20px;
+      padding: 5px 12px;
+      cursor: pointer;
+      background: var(--surface-2);
+      color: var(--ink-2);
+      letter-spacing: 0.05em;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .lang-pill:hover {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+    .lang-pill .pill-active  { color: var(--ink); font-weight: 700; }
+    .lang-pill .pill-dim     { color: var(--ink-3); font-weight: 400; }
+
+    /* ── Messages ── */
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .messages::-webkit-scrollbar { width: 4px; }
+    .messages::-webkit-scrollbar-thumb { background: var(--line-md); border-radius: 2px; }
+
+    /* ── Rows ── */
+    .row { display: flex; gap: 9px; align-items: flex-end; }
+    .row.user { justify-content: flex-end; }
+    .row.bot  { justify-content: flex-start; }
+
+    .msg-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 2px;
+    }
+
+    /* ── Bubbles ── */
+    .bubble {
+      max-width: 76%;
+      padding: 11px 15px;
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .bubble a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .bubble.bot {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius) var(--radius) var(--radius) 4px;
+      color: var(--ink);
+    }
+    .bubble.user {
+      background: var(--green);
+      border-radius: var(--radius) var(--radius) 4px var(--radius);
+      color: #fff;
+    }
+
+    .bot-col { display: flex; flex-direction: column; gap: 5px; max-width: 76%; }
+
+    /* cy-chip */
+    .cy-chip {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      background: var(--green-light);
+      color: var(--green-dark);
+      border: 1px solid var(--green-mid);
+      border-radius: 4px;
+      padding: 2px 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* translate btn */
+    .translate-btn {
+      align-self: flex-start;
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-2);
+      background: var(--surface);
+      border: 1px solid var(--line-md);
+      border-radius: 20px;
+      padding: 4px 11px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .translate-btn:hover {
+      border-color: var(--green);
+      color: var(--green-dark);
+      background: var(--green-light);
+    }
+
+    /* typing indicator */
+    .typing-bubble {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius) var(--radius) var(--radius) 4px;
+      padding: 13px 16px;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .typing-bubble span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse {
+      0%, 80%, 100% { opacity: 0.35; transform: scale(0.9); }
+      40%            { opacity: 1;    transform: scale(1.1); }
+    }
+
+    /* lang notice */
+    .lang-notice {
+      align-self: center;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--green-dark);
+      background: var(--green-light);
+      border: 1px solid var(--green-mid);
+      border-radius: 20px;
+      padding: 4px 13px;
+    }
+
+    /* ── Quick chips ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 4px 0 6px;
+    }
+    .chip {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--green-dark);
+      border: 1px solid var(--green-mid);
+      border-radius: 20px;
+      padding: 6px 14px;
+      cursor: pointer;
+      background: var(--green-light);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .chip:hover {
+      background: var(--green-mid);
+      border-color: var(--green);
+    }
+
+    /* ── Input area ── */
+    .input-area {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px 10px 18px;
+    }
+    .chat-input {
+      flex: 1;
+      border: 1.5px solid var(--line-md);
+      border-radius: 24px;
+      outline: none;
+      background: var(--surface-2);
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      caret-color: var(--green);
+      line-height: 1.4;
+      padding: 10px 16px;
+      transition: border-color 0.15s;
+    }
+    .chat-input:focus {
+      border-color: var(--green);
+      background: var(--surface);
+    }
+    .chat-input::placeholder { color: var(--ink-3); }
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .send-btn:disabled { opacity: 0.35; cursor: default; }
+    .send-btn:hover:not(:disabled) { opacity: 0.87; transform: scale(1.05); }
+    .send-btn svg { width: 17px; height: 17px; color: #fff; }
+
+    /* ── Sub-footer (google forms link) ── */
+    .sub-footer {
+      padding: 6px 18px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .forms-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-3);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--line-md);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .forms-link:hover {
+      color: var(--green-dark);
+      border-bottom-color: var(--green-mid);
+    }
+
+    /* ── Feedback Modal ── */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,20,15,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--line-md);
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .modal-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+    }
+    .modal-sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-2);
+      margin-top: 5px;
+      line-height: 1.45;
+    }
+    .modal-close {
+      background: var(--surface-3);
+      border: none;
+      cursor: pointer;
+      color: var(--ink-2);
+      font-size: 14px;
+      line-height: 1;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .modal-close:hover { background: var(--line-md); color: var(--ink); }
+
+    .fb-section { display: flex; flex-direction: column; gap: 8px; }
+    .fb-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .star-row { display: flex; gap: 4px; }
+    .star {
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--surface-3);
+      line-height: 1;
+      padding: 1px;
+      transition: color 0.1s, transform 0.1s;
+    }
+    .star:hover { transform: scale(1.15); }
+    .star.lit { color: var(--green); }
+    .toggle-row { display: flex; gap: 7px; }
+    .toggle-btn {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1.5px solid var(--line-md);
+      border-radius: var(--radius-sm);
+      padding: 7px 18px;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--ink-2);
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .toggle-btn.on {
+      border-color: var(--green);
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+    .fb-textarea {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 400;
+      border: 1.5px solid var(--line-md);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      resize: none;
+      color: var(--ink);
+      background: var(--surface-2);
+      outline: none;
+      line-height: 1.5;
+      transition: border-color 0.15s;
+    }
+    .fb-textarea:focus { border-color: var(--green); background: var(--surface); }
+    .fb-submit {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 0;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+    }
+    .fb-submit:disabled { opacity: 0.35; cursor: default; }
+    .fb-submit:hover:not(:disabled) { opacity: 0.87; }
+    .fb-thanks {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--green-dark);
+      text-align: center;
+      padding: 10px 0;
+      background: var(--green-light);
+      border-radius: var(--radius-sm);
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-5px); }
+      75%      { transform: translateX(5px); }
+    }
+    .shake { animation: shake 0.28s ease; }
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="shell" x-data="upal()" x-init="init()">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-brand">
+      <div class="brand-avatar">U</div>
+      <div class="brand-text">
+        <span class="brand-name">U-Pal</span>
+        <span class="brand-sub">
+          <span class="online-dot"></span>
+          <span x-text="lang === 'cy' ? 'Cynorthwyydd Myfyrwyr PCYDDS' : 'UWTSD Student Assistant'"></span>
+        </span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="feedback-btn" @click="openFeedback()" x-text="lang === 'cy' ? 'Adborth' : 'Rate U-Pal'"></button>
+      <button class="lang-pill" @click="toggleLang()" :title="lang === 'cy' ? 'Switch to English' : 'Newid i Gymraeg'">
+        <span :class="lang === 'cy' ? 'pill-active' : 'pill-dim'">CY</span>
+        <span style="color:var(--ink-3)"> · </span>
+        <span :class="lang === 'en' ? 'pill-active' : 'pill-dim'">EN</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Messages ── -->
+  <div class="messages" id="msgList" role="log" aria-live="polite">
+
+    <template x-for="(m, i) in msgs" :key="i">
+      <div>
+
+        <!-- lang notice -->
+        <template x-if="m.type === 'notice'">
+          <div class="lang-notice" x-text="m.text"></div>
+        </template>
+
+        <!-- user message -->
+        <template x-if="m.type === 'user'">
+          <div class="row user">
+            <div class="bubble user" x-text="m.text"></div>
+          </div>
+        </template>
+
+        <!-- bot message -->
+        <template x-if="m.type === 'bot'">
+          <div class="row bot">
+            <div class="msg-avatar">U</div>
+            <div class="bot-col">
+              <template x-if="m.msgLang === 'cy'">
+                <span class="cy-chip">Cymraeg</span>
+              </template>
+              <div class="bubble bot" x-html="m.html"></div>
+              <template x-if="m.altHtml">
+                <button
+                  class="translate-btn"
+                  @click="m._showAlt = !m._showAlt; $el.previousElementSibling.innerHTML = m._showAlt ? m.altHtml : m.html; $el.textContent = m._showAlt ? (lang==='cy' ? 'Nol i Gymraeg' : 'Back to English') : (lang==='cy' ? 'Cyfieithwch i Saesneg' : 'Translate to Welsh')"
+                  x-text="lang === 'cy' ? 'Cyfieithwch i Saesneg' : 'Translate to Welsh'"
+                ></button>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <!-- typing -->
+        <template x-if="m.type === 'typing'">
+          <div class="row bot">
+            <div class="msg-avatar">U</div>
+            <div class="typing-bubble">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </template>
+
+    <!-- Quick chips -->
+    <template x-if="!chipsDismissed">
+      <div class="chips">
+        <template x-for="chip in chips" :key="chip.en">
+          <button class="chip" @click="sendChip(chip)" x-text="lang === 'cy' ? chip.cy : chip.en"></button>
+        </template>
+      </div>
+    </template>
+
+  </div>
+
+  <!-- ── Input area ── -->
+  <div class="input-area">
+    <div class="input-row">
+      <input
+        class="chat-input"
+        id="chatInput"
+        type="text"
+        x-model="text"
+        :placeholder="lang === 'cy' ? 'Gofynnwch unrhyw beth am PCYDDS...' : 'Ask me anything about UWTSD...'"
+        @keydown.enter.prevent="send()"
+        autocomplete="off"
+        aria-label="Type your message"
+      />
+      <button class="send-btn" @click="send()" :disabled="busy || !text.trim()" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+    <div class="sub-footer">
+      <a
+        :href="googleFormsUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="forms-link"
+        x-text="lang === 'cy' ? 'Agor ffurflen adborth lawn (Google Forms)' : 'Open full feedback form (Google Forms)'"
+      ></a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Feedback Modal ── -->
+<div
+  class="overlay"
+  x-data
+  x-show="$store.fb.open"
+  @click.self="$store.fb.open = false"
+  x-cloak
+>
+  <div class="modal" @click.stop>
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" x-text="$store.fb.lang === 'cy' ? 'Sut oedd eich profiad?' : 'How was your experience?'"></div>
+        <div class="modal-sub" x-text="$store.fb.lang === 'cy' ? 'Mae eich adborth yn helpu gwella U-Pal ar gyfer holl fyfyrwyr PCYDDS.' : 'Your feedback helps improve U-Pal for all UWTSD students.'"></div>
+      </div>
+      <button class="modal-close" @click="$store.fb.open = false" aria-label="Close">&#x2715;</button>
+    </div>
+
+    <template x-if="!$store.fb.done">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+
+        <div class="fb-section">
+          <span class="fb-label" x-text="$store.fb.lang === 'cy' ? 'Boddhad cyffredinol' : 'Overall satisfaction'"></span>
+          <div class="star-row" id="starRow">
+            <template x-for="n in [1,2,3,4,5]" :key="n">
+              <button class="star" :class="n <= $store.fb.stars ? 'lit' : ''" @click="$store.fb.stars = n" :aria-label="n + ' star'">&#9733;</button>
+            </template>
+          </div>
+        </div>
+
+        <div class="fb-section">
+          <span class="fb-label" x-text="$store.fb.lang === 'cy' ? 'Oedd yr ateb yn ddefnyddiol?' : 'Was the answer helpful?'"></span>
+          <div class="toggle-row">
+            <button class="toggle-btn" :class="$store.fb.helpful === true ? 'on' : ''" @click="$store.fb.helpful = true" x-text="$store.fb.lang === 'cy' ? 'Oedd' : 'Yes'"></button>
+            <button class="toggle-btn" :class="$store.fb.helpful === false ? 'on' : ''" @click="$store.fb.helpful = false" x-text="$store.fb.lang === 'cy' ? 'Nac oedd' : 'No'"></button>
+          </div>
+        </div>
+
+        <div class="fb-section">
+          <span class="fb-label" x-text="$store.fb.lang === 'cy' ? 'Gawsoch chi ymateb yn yr iaith gywir?' : 'Did you get a response in the right language?'"></span>
+          <div class="toggle-row">
+            <button class="toggle-btn" :class="$store.fb.langOk === true ? 'on' : ''" @click="$store.fb.langOk = true" x-text="$store.fb.lang === 'cy' ? 'Do' : 'Yes'"></button>
+            <button class="toggle-btn" :class="$store.fb.langOk === false ? 'on' : ''" @click="$store.fb.langOk = false" x-text="$store.fb.lang === 'cy' ? 'Naddo' : 'No'"></button>
+          </div>
+        </div>
+
+        <div class="fb-section">
+          <span class="fb-label" x-text="$store.fb.lang === 'cy' ? 'Unrhyw sylwadau eraill? (dewisol)' : 'Any other comments? (optional)'"></span>
+          <textarea class="fb-textarea" rows="3" maxlength="300" x-model="$store.fb.comments" :placeholder="$store.fb.lang === 'cy' ? 'Eich barn...' : 'Your thoughts...'"></textarea>
+        </div>
+
+        <button class="fb-submit" @click="submitFeedback()" :disabled="$store.fb.submitting" x-text="$store.fb.lang === 'cy' ? 'Cyflwyno adborth' : 'Submit feedback'"></button>
+      </div>
+    </template>
+
+    <template x-if="$store.fb.done">
+      <div class="fb-thanks" x-text="$store.fb.lang === 'cy' ? 'Diolch am eich adborth — mae\\'n help mawr.' : 'Thank you for your feedback — it really helps.'"></div>
+    </template>
+  </div>
+</div>
+
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('fb', {
+      open: false, done: false, submitting: false,
+      lang: 'en', stars: 0, helpful: null, langOk: null, comments: ''
+    });
+  });
+
+  function upal() {
+    return {
+      msgs:           [],
+      text:           '',
+      busy:           false,
+      lang:           'en',
+      chipsDismissed: false,
+      googleFormsUrl: 'https://forms.gle/YOUR_GOOGLE_FORM_LINK',
+
+      chips: [
+        { en: 'How do I apply?',       cy: 'Sut i wneud cais?' },
+        { en: 'Tuition fees',          cy: 'Ffioedd dysgu' },
+        { en: 'Student accommodation', cy: 'Llety myfyrwyr' },
+        { en: 'IT help',               cy: 'Cymorth TG' },
+        { en: 'Wellbeing support',     cy: 'Cymorth lles' },
+        { en: 'Courses available',     cy: 'Cyrsiau sydd ar gael' },
+        { en: 'Campus locations',      cy: 'Lleoliadau campws' },
+        { en: 'Student loans',         cy: 'Benthyciadau myfyrwyr' }
+      ],
+
+      init() {
+        this.msgs.push({
+          type: 'bot', msgLang: 'en',
+          html: 'Hi there! I\'m <strong>U-Pal</strong>, your UWTSD student assistant. I can help with admissions, courses, fees, accommodation, IT support, wellbeing and more.<br><br>How can I help you today?',
+          altHtml: null, _showAlt: false
+        });
+      },
+
+      linkify(t) {
+        return t.replace(
+          /(https?:\/\/[^\s]+|[a-zA-Z0-9\-]+\.(ac\.uk|co\.uk|com|org|gov\.uk)[^\s<]*)/g,
+          u => {
+            const h = u.startsWith('http') ? u : 'https://' + u;
+            return '<a href="' + h + '" target="_blank" rel="noopener noreferrer">' + u + '</a>';
+          }
+        );
+      },
+
+      htmlify(t) {
+        if (!t) return '';
+        const esc = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return this.linkify(esc).replace(/\n/g, '<br>');
+      },
+
+      toggleLang() {
+        this.lang = this.lang === 'en' ? 'cy' : 'en';
+        document.documentElement.lang = this.lang;
+        Alpine.store('fb').lang = this.lang;
+      },
+
+      async sendChip(chip) {
+        this.chipsDismissed = true;
+        await this.dispatch(this.lang === 'cy' ? chip.cy : chip.en);
+      },
+
+      async send() {
+        const t = this.text.trim();
+        if (!t || this.busy) return;
+        this.text = '';
+        this.chipsDismissed = true;
+        await this.dispatch(t);
+      },
+
+      async dispatch(userText) {
+        this.busy = true;
+        this.msgs.push({ type: 'user', text: userText });
+        this.msgs.push({ type: 'typing' });
+        this.$nextTick(() => this.scrollDown());
+
+        try {
+          const [data] = await Promise.all([
+            fetch('/api/chat', {
+              method:  'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body:    JSON.stringify({ message: userText, lang: this.lang })
+            }).then(r => r.json()),
+            new Promise(r => setTimeout(r, 650))
+          ]);
+
+          this.msgs = this.msgs.filter(m => m.type !== 'typing');
+
+          if (data.error) {
+            this.msgs.push({ type: 'bot', msgLang: this.lang,
+              html: this.lang === 'cy' ? "Sori, aeth rhywbeth o'i le. Rhowch gynnig arall arni." : "Sorry, something went wrong. Please try again.",
+              altHtml: null, _showAlt: false });
+            return;
+          }
+
+          if (data.lang && data.lang !== this.lang) {
+            const notice = data.lang === 'cy' ? 'Welsh detected — switching to Cymraeg' : 'English detected — switching';
+            this.msgs.push({ type: 'notice', text: notice });
+            setTimeout(() => {
+              this.lang = data.lang;
+              document.documentElement.lang = this.lang;
+              Alpine.store('fb').lang = this.lang;
+              this.msgs = this.msgs.filter(m => m.text !== notice);
+            }, 1100);
+          }
+
+          this.msgs.push({
+            type:     'bot',
+            msgLang:  data.lang || this.lang,
+            html:     this.htmlify(data.response || ''),
+            altHtml:  data.altResponse ? this.htmlify(data.altResponse) : null,
+            _showAlt: false
+          });
+
+        } catch (e) {
+          this.msgs = this.msgs.filter(m => m.type !== 'typing');
+          this.msgs.push({ type: 'bot', msgLang: this.lang,
+            html: this.lang === 'cy' ? "Sori, aeth rhywbeth o'i le. Rhowch gynnig arall arni." : "Sorry, something went wrong. Please try again.",
+            altHtml: null, _showAlt: false });
+          console.error(e);
+        } finally {
+          this.busy = false;
+          this.$nextTick(() => this.scrollDown());
+          document.getElementById('chatInput').focus();
+        }
+      },
+
+      scrollDown() {
+        const el = document.getElementById('msgList');
+        if (el) el.scrollTop = el.scrollHeight;
+      },
+
+      openFeedback() {
+        const s = Alpine.store('fb');
+        s.lang = this.lang; s.done = false; s.submitting = false;
+        s.stars = 0; s.helpful = null; s.langOk = null; s.comments = '';
+        s.open = true;
+      },
+
+      async submitFeedback() {
+        const s = Alpine.store('fb');
+        if (!s.stars) {
+          const row = document.getElementById('starRow');
+          if (row) { row.classList.add('shake'); setTimeout(() => row.classList.remove('shake'), 300); }
+          return;
+        }
+        s.submitting = true;
+        try {
+          await fetch('/api/feedback', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ satisfaction: s.stars, helpfulAnswer: s.helpful, correctLanguage: s.langOk, comments: s.comments })
+          });
+        } catch (_) {}
+        s.done = true;
+        setTimeout(() => { s.open = false; }, 2400);
+      }
+    };
+  }
+</script>
+</body>
+</html>

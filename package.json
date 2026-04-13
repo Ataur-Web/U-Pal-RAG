@@ -1,0 +1,16 @@
+{
+  "name": "u-pal-rag",
+  "version": "1.0.0",
+  "description": "U-Pal RAG chatbot for UWTSD students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^7.1.1",
+    "natural": "^6.10.4"
+  }
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-Pal RAG — Admin Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1b4332;
+      --green-mid:   #2d6a4f;
+      --green-light: #40916c;
+      --green-pale:  #d8f3dc;
+      --white:       #ffffff;
+      --off-white:   #f8fafb;
+      --grey-100:    #f0f4f5;
+      --grey-200:    #e2e8ec;
+      --grey-400:    #9aabb5;
+      --text-main:   #1a2e25;
+      --text-muted:  #5a7a6b;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: linear-gradient(135deg, #e8f5ee 0%, #d0ece0 100%);
+      min-height: 100vh;
+      padding: 24px 16px;
+      color: var(--text-main);
+    }
+
+    /* ── Header ── */
+    .admin-header {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid), var(--green-light));
+      border-radius: 16px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(45,106,79,0.25);
+    }
+
+    .admin-header h1 {
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .admin-header p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      margin-top: 2px;
+    }
+
+    .logout-btn {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 10px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.18s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .logout-btn:hover { background: rgba(255,255,255,0.28); }
+
+    /* ── Stats row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green-mid);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Table card ── */
+    .table-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--grey-200);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .table-toolbar h2 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .toolbar-right {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .refresh-btn, .export-btn {
+      border: 1.5px solid var(--grey-200);
+      background: var(--off-white);
+      color: var(--text-main);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-family: var(--font);
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+    }
+
+    .refresh-btn:hover, .export-btn:hover {
+      border-color: var(--green-light);
+      background: var(--green-pale);
+    }
+
+    /* ── Table ── */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead th {
+      background: var(--grey-100);
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-top: 1px solid var(--grey-100);
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover { background: var(--off-white); }
+
+    td {
+      padding: 12px 16px;
+      vertical-align: top;
+    }
+
+    .stars {
+      color: #f5a623;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .badge-yes  { background: #d8f3dc; color: #1b4332; }
+    .badge-no   { background: #ffe0e0; color: #7f1d1d; }
+    .badge-null { background: var(--grey-100); color: var(--grey-400); }
+
+    .timestamp { color: var(--text-muted); font-size: 0.78rem; }
+
+    .comment-cell {
+      max-width: 260px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-style: italic;
+    }
+
+    /* ── Empty / loading states ── */
+    .state-row td {
+      text-align: center;
+      padding: 48px 16px;
+      color: var(--grey-400);
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--grey-200);
+      border-top-color: var(--green-light);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Error banner ── */
+    .error-banner {
+      background: #fff5f5;
+      border: 1px solid #fca5a5;
+      color: #7f1d1d;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* ── Pagination ── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-top: 1px solid var(--grey-200);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .page-btns { display: flex; gap: 6px; }
+
+    .page-btn {
+      padding: 5px 12px;
+      border: 1.5px solid var(--grey-200);
+      background: var(--white);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .page-btn:not(:disabled):hover { border-color: var(--green-light); background: var(--green-pale); }
+
+    @media (max-width: 600px) {
+      body { padding: 12px 8px; }
+      .admin-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div>
+      <h1>📊 U-Pal RAG — Admin Dashboard</h1>
+      <p>Student feedback responses · UWTSD</p>
+    </div>
+    <a class="logout-btn" href="/api/logout" onclick="handleLogout(event)">🔒 Logout</a>
+  </div>
+
+  <!-- Error banner -->
+  <div class="error-banner" id="errorBanner"></div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value" id="statTotal">—</div>
+      <div class="stat-label">Total Responses</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statAvgRating">—</div>
+      <div class="stat-label">Avg Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statHelpful">—</div>
+      <div class="stat-label">Found Helpful</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statCorrectLang">—</div>
+      <div class="stat-label">Correct Language</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statWithComments">—</div>
+      <div class="stat-label">Left Comments</div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <div class="table-toolbar">
+      <h2>All Feedback Entries</h2>
+      <div class="toolbar-right">
+        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="refresh-btn" onclick="loadFeedback()">🔄 Refresh</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date &amp; Time</th>
+            <th>Rating</th>
+            <th>Helpful?</th>
+            <th>Correct Language?</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody id="feedbackBody">
+          <tr class="state-row">
+            <td colspan="6">
+              <div class="spinner"></div>
+              Loading feedback...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <span id="pageInfo">—</span>
+      <div class="page-btns">
+        <button class="page-btn" id="prevBtn" onclick="changePage(-1)" disabled>← Prev</button>
+        <button class="page-btn" id="nextBtn" onclick="changePage(1)"  disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PAGE_SIZE = 20;
+    let allData    = [];
+    let currentPage = 1;
+
+    // ── Load feedback ───────────────────────────────
+    async function loadFeedback() {
+      setLoading();
+      try {
+        const res = await fetch('/api/feedback');
+        if (res.status === 401) { window.location.reload(); return; }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        allData = await res.json();
+        renderStats(allData);
+        renderPage(1);
+        hideError();
+      } catch (err) {
+        showError('Failed to load feedback: ' + err.message);
+      }
+    }
+
+    // ── Render stats ─────────────────────────────────
+    function renderStats(data) {
+      const total = data.length;
+      document.getElementById('statTotal').textContent = total;
+
+      if (total === 0) {
+        ['statAvgRating','statHelpful','statCorrectLang','statWithComments']
+          .forEach(id => document.getElementById(id).textContent = '—');
+        return;
+      }
+
+      const avgRating = (data.reduce((s, d) => s + d.satisfaction, 0) / total).toFixed(1);
+      document.getElementById('statAvgRating').textContent = avgRating + ' ★';
+
+      const helpful = data.filter(d => d.helpfulAnswer === true).length;
+      document.getElementById('statHelpful').textContent =
+        Math.round((helpful / total) * 100) + '%';
+
+      const correctLang = data.filter(d => d.correctLanguage === true).length;
+      document.getElementById('statCorrectLang').textContent =
+        Math.round((correctLang / total) * 100) + '%';
+
+      const withComments = data.filter(d => d.comments && d.comments.trim()).length;
+      document.getElementById('statWithComments').textContent = withComments;
+    }
+
+    // ── Render table page ─────────────────────────────
+    function renderPage(page) {
+      currentPage = page;
+      const start = (page - 1) * PAGE_SIZE;
+      const slice = allData.slice(start, start + PAGE_SIZE);
+      const tbody = document.getElementById('feedbackBody');
+      const totalPages = Math.ceil(allData.length / PAGE_SIZE);
+
+      if (allData.length === 0) {
+        tbody.innerHTML = `<tr class="state-row"><td colspan="6">No feedback submitted yet.</td></tr>`;
+        document.getElementById('pageInfo').textContent = '0 entries';
+        document.getElementById('prevBtn').disabled = true;
+        document.getElementById('nextBtn').disabled = true;
+        return;
+      }
+
+      tbody.innerHTML = slice.map((entry, i) => {
+        const num  = start + i + 1;
+        const date = new Date(entry.timestamp);
+        const dateStr = date.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+        const timeStr = date.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+        const stars  = '★'.repeat(entry.satisfaction) + '☆'.repeat(5 - entry.satisfaction);
+        const helpful = badgeHtml(entry.helpfulAnswer);
+        const lang    = badgeHtml(entry.correctLanguage);
+        const comment = entry.comments
+          ? `<span title="${escHtml(entry.comments)}">${escHtml(entry.comments.slice(0,80))}${entry.comments.length > 80 ? '…' : ''}</span>`
+          : '<span style="color:#ccc">—</span>';
+
+        return `<tr>
+          <td style="color:var(--grey-400);font-size:0.78rem">${num}</td>
+          <td class="timestamp">${dateStr}<br>${timeStr}</td>
+          <td><span class="stars">${stars}</span></td>
+          <td>${helpful}</td>
+          <td>${lang}</td>
+          <td class="comment-cell">${comment}</td>
+        </tr>`;
+      }).join('');
+
+      document.getElementById('pageInfo').textContent =
+        `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, allData.length)} of ${allData.length}`;
+      document.getElementById('prevBtn').disabled = page <= 1;
+      document.getElementById('nextBtn').disabled = page >= totalPages;
+    }
+
+    function changePage(dir) { renderPage(currentPage + dir); }
+
+    // ── Helpers ───────────────────────────────────────
+    function badgeHtml(val) {
+      if (val === true)  return '<span class="badge badge-yes">Yes</span>';
+      if (val === false) return '<span class="badge badge-no">No</span>';
+      return '<span class="badge badge-null">—</span>';
+    }
+
+    function escHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function setLoading() {
+      document.getElementById('feedbackBody').innerHTML =
+        `<tr class="state-row"><td colspan="6"><div class="spinner"></div>Loading...</td></tr>`;
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('errorBanner');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function hideError() {
+      document.getElementById('errorBanner').style.display = 'none';
+    }
+
+    // ── CSV Export ────────────────────────────────────
+    function exportCSV() {
+      if (!allData.length) return alert('No data to export.');
+      const headers = ['#','Timestamp','Rating','Helpful','Correct Language','Comments'];
+      const rows = allData.map((d, i) => [
+        i + 1,
+        d.timestamp,
+        d.satisfaction,
+        d.helpfulAnswer === true ? 'Yes' : d.helpfulAnswer === false ? 'No' : '',
+        d.correctLanguage === true ? 'Yes' : d.correctLanguage === false ? 'No' : '',
+        '"' + (d.comments || '').replace(/"/g,'""') + '"'
+      ]);
+      const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `upal-rag-feedback-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ── Logout ────────────────────────────────────────
+    function handleLogout(e) {
+      e.preventDefault();
+      fetch('/api/logout').finally(() => { window.location.href = '/'; });
+    }
+
+    // ── Init ──────────────────────────────────────────
+    loadFeedback();
+  </script>
+
+</body>
+</html>
