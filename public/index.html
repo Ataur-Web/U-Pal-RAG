@@ -691,7 +691,7 @@
           <textarea class="fb-textarea" rows="3" maxlength="300" x-model="$store.fb.comments" :placeholder="$store.fb.lang === 'cy' ? 'Eich barn...' : 'Your thoughts...'"></textarea>
         </div>
 
-        <button class="fb-submit" @click="submitFeedback()" :disabled="$store.fb.submitting" x-text="$store.fb.lang === 'cy' ? 'Cyflwyno adborth' : 'Submit feedback'"></button>
+        <button class="fb-submit" @click="$store.fb.submit()" :disabled="$store.fb.submitting" x-text="$store.fb.lang === 'cy' ? 'Cyflwyno adborth' : 'Submit feedback'"></button>
       </div>
     </template>
 
@@ -706,7 +706,30 @@
   document.addEventListener('alpine:init', () => {
     Alpine.store('fb', {
       open: false, done: false, submitting: false,
-      lang: 'en', stars: 0, helpful: null, langOk: null, comments: ''
+      lang: 'en', stars: 0, helpful: null, langOk: null, comments: '',
+      async submit() {
+        if (!this.stars) {
+          const row = document.getElementById('starRow');
+          if (row) { row.classList.add('shake'); setTimeout(() => row.classList.remove('shake'), 300); }
+          return;
+        }
+        this.submitting = true;
+        try {
+          await fetch('/api/feedback', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({
+              satisfaction:    this.stars,
+              helpfulAnswer:   this.helpful,
+              correctLanguage: this.langOk,
+              comments:        this.comments
+            })
+          });
+        } catch (_) {}
+        this.done = true;
+        this.submitting = false;
+        setTimeout(() => { this.open = false; }, 2400);
+      }
     });
   });
 
@@ -842,24 +865,6 @@
         s.open = true;
       },
 
-      async submitFeedback() {
-        const s = Alpine.store('fb');
-        if (!s.stars) {
-          const row = document.getElementById('starRow');
-          if (row) { row.classList.add('shake'); setTimeout(() => row.classList.remove('shake'), 300); }
-          return;
-        }
-        s.submitting = true;
-        try {
-          await fetch('/api/feedback', {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ satisfaction: s.stars, helpfulAnswer: s.helpful, correctLanguage: s.langOk, comments: s.comments })
-          });
-        } catch (_) {}
-        s.done = true;
-        setTimeout(() => { s.open = false; }, 2400);
-      }
     };
   }
 </script>
