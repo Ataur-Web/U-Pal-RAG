@@ -148,8 +148,22 @@
       background: var(--green-light);
       color: var(--green-dark);
     }
-    .lang-pill .pill-active  { color: var(--ink); font-weight: 700; }
-    .lang-pill .pill-dim     { color: var(--ink-3); font-weight: 400; }
+    /* lang indicator (non-interactive) */
+    .lang-indicator {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid var(--line-md);
+      border-radius: 20px;
+      padding: 4px 11px;
+      background: var(--surface-2);
+      color: var(--ink-2);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .lang-indicator .lit { color: var(--green-dark); font-weight: 700; }
+    .lang-indicator .dim { color: var(--ink-3); }
 
     /* ── Messages ── */
     .messages {
@@ -538,11 +552,11 @@
     </div>
     <div class="header-actions">
       <button class="feedback-btn" @click="openFeedback()" x-text="lang === 'cy' ? 'Adborth' : 'Rate U-Pal'"></button>
-      <button class="lang-pill" @click="toggleLang()" :title="lang === 'cy' ? 'Switch to English' : 'Newid i Gymraeg'">
-        <span :class="lang === 'cy' ? 'pill-active' : 'pill-dim'">CY</span>
+      <div class="lang-indicator" :title="lang === 'cy' ? 'Cymraeg detected' : 'English detected'">
+        <span :class="lang === 'cy' ? 'lit' : 'dim'">CY</span>
         <span style="color:var(--ink-3)"> · </span>
-        <span :class="lang === 'en' ? 'pill-active' : 'pill-dim'">EN</span>
-      </button>
+        <span :class="lang === 'en' ? 'lit' : 'dim'">EN</span>
+      </div>
     </div>
   </div>
 
@@ -777,12 +791,6 @@
         return this.linkify(esc).replace(/\n/g, '<br>');
       },
 
-      toggleLang() {
-        this.lang = this.lang === 'en' ? 'cy' : 'en';
-        document.documentElement.lang = this.lang;
-        Alpine.store('fb').lang = this.lang;
-      },
-
       async sendChip(chip) {
         this.chipsDismissed = true;
         await this.dispatch(this.lang === 'cy' ? chip.cy : chip.en);
@@ -807,7 +815,7 @@
             fetch('/api/chat', {
               method:  'POST',
               headers: { 'Content-Type': 'application/json' },
-              body:    JSON.stringify({ message: userText, lang: this.lang })
+              body:    JSON.stringify({ message: userText })
             }).then(r => r.json()),
             new Promise(r => setTimeout(r, 650))
           ]);
@@ -822,14 +830,9 @@
           }
 
           if (data.lang && data.lang !== this.lang) {
-            const notice = data.lang === 'cy' ? 'Welsh detected — switching to Cymraeg' : 'English detected — switching';
-            this.msgs.push({ type: 'notice', text: notice });
-            setTimeout(() => {
-              this.lang = data.lang;
-              document.documentElement.lang = this.lang;
-              Alpine.store('fb').lang = this.lang;
-              this.msgs = this.msgs.filter(m => m.text !== notice);
-            }, 1100);
+            this.lang = data.lang;
+            document.documentElement.lang = this.lang;
+            Alpine.store('fb').lang = this.lang;
           }
 
           this.msgs.push({
