@@ -5,7 +5,7 @@
       "src": "server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["public/**", "knowledge.json", "dialogflow-rest.js"]
+        "includeFiles": ["public/**", "knowledge.json"]
       }
     }
   ],
