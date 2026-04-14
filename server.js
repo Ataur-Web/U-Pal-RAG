@@ -75,30 +75,41 @@ function preprocess(text, lang) {
 //  WELSH LANGUAGE DETECTION
 // ═════════════════════════════════════════════════════════════════════════
 
+// Only words that are DISTINCTLY Welsh — never appear as standalone English words.
+// Short ambiguous words ('i','am','o','a','ar','yn','da','ac','y','yr','gan','nos','bore')
+// are intentionally excluded to prevent false-positive Welsh detection on English sentences.
 const WELSH_WORDS = new Set([
-  'sut','beth','ble','pryd','pam','pwy','sydd','mae','oes','ydy','yw','yn','ac','ar',
-  'am','gyda','gan','yr','y','i','o','helo','shwmae','bore','prynhawn','nos','da',
-  'diolch','hwyl','iawn','cymraeg','cymru','pcydds','ewch','helpwch','faint','pa','fy',
-  'dy','ei','eu','ein','eich','wyt','wythnos','blwyddyn','myfyriwr','myfyrwyr','campws',
-  'coleg','prifysgol','cwrs','cyrsiau','llety','llyfrgell','astudio','gofynion','mynediad',
-  'cais','ffioedd','cymorth','lles','anabledd','graddio','canlyniadau','amserlen','argraffu',
-  'gwasanaethau','dwyieithog','cyfrwng','gyfrwng','ardderchog','gwych','perffaith','nid',
-  'neu','hefyd','dim','gallaf','gallwch','gall','bydd','eisiau','isio','moyn','angen',
-  'hoffwn','hoffech','wneud','mynd','dod','cael','bod','siarad','ysgrifennu','darllen',
-  'gwneud','helpu','gofyn','ateb','cyfeiriad','rhif','cyswllt','ymgeisio',
-  'derbyniadau','benthyciad','ysgoloriaeth','bwrsari','neuaddau','preswyl','campysau',
-  'graddau','marciau','arholiad','aseiniad','allaf','allech','allwch','ydych','ydw',
-  'nawr','rwan','heddiw','fory','ddoe','yma','fan','yno','hefyd','felly','ond','achos',
-  'oherwydd','adeg','wrth','gyda','gan','rhwng','drwy','trwy','hyd','dros','tan',
-  'tymor','modiwl','modiwlau','seminar','darlith','darlithydd','tiwtorial','adborth',
-  'cofrestru','cofrestriad','mynediad','mynegi','ymholi','ymholiad'
+  // Question words (uniquely Welsh)
+  'sut','beth','ble','pryd','pam','pwy','faint','pa',
+  // Verbs (uniquely Welsh)
+  'sydd','mae','oes','ydy','yw','wyt','bydd','gallaf','gallwch','gall',
+  'hoffwn','hoffech','allaf','allech','allwch','ydych','ydw',
+  // Prepositions / particles (long enough to be unambiguous)
+  'gyda','drwy','trwy','dros','rhwng','oherwydd','achos',
+  // Greetings / expressions
+  'shwmae','diolch','hwyl','iawn','cymraeg','cymru','pcydds',
+  // Unique Welsh vocabulary
+  'myfyriwr','myfyrwyr','prifysgol','cwrs','cyrsiau','llety','llyfrgell',
+  'gofynion','mynediad','ffioedd','cymorth','lles','anabledd',
+  'graddio','canlyniadau','amserlen','argraffu','gwasanaethau',
+  'dwyieithog','cyfrwng','gyfrwng','ardderchog','gwych','perffaith',
+  'eisiau','isio','moyn','angen','wneud','mynd','dod','cael','bod',
+  'siarad','ysgrifennu','darllen','gwneud','helpu','gofyn','ateb',
+  'cyfeiriad','cyswllt','ymgeisio','derbyniadau','benthyciad',
+  'ysgoloriaeth','bwrsari','neuaddau','preswyl','campysau',
+  'graddau','marciau','arholiad','aseiniad','tymor','modiwl','modiwlau',
+  'darlith','darlithydd','tiwtorial','adborth','cofrestru','cofrestriad',
+  'prynhawn','wythnos','blwyddyn','rwan','heddiw','fory',
+  'ewch','helpwch','fy','dy','eu','ein','eich','nid','hefyd','dim'
 ]);
 
 function detectLanguage(text) {
   const words = text.toLowerCase().replace(/[^a-z\u00C0-\u024F\s']/g, ' ').split(/\s+/);
   let count = 0;
   for (const w of words) { if (WELSH_WORDS.has(w)) count++; }
-  return count >= 1 ? 'cy' : 'en';
+  // Require at least 2 distinctly Welsh tokens to avoid false positives
+  // on English sentences that happen to contain one ambiguous short word
+  return count >= 2 ? 'cy' : 'en';
 }
 
 // ═════════════════════════════════════════════════════════════════════════

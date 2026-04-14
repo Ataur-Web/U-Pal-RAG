@@ -2,36 +2,40 @@
   {
     "tag": "greeting",
     "patterns": [
-      "hello", "hi", "hey", "good morning", "good afternoon", "helo", "shwmae",
+      "hello", "hi", "hey", "hi there", "hello there", "hey there", "good morning",
+      "good afternoon", "good evening", "morning", "afternoon", "howdy", "greetings",
+      "sup", "yo", "what's up", "hiya", "alright", "alright mate", "helo", "shwmae",
       "sut wyt ti", "bore da", "prynhawn da", "nos da", "sut mae", "sut ydych chi",
-      "iawn", "oes help"
+      "oes help", "shwmae sut wyt ti", "helo bawb", "sut hwyl"
     ],
     "responses": {
       "en": [
-        "Helo! I'm U-Pal, your UWTSD student assistant. I can help you with admissions, courses, fees, accommodation, IT support, wellbeing and more. What would you like to know? 😊",
-        "Hi there! Welcome to U-Pal — your guide to all things UWTSD. Ask me anything about student life, courses, or university services!"
+        "Hi there! I'm U-Pal, your UWTSD student assistant. I can help with admissions, courses, fees, accommodation, IT support, wellbeing and more. What would you like to know?",
+        "Hello! Welcome to U-Pal, your guide to all things UWTSD. Ask me anything about student life, courses, or university services."
       ],
       "cy": [
-        "Helo! U-Pal ydw i, eich cynorthwyydd myfyrwyr PCYDDS. Gallaf eich helpu gyda derbyniadau, cyrsiau, ffioedd, llety, cymorth TG, lles a mwy. Beth hoffech chi wybod? 😊",
-        "Shwmae! Croeso i U-Pal — eich canllaw i bopeth am PCYDDS. Gofynnwch unrhyw beth am fywyd myfyrwyr, cyrsiau neu wasanaethau'r brifysgol!"
+        "Helo! U-Pal ydw i, eich cynorthwyydd myfyrwyr PCYDDS. Gallaf eich helpu gyda derbyniadau, cyrsiau, ffioedd, llety, cymorth TG, lles a mwy. Beth hoffech chi wybod?",
+        "Shwmae! Croeso i U-Pal, eich canllaw i bopeth am PCYDDS. Gofynnwch unrhyw beth am fywyd myfyrwyr, cyrsiau neu wasanaethau'r brifysgol."
       ]
     }
   },
   {
     "tag": "goodbye",
     "patterns": [
-      "bye", "goodbye", "see you", "thanks bye", "cheers", "da boch", "hwyl",
-      "hwyl fawr", "diolch", "ta-ra", "cheerio", "all done", "that's all",
-      "thank you goodbye"
+      "bye", "goodbye", "see you", "see ya", "thanks bye", "cheers", "later", "take care",
+      "all done", "that's all", "thank you goodbye", "thanks for your help", "all good now",
+      "done thanks", "perfect thanks bye", "cheers then", "right that's everything",
+      "da boch", "hwyl", "hwyl fawr", "diolch hwyl", "ta-ra", "cheerio", "ok diolch",
+      "iawn diolch", "diolch yn fawr hwyl", "hwyl am nawr", "diolch am eich help"
     ],
     "responses": {
       "en": [
-        "Goodbye! Good luck with your studies at UWTSD. Feel free to come back if you have more questions! 👋",
-        "Take care! If you need anything else, U-Pal is always here to help. Good luck! 😊"
+        "Goodbye! Good luck with your studies at UWTSD. Feel free to come back if you have more questions.",
+        "Take care! If you need anything else, U-Pal is always here to help."
       ],
       "cy": [
-        "Da boch chi! Pob lwc gyda'ch astudiaethau ym PCYDDS. Croeso i ddod nôl os oes gennych fwy o gwestiynau! 👋",
-        "Hwyl fawr! Os oes angen unrhyw beth arall arnoch chi, mae U-Pal bob amser yma i helpu. Pob lwc! 😊"
+        "Da boch chi! Pob lwc gyda'ch astudiaethau ym PCYDDS. Croeso i ddod nôl os oes gennych fwy o gwestiynau.",
+        "Hwyl fawr! Os oes angen unrhyw beth arall arnoch chi, mae U-Pal bob amser yma i helpu."
       ]
     }
   },
@@ -39,16 +43,18 @@
     "tag": "thanks",
     "patterns": [
       "thank you", "thanks", "cheers", "that's helpful", "great thanks", "brilliant",
-      "perfect thanks", "diolch", "diolch yn fawr", "diolch yn fawr iawn",
-      "ardderchog", "gwych", "perffaith", "da iawn"
+      "perfect", "great", "awesome", "wonderful", "that helped", "very helpful",
+      "thanks a lot", "much appreciated", "appreciate it", "thanks so much", "fab",
+      "nice one", "legend", "sound", "diolch", "diolch yn fawr", "diolch yn fawr iawn",
+      "ardderchog", "gwych", "perffaith", "da iawn", "diolch am hynna", "grêt diolch"
     ],
     "responses": {
       "en": [
-        "You're welcome! Is there anything else I can help you with? 😊",
+        "You're welcome! Is there anything else I can help you with?",
         "Happy to help! Let me know if you have any other questions about UWTSD."
       ],
       "cy": [
-        "Croeso! Oes unrhyw beth arall y gallaf eich helpu ag ef? 😊",
+        "Croeso! Oes unrhyw beth arall y gallaf eich helpu ag ef?",
         "Hapus i helpu! Rhowch wybod os oes gennych gwestiynau eraill am PCYDDS."
       ]
     }
@@ -57,17 +63,20 @@
     "tag": "how_are_you",
     "patterns": [
       "how are you", "how are you doing", "are you okay", "you alright", "what are you",
-      "who are you", "tell me about yourself", "what can you do", "sut wyt ti",
-      "sut ydych chi", "sut mae", "wyt ti'n iawn", "pwy wyt ti", "beth wyt ti",
-      "beth alli di wneud"
+      "who are you", "tell me about yourself", "what can you do", "what do you know",
+      "what can you help with", "what topics do you cover", "what do you know about",
+      "what kind of questions can I ask", "can you help me", "what do you do",
+      "are you a robot", "are you a bot", "are you real", "are you an AI",
+      "sut wyt ti", "sut ydych chi", "sut mae", "wyt ti'n iawn", "pwy wyt ti",
+      "beth wyt ti", "beth alli di wneud", "sut allwch chi helpu", "beth yw dy bwrpas"
     ],
     "responses": {
       "en": [
-        "I'm doing great, thanks for asking! I'm U-Pal — a student support chatbot built for UWTSD students. I can answer questions about admissions, courses, fees, accommodation, campus life, wellbeing, IT and more. What can I help you with?",
-        "I'm a chatbot so always ready to help! I'm U-Pal, trained to answer questions about UWTSD university life. Ask away!"
+        "I'm doing great, thanks for asking! I'm U-Pal, a student support chatbot for UWTSD students. I can answer questions about admissions, courses, fees, accommodation, campus life, wellbeing, IT and more. What can I help you with?",
+        "I'm a chatbot, so always ready to help! I'm U-Pal, trained to answer questions about UWTSD university life. Ask away!"
       ],
       "cy": [
-        "Rydw i'n iawn diolch! U-Pal ydw i — chatbot cymorth myfyrwyr wedi'i adeiladu ar gyfer myfyrwyr PCYDDS. Gallaf ateb cwestiynau am dderbyniadau, cyrsiau, ffioedd, llety, bywyd campws, lles, TG a mwy. Beth alla i ei helpu gydag ef?",
+        "Rydw i'n iawn diolch! U-Pal ydw i, chatbot cymorth myfyrwyr ar gyfer myfyrwyr PCYDDS. Gallaf ateb cwestiynau am dderbyniadau, cyrsiau, ffioedd, llety, bywyd campws, lles, TG a mwy.",
         "Chatbot ydw i felly bob amser yn barod i helpu! U-Pal ydw i, wedi fy hyfforddi i ateb cwestiynau am fywyd prifysgol PCYDDS. Gofynnwch!"
       ]
     }
@@ -77,17 +86,22 @@
     "patterns": [
       "how do I apply", "application process", "how to apply to uwtsd", "apply for a course",
       "how do I get in", "apply to university", "applying to uwtsd", "start an application",
+      "where do I apply", "apply online", "how to sign up for a course", "register for a course",
+      "how to enrol", "enrolment process", "want to study at uwtsd", "interested in applying",
+      "can I apply", "I want to apply", "apply through ucas", "direct application",
+      "how does the application work", "application form uwtsd", "steps to apply",
       "sut i wneud cais", "sut i ymgeisio", "sut mae gwneud cais i pcydds",
-      "ymgeisio am gwrs", "sut i gael fy nerbyn", "cais prifysgol", "proses ymgeisio"
+      "ymgeisio am gwrs", "sut i gael fy nerbyn", "cais prifysgol", "proses ymgeisio",
+      "ble i ymgeisio", "sut i gofrestru am gwrs", "eisiau astudio ym pcydds"
     ],
     "responses": {
       "en": [
-        "To apply to UWTSD, you can apply directly through the UWTSD website at uwtsd.ac.uk or through UCAS (ucas.com) for undergraduate courses. International students can also apply directly. Head to uwtsd.ac.uk/study and choose your course to get started. The admissions team can also help on 01267 676767.",
-        "Applying to UWTSD is straightforward! For most undergraduate courses, apply via UCAS (ucas.com). For postgraduate or direct entry, go to uwtsd.ac.uk/study. You'll need to choose your campus preference — Swansea, Carmarthen, or Lampeter. Need help choosing a course? Just ask!"
+        "To apply to UWTSD, you can apply directly through uwtsd.ac.uk/study or through UCAS (ucas.com) for undergraduate courses. International students can also apply directly. Choose your course, check entry requirements, and submit your application. The admissions team can help on 01267 676767 or admissions@uwtsd.ac.uk.",
+        "Applying to UWTSD is straightforward. For most undergraduate courses, apply via UCAS (ucas.com). For postgraduate or direct entry, go to uwtsd.ac.uk/study. You'll need to choose your campus preference: Swansea, Carmarthen, or Lampeter. Need help choosing a course? Just ask!"
       ],
       "cy": [
-        "I wneud cais i PCYDDS, gallwch wneud cais yn uniongyrchol trwy wefan PCYDDS ar pcydds.ac.uk neu trwy UCAS (ucas.com) ar gyfer cyrsiau israddedig. Gall myfyrwyr rhyngwladol hefyd wneud cais yn uniongyrchol. Ewch i pcydds.ac.uk/study a dewis eich cwrs i ddechrau. Gall y tîm derbyniadau hefyd helpu ar 01267 676767.",
-        "Mae gwneud cais i PCYDDS yn syml! Ar gyfer y rhan fwyaf o gyrsiau israddedig, gwnewch gais trwy UCAS (ucas.com). Ar gyfer mynediad ôl-raddedig neu uniongyrchol, ewch i pcydds.ac.uk/study. Bydd angen i chi ddewis campws — Abertawe, Caerfyrddin, neu Llanbedr Pont Steffan."
+        "I wneud cais i PCYDDS, gallwch wneud cais yn uniongyrchol trwy pcydds.ac.uk/study neu trwy UCAS (ucas.com) ar gyfer cyrsiau israddedig. Ewch i pcydds.ac.uk/study a dewis eich cwrs i ddechrau. Gall y tîm derbyniadau helpu ar 01267 676767 neu admissions@pcydds.ac.uk.",
+        "Mae gwneud cais i PCYDDS yn syml. Ar gyfer y rhan fwyaf o gyrsiau israddedig, gwnewch gais trwy UCAS (ucas.com). Ar gyfer mynediad ôl-raddedig neu uniongyrchol, ewch i pcydds.ac.uk/study."
       ]
     }
   },
@@ -96,18 +110,24 @@
     "patterns": [
       "entry requirements", "what grades do I need", "qualifications needed",
       "a level requirements", "gcse requirements", "what do I need to get in",
-      "academic requirements", "minimum entry requirements", "gofynion mynediad",
-      "pa raddau sydd eu hangen", "cymwysterau angenrheidiol", "gofynion lefel a",
-      "beth sydd ei angen i fynd i mewn", "gofynion academaidd", "graddau mynediad lleiaf"
+      "academic requirements", "minimum entry requirements", "do I have the right grades",
+      "can I get in with my grades", "what qualifications do I need", "grade requirements",
+      "will I be accepted", "am I eligible", "can I apply with a btec",
+      "access course qualifications", "mature student entry", "what gcse do I need",
+      "do I need maths and english", "requirements for degree", "what points do I need",
+      "ucas points needed", "tariff points", "how many ucas points", "what results do I need",
+      "gofynion mynediad", "pa raddau sydd eu hangen", "cymwysterau angenrheidiol",
+      "gofynion lefel a", "beth sydd ei angen i fynd i mewn", "gofynion academaidd",
+      "graddau mynediad lleiaf", "a fyddaf yn cael fy nerbyn", "cymwysterau ar gyfer gradd"
     ],
     "responses": {
       "en": [
-        "Entry requirements vary by course at UWTSD. Most undergraduate courses require 80-120 UCAS points (roughly 2-3 A-levels at grades C or above). Some courses like nursing or teacher training may have specific requirements. UWTSD also considers mature students, Access to HE qualifications, and BTECs. Check the specific course page at uwtsd.ac.uk for exact requirements!",
-        "Requirements differ by course — some need specific subjects, others are more flexible. UWTSD welcomes students with A-levels, BTECs, Access to HE, Scottish Highers, and Welsh Baccalaureate. Foundation year options are also available if you don't quite meet the standard entry requirements. Check uwtsd.ac.uk for your specific course."
+        "Entry requirements vary by course at UWTSD. Most undergraduate courses require 80-120 UCAS points (roughly 2-3 A-levels at grade C or above). UWTSD also considers mature students, Access to HE qualifications, and BTECs. Check the specific course page at uwtsd.ac.uk for exact requirements.",
+        "Requirements differ by course. UWTSD welcomes students with A-levels, BTECs, Access to HE, Scottish Highers, and Welsh Baccalaureate. Foundation year options are also available if you don't quite meet the standard entry requirements. Check uwtsd.ac.uk/study for your specific course."
       ],
       "cy": [
-        "Mae gofynion mynediad yn amrywio yn ôl cwrs ym PCYDDS. Mae'r rhan fwyaf o gyrsiau israddedig yn gofyn am 80-120 pwynt UCAS (tua 2-3 lefel A ar raddau C neu uwch). Gallai rhai cyrsiau fel nyrsio neu hyfforddiant athrawon fod â gofynion penodol. Mae PCYDDS hefyd yn ystyried myfyrwyr aeddfed, cymwysterau Mynediad i AU, a BTECs.",
-        "Mae gofynion yn amrywio yn ôl cwrs — mae rhai yn gofyn am bynciau penodol, mae eraill yn fwy hyblyg. Mae PCYDDS yn croesawu myfyrwyr â lefelau A, BTECs, Mynediad i AU, Uwch Raddau Albanaidd, a Bagloriaeth Cymru. Mae opsiynau blwyddyn sylfaen hefyd ar gael."
+        "Mae gofynion mynediad yn amrywio yn ôl cwrs ym PCYDDS. Mae'r rhan fwyaf o gyrsiau israddedig yn gofyn am 80-120 pwynt UCAS. Mae PCYDDS hefyd yn ystyried myfyrwyr aeddfed, cymwysterau Mynediad i AU, a BTECs.",
+        "Mae gofynion yn amrywio yn ôl cwrs. Mae PCYDDS yn croesawu myfyrwyr â lefelau A, BTECs, Mynediad i AU, Uwch Raddau Albanaidd, a Bagloriaeth Cymru. Mae opsiynau blwyddyn sylfaen hefyd ar gael."
       ]
     }
   },
@@ -115,18 +135,23 @@
     "tag": "admissions_deadline",
     "patterns": [
       "application deadline", "when to apply", "last date to apply", "ucas deadline",
-      "when does applications close", "closing date", "pryd yw'r dyddiad cau",
-      "dyddiad cau cais", "pryd i wneud cais", "dyddiad olaf i ymgeisio",
-      "pryd mae ceisiadau'n cau", "dyddiad cau ucas"
+      "when does applications close", "closing date", "when is the cut off",
+      "latest I can apply", "is it too late to apply", "apply late", "late application",
+      "can I still apply", "missed the deadline", "apply after january",
+      "when do applications open", "when can I apply from", "apply for next year",
+      "september intake deadline", "january intake", "when to submit application",
+      "pryd yw'r dyddiad cau", "dyddiad cau cais", "pryd i wneud cais",
+      "dyddiad olaf i ymgeisio", "pryd mae ceisiadau'n cau", "dyddiad cau ucas",
+      "a allaf wneud cais yn hwyr", "oes hi'n rhy hwyr i wneud cais"
     ],
     "responses": {
       "en": [
-        "The main UCAS deadline for most undergraduate courses is usually mid-January for entry the following September. However, UWTSD often accepts applications through UCAS Extra and Clearing after this date. Some postgraduate and part-time courses have rolling admissions throughout the year. Check uwtsd.ac.uk/study or call 01267 676767 for the latest deadlines.",
-        "Key deadlines: UCAS main deadline is usually 29 January for September entry. UWTSD also participates in Clearing (from mid-August) for students who get better or worse results than expected. Postgraduate courses often have flexible deadlines — contact admissions at admissions@uwtsd.ac.uk for specifics."
+        "The main UCAS deadline for most undergraduate courses is usually late January for September entry. UWTSD also accepts applications through UCAS Extra and Clearing after this date. Postgraduate and part-time courses often have rolling admissions. Check uwtsd.ac.uk/study or call 01267 676767 for the latest deadlines.",
+        "Key deadlines: UCAS main deadline is usually 29 January for September entry. UWTSD participates in Clearing from mid-August for students whose results differ from expectations. Postgraduate courses often have flexible deadlines. Email admissions@uwtsd.ac.uk for specifics."
       ],
       "cy": [
-        "Y prif ddyddiad cau UCAS ar gyfer y rhan fwyaf o gyrsiau israddedig fel arfer yw canol Ionawr ar gyfer mynediad y mis Medi canlynol. Fodd bynnag, mae PCYDDS yn aml yn derbyn ceisiadau trwy UCAS Extra a Chlirio ar ôl y dyddiad hwn. Mae rhai cyrsiau ôl-raddedig a rhan-amser yn cael derbyniadau parhaus trwy gydol y flwyddyn.",
-        "Dyddiadau allweddol: Y prif ddyddiad cau UCAS fel arfer yw 29 Ionawr ar gyfer mynediad ym mis Medi. Mae PCYDDS hefyd yn cymryd rhan mewn Clirio (o ganol mis Awst) ar gyfer myfyrwyr sydd â chanlyniadau gwell neu waeth na'r disgwyl. Cysylltwch â derbyniadau ar admissions@uwtsd.ac.uk am fanylion penodol."
+        "Y prif ddyddiad cau UCAS ar gyfer y rhan fwyaf o gyrsiau israddedig fel arfer yw diwedd Ionawr ar gyfer mynediad ym mis Medi. Mae PCYDDS hefyd yn derbyn ceisiadau trwy UCAS Extra a Chlirio ar ôl y dyddiad hwn.",
+        "Dyddiad cau allweddol: Y prif ddyddiad cau UCAS fel arfer yw 29 Ionawr ar gyfer mynediad ym mis Medi. Mae PCYDDS yn cymryd rhan mewn Clirio o ganol mis Awst. Cysylltwch â admissions@pcydds.ac.uk am fanylion penodol."
       ]
     }
   },
@@ -135,37 +160,46 @@
     "patterns": [
       "international student", "apply from abroad", "overseas application", "student visa",
       "study in wales as international", "applying from another country", "tier 4 visa",
-      "international admission", "myfyriwr rhyngwladol", "ymgeisio o dramor",
-      "cais tramor", "fisa myfyriwr", "astudio yng nghymru fel rhyngwladol",
-      "ymgeisio o wlad arall"
+      "international admission", "visa requirements", "can I study in uk", "study in wales",
+      "coming from overseas", "apply from india", "apply from nigeria", "apply from europe",
+      "student route visa", "CAS number", "international fees", "apply as international",
+      "entry clearance", "biometric residence permit", "right to study in uk",
+      "myfyriwr rhyngwladol", "ymgeisio o dramor", "cais tramor", "fisa myfyriwr",
+      "astudio yng nghymru fel rhyngwladol", "ymgeisio o wlad arall",
+      "dod o dramor i astudio", "angen fisa"
     ],
     "responses": {
       "en": [
-        "International students are very welcome at UWTSD! You can apply directly through uwtsd.ac.uk/international. You'll likely need a Student Visa (formerly Tier 4) if you're from outside the UK. UWTSD has an International Office to support you — contact them at international@uwtsd.ac.uk or visit uwtsd.ac.uk/international for visa guidance, language requirements, and support services.",
-        "UWTSD welcomes students from over 50 countries! Apply via uwtsd.ac.uk/international. Key things international students need: proof of English language proficiency (usually IELTS 6.0+), academic transcripts, and a valid passport. The International Office can guide you through the visa process — email international@uwtsd.ac.uk."
+        "International students are very welcome at UWTSD! Apply directly through uwtsd.ac.uk/international. You'll likely need a Student Visa if from outside the UK. UWTSD's International Office supports you with visa guidance, language requirements, and pastoral care. Contact international@uwtsd.ac.uk.",
+        "UWTSD welcomes students from over 50 countries. Apply via uwtsd.ac.uk/international. Key requirements: proof of English proficiency (usually IELTS 6.0+), academic transcripts, valid passport. The International Office guides you through the visa process at international@uwtsd.ac.uk."
       ],
       "cy": [
-        "Mae myfyrwyr rhyngwladol yn fwy na chroesawus ym PCYDDS! Gallwch wneud cais yn uniongyrchol trwy pcydds.ac.uk/international. Bydd angen Fisa Myfyriwr arnoch chi (gynt Lefel 4) os ydych chi o'r tu allan i'r DU. Mae gan PCYDDS Swyddfa Ryngwladol i'ch cefnogi — cysylltwch â nhw ar international@uwtsd.ac.uk.",
-        "Mae PCYDDS yn croesawu myfyrwyr o dros 50 gwlad! Ymgeisiwch trwy pcydds.ac.uk/international. Pethau allweddol sydd eu hangen ar fyfyrwyr rhyngwladol: tystiolaeth o hyfedredd yn y Saesneg (fel arfer IELTS 6.0+), trawsgrifiadau academaidd, a phasbort dilys."
+        "Mae myfyrwyr rhyngwladol yn fwy na chroesawus ym PCYDDS! Gwnewch gais yn uniongyrchol trwy pcydds.ac.uk/international. Bydd angen Fisa Myfyriwr arnoch os ydych chi o'r tu allan i'r DU. Cysylltwch â international@pcydds.ac.uk.",
+        "Mae PCYDDS yn croesawu myfyrwyr o dros 50 gwlad. Gofynion allweddol: tystiolaeth o hyfedredd yn y Saesneg (fel arfer IELTS 6.0+), trawsgrifiadau academaidd, pasbort dilys."
       ]
     }
   },
   {
     "tag": "admissions_foundation",
     "patterns": [
-      "foundation year", "foundation course", "pathway to degree",
-      "don't meet entry requirements", "alternative entry", "access course", "year 0",
+      "foundation year", "foundation course", "pathway to degree", "year 0",
+      "don't meet entry requirements", "alternative entry", "access course",
+      "not enough qualifications", "no a levels", "gap year then apply",
+      "mature student entry", "returning to education", "what if I don't have grades",
+      "can I still get into university", "second chance at university",
+      "foundation programme", "bridging course", "pre-degree year",
       "blwyddyn sylfaen", "cwrs sylfaen", "llwybr i radd",
-      "nid wyf yn bodloni gofynion mynediad", "mynediad amgen", "cwrs mynediad", "blwyddyn 0"
+      "nid wyf yn bodloni gofynion mynediad", "mynediad amgen", "cwrs mynediad",
+      "dim cymwysterau digonol", "myfyriwr aeddfed", "dychwelyd i addysg"
     ],
     "responses": {
       "en": [
-        "Yes! UWTSD offers Foundation Year programmes for students who don't quite meet the standard entry requirements. This is a fantastic option if you've been out of education for a while, are a mature student, or have non-traditional qualifications. Successfully completing the Foundation Year guarantees progression to Year 1 of your chosen degree. Check uwtsd.ac.uk/study for available foundation pathways.",
-        "UWTSD's Foundation Year is a great stepping stone into university! It's designed for mature students, those returning to education, or those with non-standard qualifications. You study at degree level but with extra support. After passing, you move into Year 1. Ask admissions at admissions@uwtsd.ac.uk about which degrees offer a foundation year entry."
+        "UWTSD offers Foundation Year programmes for students who don't quite meet standard entry requirements. Great for mature students, those returning to education, or with non-traditional qualifications. Successfully completing the Foundation Year guarantees progression to Year 1 of your chosen degree. Check uwtsd.ac.uk/study for available pathways.",
+        "UWTSD's Foundation Year is a great stepping stone into university. It's designed for students who need extra preparation before degree-level study. After passing, you move directly into Year 1. Ask admissions at admissions@uwtsd.ac.uk about foundation year options."
       ],
       "cy": [
-        "Oes! Mae PCYDDS yn cynnig rhaglenni Blwyddyn Sylfaen ar gyfer myfyrwyr nad ydynt yn bodloni'r gofynion mynediad safonol. Mae hwn yn opsiwn gwych os ydych chi wedi bod allan o addysg am sbel, yn fyfyriwr aeddfed, neu â chymwysterau anhraddodiadol. Mae cwblhau'r Flwyddyn Sylfaen yn llwyddiannus yn gwarantu symud ymlaen i Flwyddyn 1 eich gradd ddewisol.",
-        "Mae Blwyddyn Sylfaen PCYDDS yn gam gwych i mewn i'r brifysgol! Mae wedi'i gynllunio ar gyfer myfyrwyr aeddfed, y rhai sy'n dychwelyd i addysg, neu'r rhai â chymwysterau anhraddodiadol. Ar ôl pasio, byddwch yn symud i Flwyddyn 1. Gofynnwch i dderbyniadau ar admissions@uwtsd.ac.uk am ba raddau sy'n cynnig mynediad blwyddyn sylfaen."
+        "Mae PCYDDS yn cynnig rhaglenni Blwyddyn Sylfaen ar gyfer myfyrwyr nad ydynt yn bodloni'r gofynion mynediad safonol. Ar ôl cwblhau'r Flwyddyn Sylfaen yn llwyddiannus, byddwch yn symud i Flwyddyn 1 eich gradd ddewisol.",
+        "Mae Blwyddyn Sylfaen PCYDDS yn gam gwych i mewn i'r brifysgol. Ar ôl pasio, byddwch yn symud yn uniongyrchol i Flwyddyn 1. Gofynnwch i dderbyniadau ar admissions@pcydds.ac.uk am opsiynau blwyddyn sylfaen."
       ]
     }
   },
@@ -174,17 +208,23 @@
     "patterns": [
       "what courses are available", "what degrees does uwtsd offer", "list of courses",
       "what can I study", "subjects available", "course options", "what programmes",
+      "what subjects can I take", "what can I do at uwtsd", "course choices",
+      "what degrees can I get", "available programmes", "what to study", "degree options",
+      "undergraduate courses", "postgraduate courses", "masters courses", "phd uwtsd",
+      "part time courses", "distance learning", "online courses uwtsd", "evening courses",
+      "short courses", "professional courses", "vocational courses",
       "pa gyrsiau sydd ar gael", "pa raddau mae pcydds yn eu cynnig", "rhestr o gyrsiau",
-      "beth alla i ei astudio", "pynciau sydd ar gael", "opsiynau cwrs", "pa raglenni"
+      "beth alla i ei astudio", "pynciau sydd ar gael", "opsiynau cwrs", "pa raglenni",
+      "cyrsiau ôl-raddedig", "cyrsiau israddedig", "graddau sydd ar gael"
     ],
     "responses": {
       "en": [
-        "UWTSD offers a huge range of courses including Art & Design, Business, Computing, Education, Engineering, Health & Social Care, Humanities, Law, Nursing, Psychology, Sport Science, Social Work, Welsh and many more! Courses are available at undergraduate, postgraduate, and professional levels across Swansea, Carmarthen, and Lampeter campuses. Browse the full list at uwtsd.ac.uk/study.",
-        "UWTSD has over 100 courses across its campuses! Highlights include strong programmes in Education, Nursing, Art & Design, Business, Welsh medium courses, and Sustainability. Some courses are only available at specific campuses. Visit uwtsd.ac.uk/study and filter by subject, level, or campus to find what suits you."
+        "UWTSD offers a huge range of courses including Art and Design, Business, Computing, Education, Engineering, Health and Social Care, Humanities, Law, Nursing, Psychology, Sport Science, Social Work, Welsh and many more. Courses are available at undergraduate, postgraduate, and professional levels. Browse the full list at uwtsd.ac.uk/study.",
+        "UWTSD has over 100 courses across its campuses. Highlights include Education, Nursing, Art and Design, Business, Welsh medium courses, and Sustainability. Visit uwtsd.ac.uk/study and filter by subject, level, or campus to find what suits you."
       ],
       "cy": [
-        "Mae PCYDDS yn cynnig ystod enfawr o gyrsiau gan gynnwys Celf a Dylunio, Busnes, Cyfrifiadureg, Addysg, Peirianneg, Iechyd a Gofal Cymdeithasol, Dyniaethau, y Gyfraith, Nyrsio, Seicoleg, Gwyddor Chwaraeon, Gwaith Cymdeithasol, Cymraeg a llawer mwy! Browiwch y rhestr lawn ar pcydds.ac.uk/study.",
-        "Mae gan PCYDDS dros 100 o gyrsiau ar draws ei champysau! Mae PCYDDS yn adnabyddus am ei rhaglenni Addysg, Nyrsio, Celf a Dylunio, Busnes, cyrsiau cyfrwng Cymraeg, a Chynaliadwyedd. Ymwelwch â pcydds.ac.uk/study a hidlwch yn ôl pwnc, lefel, neu gampws."
+        "Mae PCYDDS yn cynnig ystod enfawr o gyrsiau gan gynnwys Celf a Dylunio, Busnes, Cyfrifiadureg, Addysg, Peirianneg, Iechyd a Gofal Cymdeithasol, Dyniaethau, y Gyfraith, Nyrsio, Seicoleg, Gwyddor Chwaraeon, Gwaith Cymdeithasol, Cymraeg a llawer mwy. Browiwch y rhestr lawn ar pcydds.ac.uk/study.",
+        "Mae gan PCYDDS dros 100 o gyrsiau ar draws ei champysau. Ymwelwch â pcydds.ac.uk/study a hidlwch yn ôl pwnc, lefel, neu gampws."
       ]
     }
   },
@@ -193,17 +233,23 @@
     "patterns": [
       "computer science", "computing courses", "software engineering", "IT degree",
       "programming degree", "web development", "cyber security", "data science",
-      "BSc computing", "cyfrifiadureg", "cyrsiau cyfrifiadureg", "peirianneg meddalwedd",
-      "gradd TG", "gradd raglennu", "datblygu gwe", "seiberddiogelwch", "gwyddor data"
+      "BSc computing", "computer courses", "coding degree", "tech degree",
+      "information technology", "network security", "computer systems", "AI course",
+      "machine learning course", "games development", "app development degree",
+      "digital technology", "software development degree", "computing at uwtsd",
+      "swansea computing", "computer science swansea",
+      "cyfrifiadureg", "cyrsiau cyfrifiadureg", "peirianneg meddalwedd",
+      "gradd TG", "gradd raglennu", "datblygu gwe", "seiberddiogelwch", "gwyddor data",
+      "cyfrifiadureg ym mhrifysgol", "astudio cyfrifiadureg pcydds"
     ],
     "responses": {
       "en": [
-        "UWTSD offers Computing and IT-related degrees mainly at the Swansea campus (SA1 Waterfront). Courses include BSc Computer Science, BSc Software Engineering, BSc Cybersecurity, and related programmes. These are accredited and industry-focused. Visit uwtsd.ac.uk/study and search 'computing' for the full course list and entry requirements.",
-        "Yes! UWTSD has a strong Computing department at Swansea. Courses cover programming, networking, cybersecurity, software development, and data science. Many have industry placements. Check uwtsd.ac.uk/study for up-to-date course details and UCAS codes."
+        "UWTSD offers Computing and IT-related degrees mainly at the Swansea SA1 campus. Courses include BSc Computer Science, BSc Software Engineering, BSc Cybersecurity, and related programmes. These are industry-focused with strong links to employers. Visit uwtsd.ac.uk/study and search 'computing' for the full list.",
+        "UWTSD has a strong Computing department at Swansea. Courses cover programming, networking, cybersecurity, software development, and data science. Many include industry placements. Check uwtsd.ac.uk/study for up-to-date course details and UCAS codes."
       ],
       "cy": [
-        "Mae PCYDDS yn cynnig graddau Cyfrifiadureg a TG yn bennaf ar gampws Abertawe (Glanfa SA1). Mae cyrsiau'n cynnwys BSc Gwyddor Cyfrifiadur, BSc Peirianneg Meddalwedd, BSc Seiberddiogelwch, a rhaglenni cysylltiedig. Ewch i pcydds.ac.uk/study a chwiliwch am 'cyfrifiadureg' am y rhestr cwrs lawn.",
-        "Oes! Mae gan PCYDDS adran Cyfrifiadureg gref yn Abertawe. Mae cyrsiau'n ymdrin â rhaglennu, rhwydweithio, seiberddiogelwch, datblygu meddalwedd, a gwyddor data. Mae gan lawer ohonynt leoliadau diwydiannol."
+        "Mae PCYDDS yn cynnig graddau Cyfrifiadureg a TG yn bennaf ar gampws SA1 Abertawe. Mae cyrsiau'n cynnwys BSc Gwyddor Cyfrifiadur, BSc Peirianneg Meddalwedd, BSc Seiberddiogelwch. Ewch i pcydds.ac.uk/study a chwiliwch am 'cyfrifiadureg'.",
+        "Mae gan PCYDDS adran Cyfrifiadureg gref yn Abertawe. Mae cyrsiau'n ymdrin â rhaglennu, rhwydweithio, seiberddiogelwch, datblygu meddalwedd, a gwyddor data."
       ]
     }
   },
@@ -211,17 +257,23 @@
     "tag": "courses_nursing",
     "patterns": [
       "nursing", "nurse degree", "adult nursing", "mental health nursing", "midwifery",
-      "health courses", "nursing at uwtsd", "nyrsio", "gradd nyrs", "nyrsio oedolion",
-      "nyrsio iechyd meddwl", "bydwreigiaeth", "cyrsiau iechyd", "nyrsio ym pcydds"
+      "health courses", "nursing at uwtsd", "how to become a nurse", "nursing programme",
+      "bsc nursing", "registered nurse", "rnmh", "paediatric nursing", "community nursing",
+      "health and social care", "healthcare degree", "clinical degree", "nhs training",
+      "nursing placement", "nursing entry requirements", "nursing swansea",
+      "nursing carmarthen", "children nursing", "district nurse training",
+      "nyrsio", "gradd nyrs", "nyrsio oedolion", "nyrsio iechyd meddwl",
+      "bydwreigiaeth", "cyrsiau iechyd", "nyrsio ym pcydds", "sut i fod yn nyrs",
+      "gradd gofal iechyd", "gofal cymdeithasol"
     ],
     "responses": {
       "en": [
-        "UWTSD has an excellent reputation for Nursing and Health Sciences! Courses include Adult Nursing (BSc), Mental Health Nursing (BSc), and various Health & Social Care programmes. Nursing courses are primarily based at the Swansea campus. They are NMC-accredited and include clinical placements throughout the programme. Check uwtsd.ac.uk/study for current intake dates.",
-        "Nursing at UWTSD is highly regarded. The BSc Nursing programmes (Adult and Mental Health) include real clinical placements across NHS Wales. Based mainly at Swansea, with some teaching at Carmarthen. UWTSD works closely with NHS Wales Trusts. Entry requirements typically include specific science GCSEs. See uwtsd.ac.uk/nursing for details."
+        "UWTSD has an excellent reputation for Nursing and Health Sciences. Courses include Adult Nursing (BSc), Mental Health Nursing (BSc), and Health and Social Care programmes. Nursing is primarily based at Swansea campus and is NMC-accredited with clinical placements throughout. Check uwtsd.ac.uk/study for current intake dates.",
+        "Nursing at UWTSD is highly regarded. BSc Nursing programmes include real clinical placements across NHS Wales. Based mainly at Swansea with some teaching at Carmarthen. Entry typically requires specific science GCSEs. See uwtsd.ac.uk for details."
       ],
       "cy": [
-        "Mae gan PCYDDS enw da rhagorol am Nyrsio a Gwyddorau Iechyd! Mae cyrsiau'n cynnwys Nyrsio Oedolion (BSc), Nyrsio Iechyd Meddwl (BSc), a rhaglenni Iechyd a Gofal Cymdeithasol amrywiol. Mae cyrsiau Nyrsio wedi'u lleoli'n bennaf ar gampws Abertawe.",
-        "Mae Nyrsio ym PCYDDS yn cael ei ystyried yn uchel. Mae rhaglenni BSc Nyrsio (Oedolion ac Iechyd Meddwl) yn cynnwys lleoliadau clinigol go iawn ar draws GIG Cymru. Gweler pcydds.ac.uk/nursing am fanylion."
+        "Mae gan PCYDDS enw da rhagorol am Nyrsio a Gwyddorau Iechyd. Mae cyrsiau'n cynnwys Nyrsio Oedolion (BSc), Nyrsio Iechyd Meddwl (BSc), a rhaglenni Iechyd a Gofal Cymdeithasol. Mae cyrsiau Nyrsio wedi'u lleoli'n bennaf ar gampws Abertawe.",
+        "Mae Nyrsio ym PCYDDS yn cael ei ystyried yn uchel. Mae rhaglenni BSc Nyrsio yn cynnwys lleoliadau clinigol go iawn ar draws GIG Cymru. Gweler pcydds.ac.uk/nyrsio am fanylion."
       ]
     }
   },
@@ -230,17 +282,22 @@
     "patterns": [
       "teacher training", "pgce", "education degree", "teaching qualification",
       "ba education", "primary teaching", "secondary teaching", "qualified teacher status",
+      "how to become a teacher", "teaching at uwtsd", "train to teach", "QTS",
+      "early years education", "childhood studies", "EYTS", "education courses",
+      "secondary pgce subjects", "primary pgce", "postgraduate teacher training",
+      "EWC registration", "teaching placement", "school placement", "welsh medium teaching",
       "hyfforddiant athrawon", "gradd addysg", "cymhwyster dysgu", "ba addysg",
-      "dysgu cynradd", "dysgu uwchradd", "statws athro cymwysedig"
+      "dysgu cynradd", "dysgu uwchradd", "statws athro cymwysedig", "sut i fod yn athro",
+      "addysg blynyddoedd cynnar", "astudiaethau plentyndod", "TAR", "addysg cynradd"
     ],
     "responses": {
       "en": [
-        "UWTSD is one of Wales' leading teacher training institutions! Courses include BA Education (Primary), PGCE Primary, PGCE Secondary (various subjects), and BA Childhood Studies. The Carmarthen campus is the main hub for Education. UWTSD is accredited by the Education Workforce Council (EWC) of Wales. Visit uwtsd.ac.uk/study for current courses.",
-        "Teacher training at UWTSD is mainly based at Carmarthen campus. You can train to teach in Welsh-medium or English-medium schools. Programmes include the PGCE (Postgraduate Certificate in Education) and undergraduate BA Education. Placement schools are local — keeping you in the community during training."
+        "UWTSD is one of Wales' leading teacher training institutions. Courses include BA Education (Primary), PGCE Primary, PGCE Secondary (various subjects), and BA Childhood Studies. The Carmarthen campus is the main hub for Education, accredited by the Education Workforce Council (EWC) of Wales. Visit uwtsd.ac.uk/study.",
+        "Teacher training at UWTSD is mainly at Carmarthen campus. You can train to teach in Welsh-medium or English-medium schools. Programmes include the PGCE and undergraduate BA Education. Placement schools are local and community-focused."
       ],
       "cy": [
-        "Mae PCYDDS yn un o sefydliadau hyfforddi athrawon blaenllaw Cymru! Mae cyrsiau'n cynnwys BA Addysg (Cynradd), TAR Cynradd, TAR Uwchradd (pynciau amrywiol), a BA Astudiaethau Plentyndod. Campws Caerfyrddin yw'r prif ganolfan ar gyfer Addysg. Ymwelwch â pcydds.ac.uk/study am gyrsiau cyfredol.",
-        "Mae hyfforddiant athrawon ym PCYDDS wedi'i leoli'n bennaf ar gampws Caerfyrddin. Gallwch hyfforddi i ddysgu mewn ysgolion cyfrwng Cymraeg neu Saesneg. Mae rhaglenni'n cynnwys y TAR (Tystysgrif Addysg Raddedig) a BA Addysg israddedig."
+        "Mae PCYDDS yn un o sefydliadau hyfforddi athrawon blaenllaw Cymru. Mae cyrsiau'n cynnwys BA Addysg (Cynradd), TAR Cynradd, TAR Uwchradd (pynciau amrywiol), a BA Astudiaethau Plentyndod. Campws Caerfyrddin yw'r prif ganolfan ar gyfer Addysg.",
+        "Mae hyfforddiant athrawon ym PCYDDS wedi'i leoli'n bennaf ar gampws Caerfyrddin. Gallwch hyfforddi i ddysgu mewn ysgolion cyfrwng Cymraeg neu Saesneg. Mae rhaglenni'n cynnwys y TAR a BA Addysg israddedig."
       ]
     }
   },
@@ -249,17 +306,22 @@
     "patterns": [
       "how much is tuition", "tuition fees", "how much does it cost", "course fees",
       "annual fees", "how much to study", "fee for degree", "undergraduate fees",
-      "faint yw'r ffioedd dysgu", "ffioedd dysgu", "faint mae'n ei gostio", "ffioedd cwrs",
-      "ffioedd blynyddol", "faint i astudio", "ffi am radd", "ffioedd israddedig"
+      "how much is university", "what are the fees", "cost of studying", "fees per year",
+      "how much per year", "total cost of degree", "how much is a degree",
+      "are fees expensive", "fees for home students", "uk student fees",
+      "fee increase", "what do I pay", "cost of university", "money for university",
+      "faint yw'r ffioedd dysgu", "ffioedd dysgu", "faint mae'n ei gostio",
+      "ffioedd cwrs", "ffioedd blynyddol", "faint i astudio", "ffi am radd",
+      "ffioedd israddedig", "cost astudio", "ffioedd y flwyddyn", "faint yw'r brifysgol"
     ],
     "responses": {
       "en": [
-        "Tuition fees at UWTSD for home (UK) students are currently £9,000 per year for most full-time undergraduate courses. Welsh students may be eligible for a Tuition Fee Loan from Student Finance Wales to cover the full amount, so you don't pay upfront! Postgraduate fees vary. Check uwtsd.ac.uk/fees for the latest confirmed amounts.",
-        "For 2024/25 entry, UWTSD charges £9,000 per year for full-time undergraduate courses. Good news — Welsh-domiciled students can apply for a Tuition Fee Loan to cover this in full, repaid through your salary once you earn over the threshold. Part-time fees are pro-rata. See uwtsd.ac.uk/fees for full details."
+        "Tuition fees at UWTSD for home (UK) students are currently £9,000 per year for most full-time undergraduate courses. Welsh students may be eligible for a Tuition Fee Loan from Student Finance Wales covering the full amount, so nothing is paid upfront. Postgraduate fees vary. Check uwtsd.ac.uk/fees for the latest figures.",
+        "For current entry, UWTSD charges £9,000 per year for full-time undergraduate courses. Welsh-domiciled students can apply for a Tuition Fee Loan to cover this in full, repaid through salary once you earn over the threshold. Part-time fees are pro-rata. See uwtsd.ac.uk/fees."
       ],
       "cy": [
-        "Mae ffioedd dysgu ym PCYDDS ar gyfer myfyrwyr cartref (DU) ar hyn o bryd yn £9,000 y flwyddyn ar gyfer y rhan fwyaf o gyrsiau israddedig amser llawn. Efallai y bydd myfyrwyr Cymreig yn gymwys am Fenthyciad Ffi Dysgu gan Gyllid Myfyrwyr Cymru i dalu'r swm llawn, felly nid ydych yn talu ymlaen llaw!",
-        "Am fynediad 2024/25, mae PCYDDS yn codi £9,000 y flwyddyn ar gyfer cyrsiau israddedig amser llawn. Newyddion da — gall myfyrwyr sy'n byw yng Nghymru wneud cais am Fenthyciad Ffi Dysgu i dalu hyn yn llawn. Gweler pcydds.ac.uk/fees am fanylion llawn."
+        "Mae ffioedd dysgu ym PCYDDS ar gyfer myfyrwyr cartref (DU) ar hyn o bryd yn £9,000 y flwyddyn ar gyfer y rhan fwyaf o gyrsiau israddedig amser llawn. Efallai y bydd myfyrwyr Cymreig yn gymwys am Fenthyciad Ffi Dysgu gan Gyllid Myfyrwyr Cymru.",
+        "Mae PCYDDS yn codi £9,000 y flwyddyn ar gyfer cyrsiau israddedig amser llawn. Gall myfyrwyr sy'n byw yng Nghymru wneud cais am Fenthyciad Ffi Dysgu i dalu hyn yn llawn. Gweler pcydds.ac.uk/fees am fanylion llawn."
       ]
     }
   },
@@ -267,18 +329,23 @@
     "tag": "fees_student_loan",
     "patterns": [
       "student loan", "maintenance loan", "how to get a loan", "student finance",
-      "bursary", "grant", "financial support", "how to pay for university",
+      "how to apply for student finance", "living costs loan", "student finance wales",
+      "how much loan will I get", "loan for living costs", "do I qualify for a loan",
+      "how to repay student loan", "when do I pay back loan", "student finance deadline",
+      "apply for maintenance loan", "financial help for students", "money from government",
+      "can I get a loan", "student finance application", "SFW", "help with costs",
       "benthyciad myfyriwr", "benthyciad cynhaliaeth", "sut i gael benthyciad",
-      "cyllid myfyrwyr", "bwrsari", "cymorth ariannol", "sut i dalu am brifysgol"
+      "cyllid myfyrwyr", "benthyciad ar gyfer costau byw", "cymhwyso am fenthyciad",
+      "cymorth ariannol i fyfyrwyr", "pryd i dalu benthyciad yn ôl"
     ],
     "responses": {
       "en": [
-        "Student Finance Wales (studentfinancewales.co.uk) provides Tuition Fee Loans and Maintenance Loans for eligible Welsh-domiciled students. You can borrow up to £9,000 for fees and a maintenance loan towards living costs. Applications typically open in spring for the following academic year. You only start repaying once you earn over £25,000. Contact Student Finance Wales at 0300 200 4050.",
-        "Welsh students studying at UWTSD can apply to Student Finance Wales for: 1) Tuition Fee Loan — covers your fees entirely, 2) Maintenance Loan — helps with living costs (amount depends on household income and whether you live at home or away). Apply at studentfinancewales.co.uk — it's free to apply and you won't pay anything upfront!"
+        "Student Finance Wales (studentfinancewales.co.uk) provides Tuition Fee Loans and Maintenance Loans for eligible Welsh-domiciled students. You can borrow up to £9,000 for fees and a maintenance loan towards living costs. You only repay once you earn over £25,000. Applications usually open in spring. Call 0300 200 4050.",
+        "Welsh students studying at UWTSD can apply to Student Finance Wales for: 1) Tuition Fee Loan covering fees entirely, 2) Maintenance Loan helping with living costs (amount depends on household income). Apply at studentfinancewales.co.uk. It's free to apply and nothing is paid upfront."
       ],
       "cy": [
-        "Mae Cyllid Myfyrwyr Cymru (cyllidmyfyrwyrcymru.co.uk) yn darparu Benthyciadau Ffi Dysgu a Benthyciadau Cynhaliaeth ar gyfer myfyrwyr cymwys sy'n byw yng Nghymru. Gallwch fenthyca hyd at £9,000 am ffioedd a benthyciad cynhaliaeth tuag at gostau byw. Ffoniwch 0300 200 4050.",
-        "Gall myfyrwyr Cymreig sy'n astudio ym PCYDDS wneud cais i Gyllid Myfyrwyr Cymru am: 1) Benthyciad Ffi Dysgu — yn talu eich ffioedd yn llawn, 2) Benthyciad Cynhaliaeth — yn helpu gyda chostau byw. Ymgeisiwch ar cyllidmyfyrwyrcymru.co.uk — mae'n rhad ac am ddim i wneud cais!"
+        "Mae Cyllid Myfyrwyr Cymru (cyllidmyfyrwyrcymru.co.uk) yn darparu Benthyciadau Ffi Dysgu a Benthyciadau Cynhaliaeth ar gyfer myfyrwyr cymwys sy'n byw yng Nghymru. Dim ond ar ôl ennill dros £25,000 y byddwch yn ad-dalu. Ffoniwch 0300 200 4050.",
+        "Gall myfyrwyr Cymreig sy'n astudio ym PCYDDS wneud cais i Gyllid Myfyrwyr Cymru am: 1) Benthyciad Ffi Dysgu, 2) Benthyciad Cynhaliaeth. Ymgeisiwch ar cyllidmyfyrwyrcymru.co.uk."
       ]
     }
   },
@@ -286,18 +353,23 @@
     "tag": "fees_scholarships",
     "patterns": [
       "scholarships", "bursaries", "financial help", "funding", "grants for students",
-      "discount on fees", "free money for university", "merit awards",
+      "discount on fees", "money for university", "merit awards", "free money",
+      "are there any scholarships", "can I get a bursary", "sports scholarship",
+      "welsh language bursary", "care leavers bursary", "hardship fund",
+      "emergency fund", "financial support uwtsd", "scholarships available",
+      "how to apply for scholarship", "who qualifies for bursary", "student fund",
       "ysgoloriaeth", "bwrsariaethau", "help ariannol", "cyllido", "grantiau i fyfyrwyr",
-      "gostyngiad ar ffioedd", "arian am ddim ar gyfer prifysgol", "gwobrau teilyngdod"
+      "gostyngiad ar ffioedd", "ysgoloriaethau chwaraeon", "bwrsari iaith gymraeg",
+      "cronfa galedi", "cymorth ariannol pcydds", "oes ysgoloriaethau ar gael"
     ],
     "responses": {
       "en": [
-        "UWTSD offers a range of scholarships and bursaries! These include sports scholarships, Welsh language scholarships, subject-specific bursaries, and care leaver bursaries. Awards vary from a few hundred to several thousand pounds. Visit uwtsd.ac.uk/scholarships or contact finance@uwtsd.ac.uk for the full current list and eligibility criteria.",
-        "There are several funding opportunities at UWTSD: Welsh-medium study bursaries (for studying through Welsh), sports performance scholarships, subject bursaries, and hardship funds. The Students' Union also has emergency funds. Check uwtsd.ac.uk/scholarships and apply early — many have limited spaces!"
+        "UWTSD offers a range of scholarships and bursaries including sports scholarships, Welsh language scholarships, subject-specific bursaries, and care leaver bursaries. Awards vary from a few hundred to several thousand pounds. Visit uwtsd.ac.uk/scholarships or contact finance@uwtsd.ac.uk for the current list.",
+        "Funding opportunities at UWTSD include Welsh-medium study bursaries, sports performance scholarships, subject bursaries, and hardship funds. The Students' Union also has emergency funds. Check uwtsd.ac.uk/scholarships and apply early as spaces are limited."
       ],
       "cy": [
-        "Mae PCYDDS yn cynnig ystod o ysgoloriaethau a bwrsariaethau! Mae'r rhain yn cynnwys ysgoloriaethau chwaraeon, ysgoloriaethau iaith Gymraeg, bwrsariaethau penodol i bynciau, a bwrsariaethau gofalwyr. Ewch i pcydds.ac.uk/scholarships neu cysylltwch â finance@uwtsd.ac.uk am y rhestr gyfredol lawn.",
-        "Mae sawl cyfle cyllido ym PCYDDS: bwrsariaethau astudio cyfrwng Cymraeg, ysgoloriaethau perfformiad chwaraeon, bwrsariaethau pwnc, a chronfeydd caledi. Edrychwch ar pcydds.ac.uk/scholarships a gwnewch gais yn gynnar!"
+        "Mae PCYDDS yn cynnig ystod o ysgoloriaethau a bwrsariaethau gan gynnwys ysgoloriaethau chwaraeon, ysgoloriaethau iaith Gymraeg, bwrsariaethau penodol i bynciau, a bwrsariaethau gofalwyr. Ewch i pcydds.ac.uk/ysgoloriaethau.",
+        "Mae sawl cyfle cyllido ym PCYDDS: bwrsariaethau astudio cyfrwng Cymraeg, ysgoloriaethau perfformiad chwaraeon, bwrsariaethau pwnc, a chronfeydd caledi. Edrychwch ar pcydds.ac.uk/ysgoloriaethau a gwnewch gais yn gynnar."
       ]
     }
   },
@@ -305,37 +377,49 @@
     "tag": "it_portal",
     "patterns": [
       "student portal", "mystudy", "how to log in", "student login", "portal access",
-      "my study portal", "online account", "log into uwtsd",
+      "my study portal", "online account", "log into uwtsd", "cant login",
+      "login not working", "password for portal", "how to access student account",
+      "forgotten password", "reset password", "my account wont work",
+      "student id login", "how to set up account", "first time login",
+      "where is the student portal", "access student information online",
+      "uwtsd online system", "student system login", "portal keeps logging out",
       "porth myfyrwyr", "sut i fewngofnodi", "mewngofnodiad myfyrwyr",
-      "mynediad porth", "fy mhorth astudio", "cyfrif ar-lein", "mewngofnodi i pcydds"
+      "mynediad porth", "fy mhorth astudio", "cyfrif ar-lein", "mewngofnodi i pcydds",
+      "wedi anghofio cyfrinair", "ailosod cyfrinair", "problem mewngofnodi"
     ],
     "responses": {
       "en": [
-        "The UWTSD student portal is called MyStudy and you can access it at mystudy.uwtsd.ac.uk. You'll need your student ID number and password (set up when you enrolled). Through MyStudy you can view timetables, access student services, check notices, and more. If you're having login issues, contact IT Services on 01792 481 111 or itservices@uwtsd.ac.uk.",
-        "MyStudy (mystudy.uwtsd.ac.uk) is your main student portal. Your login is your student number and the password you created at enrolment. Forgotten your password? Use the 'Forgot Password' link on the login page or call IT Services on 01792 481 111."
+        "The UWTSD student portal is called MyStudy, accessible at mystudy.uwtsd.ac.uk. Use your student ID number and password set up at enrolment. Through MyStudy you can view timetables, access services, and check notices. Login issues? Contact IT Services on 01792 481 111 or itservices@uwtsd.ac.uk.",
+        "MyStudy (mystudy.uwtsd.ac.uk) is your main student portal. Login with your student number and enrolment password. Forgotten your password? Use the 'Forgot Password' link on the login page or call IT Services on 01792 481 111."
       ],
       "cy": [
-        "Porth myfyrwyr PCYDDS yw MyStudy a gallwch ei gyrchu ar mystudy.uwtsd.ac.uk. Bydd angen eich rhif myfyriwr a chyfrinair arnoch chi. Drwy MyStudy gallwch weld amserlenni, cyrchu gwasanaethau myfyrwyr, gwirio hysbysiadau, a mwy. Os oes problemau mewngofnodi, cysylltwch â Gwasanaethau TG ar 01792 481 111.",
-        "MyStudy (mystudy.uwtsd.ac.uk) yw eich prif borth myfyrwyr. Eich mewngofnodiad yw eich rhif myfyriwr a'r cyfrinair a greoch chi yn ystod cofrestru. Wedi anghofio eich cyfrinair? Defnyddiwch y ddolen 'Anghofio Cyfrinair' ar y dudalen mewngofnodi neu ffoniwch Wasanaethau TG ar 01792 481 111."
+        "Porth myfyrwyr PCYDDS yw MyStudy, y gellir ei gyrchu ar mystudy.uwtsd.ac.uk. Defnyddiwch eich rhif myfyriwr a chyfrinair. Os oes problemau mewngofnodi, cysylltwch â Gwasanaethau TG ar 01792 481 111.",
+        "MyStudy (mystudy.uwtsd.ac.uk) yw eich prif borth myfyrwyr. Mewngofnodwch gyda'ch rhif myfyriwr a'ch cyfrinair. Wedi anghofio eich cyfrinair? Defnyddiwch y ddolen 'Anghofio Cyfrinair' ar y dudalen mewngofnodi."
       ]
     }
   },
   {
     "tag": "it_moodle",
     "patterns": [
-      "moodle", "VLE", "virtual learning environment", "online learning",
-      "course materials online", "how to access moodle", "learning platform", "study online",
+      "moodle", "VLE", "virtual learning environment", "online learning platform",
+      "course materials online", "how to access moodle", "learning platform",
+      "where do I find lecture notes", "course resources online", "vle uwtsd",
+      "cant access moodle", "moodle not working", "upload assignment moodle",
+      "submit work online", "online submission", "moodle login", "module resources",
+      "access lecture recordings", "recorded lectures", "where to submit assignments",
+      "find my modules online", "course content", "study materials",
       "mwdl", "amgylchedd dysgu rhithwir", "dysgu ar-lein", "deunyddiau cwrs ar-lein",
-      "sut i gyrchu mwdl", "platfform dysgu", "astudio ar-lein"
+      "sut i gyrchu mwdl", "platfform dysgu", "cyflwyno gwaith ar-lein",
+      "mynediad i adnoddau cwrs", "darlithoedd wedi'u recordio"
     ],
     "responses": {
       "en": [
-        "UWTSD uses Moodle as its Virtual Learning Environment (VLE). You can access it at vle.uwtsd.ac.uk. Log in with your student username and password. On Moodle you'll find your course materials, lecture notes, assignment briefs, and can submit work. If you can't access your modules, contact your lecturer or IT Services at itservices@uwtsd.ac.uk.",
-        "Moodle is UWTSD's online learning platform — find it at vle.uwtsd.ac.uk. All your course content, reading lists, recordings, and submission portals are there. Use your student credentials to log in. New to Moodle? There are help guides on the IT Services page at uwtsd.ac.uk/it."
+        "UWTSD uses Moodle as its Virtual Learning Environment (VLE) at vle.uwtsd.ac.uk. Log in with your student username and password. You'll find course materials, lecture notes, assignment briefs, and submission portals there. Problems accessing your modules? Contact your lecturer or IT Services at itservices@uwtsd.ac.uk.",
+        "Moodle (vle.uwtsd.ac.uk) is UWTSD's online learning platform. All course content, reading lists, recordings, and submission portals are there. Use your student credentials to log in. Help guides are available at uwtsd.ac.uk/it."
       ],
       "cy": [
-        "Mae PCYDDS yn defnyddio Moodle fel ei Amgylchedd Dysgu Rhithwir (VLE). Gallwch ei gyrchu ar vle.uwtsd.ac.uk. Mewngofnodwch gyda'ch enw defnyddiwr a chyfrinair myfyrwyr. Ar Moodle byddwch yn dod o hyd i'ch deunyddiau cwrs, nodiadau darlith, briffiau aseiniad, a gallwch gyflwyno gwaith.",
-        "Moodle yw platfform dysgu ar-lein PCYDDS — dewch o hyd iddo ar vle.uwtsd.ac.uk. Mae'ch holl gynnwys cwrs, rhestrau darllen, recordiadau, a phortholau cyflwyno yno. Defnyddiwch eich manylion myfyrwyr i fewngofnodi."
+        "Mae PCYDDS yn defnyddio Moodle fel ei Amgylchedd Dysgu Rhithwir ar vle.uwtsd.ac.uk. Mewngofnodwch gyda'ch enw defnyddiwr a chyfrinair myfyrwyr. Byddwch yn dod o hyd i'ch deunyddiau cwrs, nodiadau darlith, a phortholau cyflwyno yno.",
+        "Moodle (vle.uwtsd.ac.uk) yw platfform dysgu ar-lein PCYDDS. Mae'ch holl gynnwys cwrs, rhestrau darllen, recordiadau, a phortholau cyflwyno yno. Defnyddiwch eich manylion myfyrwyr i fewngofnodi."
       ]
     }
   },
@@ -344,37 +428,46 @@
     "patterns": [
       "IT help", "computer problem", "tech support", "IT helpdesk", "laptop issue",
       "internet problem", "wifi problem", "technical issue", "IT contact",
-      "help with technology", "cymorth TG", "problem cyfrifiadur", "cymorth technegol",
-      "desg gymorth TG", "problem gliniadur", "problem rhyngrwyd", "problem wifi",
-      "mater technegol", "cyswllt TG"
+      "help with technology", "my computer is broken", "software not working",
+      "cant access my account", "email not working", "microsoft office",
+      "how to get microsoft office", "free software for students", "install software",
+      "IT services phone number", "IT department", "technology problems",
+      "need IT help", "computer lab help", "student email", "office 365",
+      "cymorth TG", "problem cyfrifiadur", "cymorth technegol", "desg gymorth TG",
+      "problem gliniadur", "problem rhyngrwyd", "mater technegol", "cyswllt TG",
+      "meddalwedd am ddim i fyfyrwyr", "cymorth technoleg"
     ],
     "responses": {
       "en": [
-        "For IT support at UWTSD, contact IT Services: Phone: 01792 481 111, Email: itservices@uwtsd.ac.uk, or visit the IT Service Desk on campus. They can help with password resets, software access, wifi issues, laptop problems, and more. Opening hours are usually Monday–Friday 8:30am–5pm during term time.",
-        "UWTSD IT Services can be reached at itservices@uwtsd.ac.uk or 01792 481 111. They handle everything from login problems and Moodle access to wifi and printing. There's also a self-service portal at uwtsd.ac.uk/it for common issues and guides."
+        "For IT support at UWTSD, contact IT Services: Phone 01792 481 111, email itservices@uwtsd.ac.uk, or visit the IT Service Desk on campus. They help with password resets, software access, wifi issues, laptop problems and more. Usually open Monday to Friday 8:30am to 5pm during term time.",
+        "UWTSD IT Services is at itservices@uwtsd.ac.uk or 01792 481 111. They handle everything from login problems and Moodle access to wifi and printing. There's also a self-service portal at uwtsd.ac.uk/it for common issues."
       ],
       "cy": [
-        "Am gymorth TG ym PCYDDS, cysylltwch â Gwasanaethau TG: Ffôn: 01792 481 111, E-bost: itservices@uwtsd.ac.uk, neu ewch i Ddesg Gwasanaeth TG ar y campws. Gallant helpu gydag ailosod cyfrineiriau, mynediad meddalwedd, problemau wifi, problemau gliniadur, a mwy.",
-        "Gellir cysylltu â Gwasanaethau TG PCYDDS ar itservices@uwtsd.ac.uk neu 01792 481 111. Maent yn ymdrin â phopeth o broblemau mewngofnodi a mynediad Moodle i wifi ac argraffu."
+        "Am gymorth TG ym PCYDDS, cysylltwch â Gwasanaethau TG: Ffôn 01792 481 111, e-bost itservices@pcydds.ac.uk, neu ewch i Ddesg Gwasanaeth TG ar y campws. Gallant helpu gydag ailosod cyfrineiriau, mynediad meddalwedd, problemau wifi, a phroblemau gliniadur.",
+        "Gellir cysylltu â Gwasanaethau TG PCYDDS ar itservices@pcydds.ac.uk neu 01792 481 111. Maent yn ymdrin â phopeth o broblemau mewngofnodi a mynediad Moodle i wifi ac argraffu."
       ]
     }
   },
   {
     "tag": "it_wifi",
     "patterns": [
-      "wifi on campus", "eduroam", "connect to wifi", "university wifi",
-      "internet on campus", "how to get wifi", "network access", "wifi password",
-      "wifi ar y campws", "cysylltu â wifi", "wifi prifysgol",
-      "rhyngrwyd ar y campws", "sut i gael wifi", "mynediad rhwydwaith", "cyfrinair wifi"
+      "wifi on campus", "eduroam", "connect to wifi", "university wifi", "wifi password",
+      "internet on campus", "how to get wifi", "network access", "campus internet",
+      "eduroam setup", "wifi not connecting", "how to connect eduroam", "wifi login",
+      "wireless network campus", "connect laptop to wifi", "wifi on my phone",
+      "how to use eduroam", "eduroam username", "free wifi university",
+      "wifi ar y campws", "cysylltu â wifi", "wifi prifysgol", "rhyngrwyd ar y campws",
+      "sut i gael wifi", "mynediad rhwydwaith", "cyfrinair wifi", "wifi eduroam pcydds",
+      "sut i gysylltu eduroam", "rhwydwaith diwifr campws"
     ],
     "responses": {
       "en": [
-        "UWTSD campuses use the eduroam wifi network. To connect: select 'eduroam' on your device, enter your full UWTSD email address (e.g. student@uwtsd.ac.uk) and your student password. Eduroam works at universities worldwide! If you have trouble connecting, contact IT Services at 01792 481 111 or itservices@uwtsd.ac.uk.",
-        "The campus wifi is eduroam — available across all UWTSD buildings. Use your student email and password to connect. The great thing about eduroam is it works at most universities in the UK and around the world! Problems connecting? IT Services on 01792 481 111 can help."
+        "UWTSD campuses use the eduroam wifi network. To connect: select 'eduroam' on your device and enter your full UWTSD email address and student password. Eduroam works at universities worldwide. Problems connecting? Contact IT Services at 01792 481 111.",
+        "Campus wifi is eduroam, available across all UWTSD buildings. Use your student email and password to connect. The great thing about eduroam is it works at most universities in the UK and around the world. IT Services on 01792 481 111 can help with connection issues."
       ],
       "cy": [
-        "Mae campysau PCYDDS yn defnyddio rhwydwaith wifi eduroam. I gysylltu: dewiswch 'eduroam' ar eich dyfais, rhowch eich cyfeiriad e-bost PCYDDS llawn (e.e. myfyriwr@pcydds.ac.uk) a'ch cyfrinair myfyrwyr. Mae eduroam yn gweithio mewn prifysgolion ledled y byd!",
-        "Wifi y campws yw eduroam — ar gael ar draws holl adeiladau PCYDDS. Defnyddiwch eich e-bost myfyrwyr a chyfrinair i gysylltu. Y peth gwych am eduroam yw ei fod yn gweithio yn y rhan fwyaf o brifysgolion yn y DU ac o amgylch y byd!"
+        "Mae campysau PCYDDS yn defnyddio rhwydwaith wifi eduroam. I gysylltu: dewiswch 'eduroam' ar eich dyfais a rhowch eich cyfeiriad e-bost PCYDDS llawn a'ch cyfrinair myfyrwyr. Problemau cysylltu? Cysylltwch â Gwasanaethau TG ar 01792 481 111.",
+        "Wifi y campws yw eduroam, ar gael ar draws holl adeiladau PCYDDS. Defnyddiwch eich e-bost myfyrwyr a chyfrinair i gysylltu. Mae eduroam hefyd yn gweithio yn y rhan fwyaf o brifysgolion yn y DU."
       ]
     }
   },
@@ -382,18 +475,23 @@
     "tag": "accommodation_general",
     "patterns": [
       "student accommodation", "halls of residence", "where to live", "student housing",
-      "university housing", "live on campus", "rooms available",
+      "university housing", "live on campus", "rooms available", "can I live on campus",
+      "dorms", "student halls", "halls uwtsd", "first year accommodation",
+      "do you have halls", "how to get a room", "on campus living",
+      "room in halls", "apply for accommodation", "student flat", "student house",
+      "living at university", "where can I stay", "private accommodation",
       "llety myfyrwyr", "neuaddau preswyl", "ble i fyw", "tai myfyrwyr",
-      "tai'r brifysgol", "byw ar y campws", "ystafelloedd ar gael"
+      "tai'r brifysgol", "byw ar y campws", "ystafelloedd ar gael",
+      "sut i gael ystafell", "oes neuaddau gennych chi", "llety ar gampws"
     ],
     "responses": {
       "en": [
-        "UWTSD offers student accommodation at the Swansea and Carmarthen campuses. Options include en-suite and shared bathroom rooms in halls of residence. Accommodation is great for first-year students and those new to the area. To apply, visit uwtsd.ac.uk/accommodation or contact accommodation@uwtsd.ac.uk. It's popular, so apply early!",
-        "UWTSD has on-campus accommodation available, particularly at Swansea and Carmarthen. Rooms range from standard to en-suite. Halls are fully catered or self-catered depending on the campus. Private student accommodation is also available in Swansea city centre. Contact accommodation@uwtsd.ac.uk for availability and pricing."
+        "UWTSD offers student accommodation at the Swansea and Carmarthen campuses with en-suite and shared bathroom options in halls of residence. Great for first-year students. Apply at uwtsd.ac.uk/accommodation or email accommodation@uwtsd.ac.uk. Places are popular so apply early.",
+        "UWTSD has on-campus accommodation at Swansea and Carmarthen. Rooms range from standard to en-suite. Halls are self-catered or catered depending on the campus. Private student accommodation is also available nearby. Contact accommodation@uwtsd.ac.uk for availability."
       ],
       "cy": [
-        "Mae PCYDDS yn cynnig llety myfyrwyr ar gampysau Abertawe a Chaerfyrddin. Mae opsiynau'n cynnwys ystafelloedd en-suite a chyfleusterau ymolchi a rennir mewn neuaddau preswyl. I wneud cais, ewch i pcydds.ac.uk/llety neu cysylltwch ag accommodation@uwtsd.ac.uk.",
-        "Mae gan PCYDDS lety ar y campws ar gael, yn enwedig yn Abertawe a Chaerfyrddin. Mae ystafelloedd yn amrywio o safonol i en-suite. Cysylltwch ag accommodation@uwtsd.ac.uk am argaeledd a phrisiau."
+        "Mae PCYDDS yn cynnig llety myfyrwyr ar gampysau Abertawe a Chaerfyrddin gydag ystafelloedd en-suite a chyfleusterau ymolchi a rennir. Gwych ar gyfer myfyrwyr blwyddyn gyntaf. Ymgeisiwch ar pcydds.ac.uk/llety neu anfonwch e-bost at accommodation@pcydds.ac.uk.",
+        "Mae gan PCYDDS lety ar y campws yn Abertawe a Chaerfyrddin. Mae ystafelloedd yn amrywio o safonol i en-suite. Cysylltwch ag accommodation@pcydds.ac.uk am argaeledd."
       ]
     }
   },
@@ -401,18 +499,23 @@
     "tag": "accommodation_cost",
     "patterns": [
       "how much is accommodation", "accommodation cost", "halls price", "rent at uwtsd",
-      "student room price", "how much are halls", "weekly rent",
+      "student room price", "how much are halls", "weekly rent", "monthly rent",
+      "accommodation fees", "how much to live on campus", "price of room",
+      "en suite cost", "standard room cost", "accommodation budget", "cost of halls",
+      "can I afford halls", "how much do rooms cost", "accommodation per week",
       "faint yw'r llety", "cost llety", "pris neuaddau", "rhent ym pcydds",
-      "pris ystafell myfyrwyr", "faint yw'r neuaddau", "rhent wythnosol"
+      "pris ystafell myfyrwyr", "faint yw'r neuaddau", "rhent wythnosol",
+      "ffioedd llety", "faint i fyw ar y campws", "pris yr ystafell",
+      "a alla i fforddio neuaddau"
     ],
     "responses": {
       "en": [
-        "Accommodation prices at UWTSD vary by campus and room type. Generally, you can expect to pay around £90–£140 per week for a standard room in halls. En-suite rooms are slightly more. Prices usually include utilities (electricity, heating, wifi). Check uwtsd.ac.uk/accommodation for the latest rates or email accommodation@uwtsd.ac.uk.",
-        "UWTSD accommodation typically costs £90–£140 per week depending on room type and campus. Most rooms include wifi, water, heating and electricity in the price. Compared to private renting, halls offer great value and convenience, especially in your first year. Visit uwtsd.ac.uk/accommodation for current pricing."
+        "Accommodation prices at UWTSD vary by campus and room type, generally around £90 to £140 per week for a standard room in halls. En-suite rooms are slightly more. Most prices include utilities and wifi. Check uwtsd.ac.uk/accommodation for current rates or email accommodation@uwtsd.ac.uk.",
+        "UWTSD accommodation typically costs £90 to £140 per week depending on room type and campus. Most rooms include wifi, water, heating and electricity. Compared to private renting, halls offer great value especially in your first year. Visit uwtsd.ac.uk/accommodation for current pricing."
       ],
       "cy": [
-        "Mae prisiau llety ym PCYDDS yn amrywio yn ôl campws a math o ystafell. Yn gyffredinol, gallwch ddisgwyl talu oddeutu £90–£140 yr wythnos am ystafell safonol mewn neuaddau. Mae ystafelloedd en-suite ychydig yn fwy. Edrychwch ar pcydds.ac.uk/llety am y cyfraddau diweddaraf.",
-        "Mae llety PCYDDS fel arfer yn costio £90–£140 yr wythnos yn dibynnu ar fath yr ystafell a'r campws. Mae'r rhan fwyaf o ystafelloedd yn cynnwys wifi, dŵr, gwres a thrydan yn y pris."
+        "Mae prisiau llety ym PCYDDS yn amrywio yn ôl campws a math o ystafell, yn gyffredinol oddeutu £90 i £140 yr wythnos am ystafell safonol mewn neuaddau. Mae ystafelloedd en-suite ychydig yn fwy. Edrychwch ar pcydds.ac.uk/llety am y cyfraddau diweddaraf.",
+        "Mae llety PCYDDS fel arfer yn costio £90 i £140 yr wythnos yn dibynnu ar fath yr ystafell a'r campws. Mae'r rhan fwyaf o ystafelloedd yn cynnwys wifi, dŵr, gwres a thrydan yn y pris."
       ]
     }
   },
@@ -420,18 +523,22 @@
     "tag": "campuses_general",
     "patterns": [
       "uwtsd campuses", "where is uwtsd", "campuses location", "which campuses",
-      "uwtsd locations", "different campuses", "university sites",
+      "uwtsd locations", "different campuses", "university sites", "where are you based",
+      "how many campuses", "all campuses", "list of campuses", "which campus should I go to",
+      "choose a campus", "campuses map", "uwtsd addresses", "where is the university",
+      "all sites uwtsd", "uwtsd branches", "main campus", "does uwtsd have multiple campuses",
       "campysau pcydds", "ble mae pcydds", "lleoliad campysau", "pa gampysau",
-      "lleoliadau pcydds", "campysau gwahanol", "safleoedd y brifysgol"
+      "lleoliadau pcydds", "campysau gwahanol", "safleoedd y brifysgol",
+      "faint o gampysau sydd gan pcydds", "pa gampws ddylwn i fynd iddo"
     ],
     "responses": {
       "en": [
-        "UWTSD has three main campuses: 1) Swansea (SA1 Waterfront) — the largest campus in the heart of Swansea city. 2) Carmarthen — a traditional campus with strong education and sport programmes. 3) Lampeter — a historic, small-town campus famous for humanities and Welsh studies. There is also a Cardiff campus for some professional courses. Each campus has its own character and community!",
-        "UWTSD operates across multiple locations: Swansea SA1 (main campus, city centre), Carmarthen (leafy town campus), Lampeter (small historic campus in Ceredigion), and Cardiff (select courses). The campus you study at depends on your course. Check uwtsd.ac.uk/campuses for maps and facilities."
+        "UWTSD has three main campuses: 1) Swansea SA1 Waterfront, the largest in the heart of Swansea. 2) Carmarthen, a traditional campus with strong education and sport programmes. 3) Lampeter, a historic small-town campus famous for humanities. There is also a Cardiff campus for some professional courses. Check uwtsd.ac.uk/campuses for maps.",
+        "UWTSD operates across: Swansea SA1 (main campus, city centre), Carmarthen (leafy town campus), Lampeter (small historic campus in Ceredigion), and Cardiff (select courses). Which campus you study at depends on your course."
       ],
       "cy": [
-        "Mae gan PCYDDS dri phrif gampws: 1) Abertawe (Glanfa SA1) — y campws mwyaf yng nghanol dinas Abertawe. 2) Caerfyrddin — campws traddodiadol gyda rhaglenni addysg a chwaraeon cryf. 3) Llanbedr Pont Steffan — campws hanesyddol mewn tref fach enwog am ddyniaethau ac astudiaethau Cymraeg. Mae campws Caerdydd hefyd ar gyfer rhai cyrsiau proffesiynol.",
-        "Mae PCYDDS yn gweithredu mewn sawl lleoliad: SA1 Abertawe (prif gampws, canol dinas), Caerfyrddin (campws tref), Llanbedr Pont Steffan (campws hanesyddol bach yng Ngheredigion), a Chaerdydd (cyrsiau dethol)."
+        "Mae gan PCYDDS dri phrif gampws: 1) Abertawe Glanfa SA1, y mwyaf yng nghanol dinas Abertawe. 2) Caerfyrddin, campws traddodiadol gyda rhaglenni addysg a chwaraeon cryf. 3) Llanbedr Pont Steffan, campws hanesyddol mewn tref fach. Mae campws Caerdydd hefyd ar gyfer rhai cyrsiau proffesiynol.",
+        "Mae PCYDDS yn gweithredu yn: SA1 Abertawe (prif gampws), Caerfyrddin (campws tref), Llanbedr Pont Steffan (campws hanesyddol yng Ngheredigion), a Chaerdydd (cyrsiau dethol)."
       ]
     }
   },
@@ -439,18 +546,23 @@
     "tag": "campuses_swansea",
     "patterns": [
       "swansea campus", "sa1", "sa1 waterfront", "swansea city campus",
-      "where is swansea campus", "getting to swansea campus",
+      "where is swansea campus", "getting to swansea campus", "swansea uwtsd",
+      "swansea address", "sa1 address", "swansea campus facilities",
+      "what is at swansea campus", "swansea student life", "city campus",
+      "swansea bay campus", "waterfront campus", "swansea campus parking",
+      "bus to swansea campus", "train to swansea campus",
       "campws abertawe", "glanfa sa1", "campws dinas abertawe",
-      "ble mae campws abertawe", "sut i gyrraedd campws abertawe"
+      "ble mae campws abertawe", "sut i gyrraedd campws abertawe",
+      "cyfeiriad campws abertawe", "cyfleusterau campws abertawe"
     ],
     "responses": {
       "en": [
-        "The Swansea campus is located at the SA1 Waterfront, right by the docks in central Swansea. The postcode is SA1 8EW. It's easily accessible by bus, train (Swansea station is a short walk/bus away), and there is nearby parking. The campus has modern facilities including computing labs, studios, a library, and social spaces. It's the largest UWTSD campus.",
-        "UWTSD Swansea is at SA1 Waterfront — a stunning modern campus right next to the bay. Address: Swansea Waterfront, SA1 8EW. Close to Swansea city centre shops, transport links, and accommodation. Courses here include Computing, Nursing, Business, Art & Design, and more."
+        "The Swansea campus is at SA1 Waterfront, right by the docks in central Swansea, postcode SA1 8EW. Easily accessible by bus and train (Swansea station is a short journey away). Modern facilities include computing labs, studios, a library, and social spaces. It's the largest UWTSD campus.",
+        "UWTSD Swansea is at SA1 Waterfront, a modern campus next to the bay. Close to Swansea city centre shops, transport links, and accommodation. Courses here include Computing, Nursing, Business, Art and Design, and more."
       ],
       "cy": [
-        "Mae campws Abertawe wedi'i leoli yn Glanfa SA1, wrth ymyl y dociau yng nghanol Abertawe. Y cod post yw SA1 8EW. Mae'n hawdd ei gyrraedd ar fws, trên (mae gorsaf Abertawe ychydig gamau i ffwrdd), ac mae parcio cyfagos. Mae gan y campws gyfleusterau modern.",
-        "Mae PCYDDS Abertawe yn Glanfa SA1 — campws modern syfrdanol wrth ymyl y bae. Cyfeiriad: Glanfa Abertawe, SA1 8EW. Yn agos at siopau canol dinas Abertawe, cysylltiadau trafnidiaeth, a llety."
+        "Mae campws Abertawe wedi'i leoli yn Glanfa SA1, wrth ymyl y dociau yng nghanol Abertawe, cod post SA1 8EW. Mae'n hawdd ei gyrraedd ar fws a thrên. Mae gan y campws gyfleusterau modern gan gynnwys labordai cyfrifiadur, stiwdios, llyfrgell, a mannau cymdeithasol.",
+        "Mae PCYDDS Abertawe yn Glanfa SA1, campws modern wrth ymyl y bae. Yn agos at siopau canol dinas Abertawe, cysylltiadau trafnidiaeth, a llety."
       ]
     }
   },
@@ -458,17 +570,21 @@
     "tag": "campuses_carmarthen",
     "patterns": [
       "carmarthen campus", "where is carmarthen", "getting to carmarthen",
+      "carmarthen uwtsd", "carmarthen address", "what is at carmarthen",
+      "education campus", "teacher training campus", "carmarthen facilities",
+      "carmarthen student life", "is carmarthen a nice campus", "carmarthen campus life",
       "campws caerfyrddin", "ble mae caerfyrddin", "sut i gyrraedd caerfyrddin",
-      "campws yng nghaerfyrddin"
+      "campws yng nghaerfyrddin", "cyfeiriad caerfyrddin", "cyfleusterau caerfyrddin",
+      "bywyd myfyrwyr caerfyrddin", "campws addysg"
     ],
     "responses": {
       "en": [
-        "The Carmarthen campus is UWTSD's traditional site in the market town of Carmarthen, West Wales. It's known for its strong Education, Early Years, and Sport Science programmes. The campus has a friendly, close-knit community feel. Carmarthen is well connected by train and bus. Address: Carmarthen SA31 3EP.",
-        "UWTSD's Carmarthen campus sits on a hill above the town — a beautiful, leafy setting. It's home to Education, Sport, Drama, and Welsh medium courses. There's on-campus accommodation, sports facilities, and a Students' Union bar. Address: Carmarthen SA31 3EP. Easily accessible from Swansea, Cardiff, and West Wales."
+        "The Carmarthen campus is UWTSD's traditional site in the market town of Carmarthen, West Wales, address SA31 3EP. Known for Education, Early Years, and Sport Science programmes. It has a friendly, close-knit community feel and is well connected by train and bus.",
+        "UWTSD Carmarthen sits on a hill above the town in a beautiful, leafy setting. Home to Education, Sport, Drama, and Welsh medium courses. On-campus accommodation, sports facilities, and a Students' Union. Easily accessible from Swansea, Cardiff, and West Wales."
       ],
       "cy": [
-        "Mae campws Caerfyrddin yn safle traddodiadol PCYDDS yn nhref farchnad Caerfyrddin, Gorllewin Cymru. Mae'n adnabyddus am ei raglenni Addysg, Blynyddoedd Cynnar, a Gwyddor Chwaraeon cryf. Mae gan y campws ymdeimlad cymunedol agos-atoch.",
-        "Mae campws Caerfyrddin PCYDDS ar fryn uwchben y dref — lleoliad hardd, llawn coed. Mae'n gartref i Addysg, Chwaraeon, Drama, a chyrsiau cyfrwng Cymraeg. Mae llety ar y campws, cyfleusterau chwaraeon, a bar Undeb y Myfyrwyr."
+        "Mae campws Caerfyrddin yn safle traddodiadol PCYDDS yn nhref farchnad Caerfyrddin, Gorllewin Cymru, cyfeiriad SA31 3EP. Mae'n adnabyddus am raglenni Addysg, Blynyddoedd Cynnar, a Gwyddor Chwaraeon.",
+        "Mae campws Caerfyrddin PCYDDS ar fryn uwchben y dref, lleoliad hardd. Mae'n gartref i Addysg, Chwaraeon, Drama, a chyrsiau cyfrwng Cymraeg. Mae llety ar y campws a chyfleusterau chwaraeon."
       ]
     }
   },
@@ -476,17 +592,21 @@
     "tag": "campuses_lampeter",
     "patterns": [
       "lampeter campus", "where is lampeter", "lampeter uni", "ceredigion campus",
-      "lampeter history", "campws llanbedr", "ble mae llanbedr pont steffan",
-      "prifysgol llanbedr", "campws ceredigion", "hanes llanbedr"
+      "lampeter history", "lampeter uwtsd", "humanities campus",
+      "theology at uwtsd", "smallest campus", "rural campus", "what is lampeter like",
+      "lampeter student life", "lampeter address", "lampeter facilities",
+      "campws llanbedr", "ble mae llanbedr pont steffan",
+      "prifysgol llanbedr", "campws ceredigion", "hanes llanbedr",
+      "campws gwledig", "dyniaethau pcydds", "llanbedr pont steffan"
     ],
     "responses": {
       "en": [
-        "The Lampeter campus in Ceredigion is UWTSD's oldest and smallest campus — one of the oldest degree-awarding institutions in the UK! It's a beautiful, rural campus known for Humanities, Religion, Archaeology, Welsh Studies, and alternative/holistic programmes. Great for students who prefer a quieter, community feel. Address: Lampeter SA48 7ED.",
-        "Lampeter (Llanbedr Pont Steffan) is a unique, historic campus in rural West Wales. It was founded in 1822 — older than many famous UK universities! Known for Humanities, Theology, and Welsh medium courses. Very small and community-focused. Located in Ceredigion, SA48 7ED."
+        "The Lampeter campus in Ceredigion is UWTSD's oldest and smallest campus, one of the oldest degree-awarding institutions in the UK. A beautiful rural campus known for Humanities, Religion, Archaeology, Welsh Studies, and holistic programmes. Great for students who prefer a quiet, community feel. Address: Lampeter SA48 7ED.",
+        "Lampeter is a unique, historic campus in rural West Wales, founded in 1822. Known for Humanities, Theology, and Welsh medium courses. Very small and community-focused. Located in Ceredigion at SA48 7ED."
       ],
       "cy": [
-        "Mae campws Llanbedr Pont Steffan yng Ngheredigion yn gampws hynaf a lleiaf PCYDDS — un o'r sefydliadau dyfarnu graddau hynaf yn y DU! Mae'n gampws gwledig hardd sy'n adnabyddus am Ddyniaethau, Crefydd, Archaeoleg, Astudiaethau Cymraeg.",
-        "Mae Llanbedr Pont Steffan yn gampws unigryw, hanesyddol yng nghefn gwlad Gorllewin Cymru. Sefydlwyd ym 1822 — yn hŷn na llawer o brifysgolion enwog y DU! Adnabyddus am Ddyniaethau, Diwinyddiaeth, a chyrsiau cyfrwng Cymraeg."
+        "Mae campws Llanbedr Pont Steffan yng Ngheredigion yn gampws hynaf a lleiaf PCYDDS, un o'r sefydliadau dyfarnu graddau hynaf yn y DU. Campws gwledig hardd sy'n adnabyddus am Ddyniaethau, Crefydd, Archaeoleg, ac Astudiaethau Cymraeg.",
+        "Mae Llanbedr Pont Steffan yn gampws unigryw, hanesyddol yng nghefn gwlad Gorllewin Cymru, a sefydlwyd ym 1822. Adnabyddus am Ddyniaethau, Diwinyddiaeth, a chyrsiau cyfrwng Cymraeg."
       ]
     }
   },
@@ -495,17 +615,23 @@
     "patterns": [
       "library", "how to use the library", "borrow books", "library resources",
       "library opening hours", "library catalogue", "library access", "research resources",
-      "llyfrgell", "sut i ddefnyddio'r llyfrgell", "benthyca llyfrau", "adnoddau llyfrgell",
-      "oriau agor llyfrgell", "catalog llyfrgell", "mynediad llyfrgell", "adnoddau ymchwil"
+      "where is the library", "can I use the library", "library card", "return books",
+      "renew library books", "online library", "digital library", "ebooks uwtsd",
+      "academic journals", "library database", "JSTOR", "academic research help",
+      "reference materials", "library study space", "study rooms", "silent study",
+      "llyfrgell", "sut i ddefnyddio'r llyfrgell", "benthyca llyfrau",
+      "adnoddau llyfrgell", "oriau agor llyfrgell", "catalog llyfrgell",
+      "mynediad llyfrgell", "adnoddau ymchwil", "ble mae'r llyfrgell",
+      "cerdyn llyfrgell", "adnoddau ar-lein"
     ],
     "responses": {
       "en": [
-        "UWTSD has libraries at each campus with extensive physical and digital resources. You can access the library catalogue at library.uwtsd.ac.uk to search for books, journals, and e-resources. Students get a library card and can borrow up to 6 books at once. There are also 24/7 online resources including databases, e-books, and academic journals. Opening hours vary by campus and term time.",
-        "UWTSD libraries offer books, e-books, academic journals, study spaces, and printing. Access the catalogue at library.uwtsd.ac.uk using your student login. Key features: inter-library loans, 1-to-1 support sessions with library staff, and access to databases like JSTOR and ProQuest. For opening hours contact library@uwtsd.ac.uk or visit the library homepage."
+        "UWTSD has libraries at each campus with extensive physical and digital resources. Search the catalogue at library.uwtsd.ac.uk using your student login. Students can borrow up to 6 books at once and access 24/7 online resources including databases, e-books, and journals. For hours contact library@uwtsd.ac.uk.",
+        "UWTSD libraries offer books, e-books, academic journals, study spaces, and printing. Access the catalogue at library.uwtsd.ac.uk. Key features: inter-library loans, 1-to-1 sessions with library staff, and access to databases like JSTOR and ProQuest."
       ],
       "cy": [
-        "Mae gan PCYDDS lyfrgelloedd ym mhob campws gydag adnoddau ffisegol a digidol helaeth. Gallwch gyrchu catalog y llyfrgell ar library.uwtsd.ac.uk i chwilio am lyfrau, cyfnodolion, ac e-adnoddau. Mae myfyrwyr yn cael cerdyn llyfrgell a gallant fenthyca hyd at 6 llyfr ar y tro.",
-        "Mae llyfrgelloedd PCYDDS yn cynnig llyfrau, e-lyfrau, cyfnodolion academaidd, mannau astudio, ac argraffu. Cyrchwch y catalog ar library.uwtsd.ac.uk gan ddefnyddio'ch mewngofnodiad myfyrwyr."
+        "Mae gan PCYDDS lyfrgelloedd ym mhob campws gydag adnoddau ffisegol a digidol helaeth. Chwiliwch y catalog ar library.uwtsd.ac.uk gan ddefnyddio'ch mewngofnodiad myfyrwyr. Gall myfyrwyr fenthyca hyd at 6 llyfr ar y tro.",
+        "Mae llyfrgelloedd PCYDDS yn cynnig llyfrau, e-lyfrau, cyfnodolion academaidd, mannau astudio, ac argraffu. Cyrchwch y catalog ar library.uwtsd.ac.uk. Am oriau, cysylltwch â library@pcydds.ac.uk."
       ]
     }
   },
@@ -514,17 +640,23 @@
     "patterns": [
       "student wellbeing", "mental health support", "struggling", "feeling stressed",
       "feeling overwhelmed", "need support", "student counselling", "emotional support",
-      "mental health help", "lles myfyrwyr", "cymorth iechyd meddwl", "yn cael trafferth",
-      "yn teimlo dan straen", "angen cymorth", "cwnsela myfyrwyr", "cymorth emosiynol"
+      "mental health help", "not coping", "anxiety at university", "depression support",
+      "need someone to talk to", "feeling low", "struggling with uni", "want counselling",
+      "counsellor uwtsd", "mental health resources", "support for anxiety",
+      "emotional difficulties", "personal problems", "university is hard", "burnt out",
+      "feeling isolated", "lonely at university", "student support services",
+      "lles myfyrwyr", "cymorth iechyd meddwl", "yn cael trafferth",
+      "yn teimlo dan straen", "angen cymorth", "cwnsela myfyrwyr", "cymorth emosiynol",
+      "yn teimlo'n isel", "pryder ym mhrifysgol", "cymorth iechyd meddwl"
     ],
     "responses": {
       "en": [
-        "UWTSD has a dedicated Student Wellbeing team to support you through any difficulties. Whether you're feeling stressed, anxious, or struggling with personal issues, help is available. Contact the Wellbeing team at wellbeing@uwtsd.ac.uk or call the Student Services team. You can also drop in to Student Services on campus. You're not alone — asking for help is a sign of strength! 💚",
-        "Your wellbeing matters at UWTSD. The Student Wellbeing service offers counselling, mental health support, and crisis guidance. Email wellbeing@uwtsd.ac.uk to make an appointment or find out more. There are also free workshops and resources on managing stress, anxiety, and study-life balance. Don't suffer in silence — support is just an email away!"
+        "UWTSD has a dedicated Student Wellbeing team to support you through any difficulties. Whether you're feeling stressed, anxious, or struggling with personal issues, help is available. Contact Wellbeing at wellbeing@uwtsd.ac.uk or drop in to Student Services on campus. Asking for help is a sign of strength.",
+        "Your wellbeing matters at UWTSD. The Student Wellbeing service offers counselling, mental health support, and crisis guidance. Email wellbeing@uwtsd.ac.uk to make an appointment. There are also free workshops on managing stress, anxiety, and study-life balance."
       ],
       "cy": [
-        "Mae gan PCYDDS dîm Lles Myfyrwyr pwrpasol i'ch cefnogi drwy unrhyw anawsterau. P'un a ydych chi'n teimlo dan straen, yn bryderus, neu'n cael trafferth â phroblemau personol, mae help ar gael. Cysylltwch â'r tîm Lles ar wellbeing@uwtsd.ac.uk. Nid ydych chi ar eich pen eich hun — mae gofyn am help yn arwydd o gryfder! 💚",
-        "Mae eich lles yn bwysig ym PCYDDS. Mae'r gwasanaeth Lles Myfyrwyr yn cynnig cwnsela, cymorth iechyd meddwl, a chanllawiau argyfwng. Anfonwch e-bost at wellbeing@uwtsd.ac.uk i wneud apwyntiad."
+        "Mae gan PCYDDS dîm Lles Myfyrwyr pwrpasol i'ch cefnogi drwy unrhyw anawsterau. P'un a ydych chi'n teimlo dan straen, yn bryderus, neu'n cael trafferth â phroblemau personol, mae help ar gael. Cysylltwch â'r tîm Lles ar wellbeing@pcydds.ac.uk.",
+        "Mae eich lles yn bwysig ym PCYDDS. Mae'r gwasanaeth Lles Myfyrwyr yn cynnig cwnsela, cymorth iechyd meddwl, a chanllawiau argyfwng. Anfonwch e-bost at wellbeing@pcydds.ac.uk i wneud apwyntiad."
       ]
     }
   },
@@ -533,18 +665,22 @@
     "patterns": [
       "crisis", "suicidal thoughts", "self harm", "I want to hurt myself",
       "feeling hopeless", "emergency mental health", "I can't cope", "need urgent help",
-      "crisis support", "argyfwng", "meddyliau hunanladdol", "hunan-niweidio",
+      "crisis support", "thinking about suicide", "want to end my life",
+      "in crisis", "mental health emergency", "having a breakdown",
+      "please help now", "urgent mental health", "harming myself",
+      "argyfwng", "meddyliau hunanladdol", "hunan-niweidio",
       "eisiau brifo fy hun", "teimlo'n ddi-obaith", "iechyd meddwl brys",
-      "alla i ddim ymdopi", "angen help ar frys", "cymorth argyfwng"
+      "alla i ddim ymdopi", "angen help ar frys", "cymorth argyfwng",
+      "yn meddwl am hunanladdiad", "argyfwng iechyd meddwl"
     ],
     "responses": {
       "en": [
-        "I'm really sorry to hear you're feeling this way. Please reach out for help right now: Samaritans: 116 123 (free, 24/7), Crisis Text Line: Text SHOUT to 85258, UWTSD Wellbeing: wellbeing@uwtsd.ac.uk, NHS 111 for urgent medical help, PAPYRUS (under 35): 0800 068 4141. You are not alone, and things can get better. Please talk to someone today. 💚",
-        "You matter, and help is available right now. Please contact: Samaritans 116 123 (24/7, free), text SHOUT to 85258, or go to your nearest A&E if you're in immediate danger. UWTSD Wellbeing (wellbeing@uwtsd.ac.uk) can also provide urgent support during working hours. You don't have to face this alone. 💚"
+        "I'm really sorry to hear you're feeling this way. Please reach out for help right now. Samaritans: 116 123 (free, 24/7). Crisis Text Line: text SHOUT to 85258. UWTSD Wellbeing: wellbeing@uwtsd.ac.uk. NHS 111 for urgent medical help. PAPYRUS (under 35): 0800 068 4141. You are not alone, and things can get better. Please talk to someone today.",
+        "You matter, and help is available right now. Please contact: Samaritans 116 123 (24/7, free), text SHOUT to 85258, or go to your nearest A&E if in immediate danger. UWTSD Wellbeing (wellbeing@uwtsd.ac.uk) can also provide urgent support during working hours. You don't have to face this alone."
       ],
       "cy": [
-        "Mae'n ddrwg iawn gennyf glywed eich bod chi'n teimlo fel hyn. Gofynnwch am help nawr: Samaritans: 116 123 (am ddim, 24/7), Llinell Destun Argyfwng: Tecstiwch SHOUT i 85258, Lles PCYDDS: wellbeing@uwtsd.ac.uk, GIG 111 am help meddygol brys, PAPYRUS (o dan 35): 0800 068 4141. Nid ydych chi ar eich pen eich hun, a gall pethau wella. Siaradwch â rhywun heddiw. 💚",
-        "Rydych chi'n bwysig, ac mae help ar gael nawr. Cysylltwch â: Samaritans 116 123 (24/7, am ddim), tecstiwch SHOUT i 85258, neu ewch i'ch Adran Achosion Brys agosaf os ydych chi mewn perygl uniongyrchol. 💚"
+        "Mae'n ddrwg iawn gennyf glywed eich bod chi'n teimlo fel hyn. Gofynnwch am help nawr. Samaritans: 116 123 (am ddim, 24/7). Llinell Destun Argyfwng: tecstiwch SHOUT i 85258. Lles PCYDDS: wellbeing@pcydds.ac.uk. GIG 111 am help meddygol brys. PAPYRUS (o dan 35): 0800 068 4141. Nid ydych chi ar eich pen eich hun, a gall pethau wella.",
+        "Rydych chi'n bwysig, ac mae help ar gael nawr. Cysylltwch â: Samaritans 116 123 (24/7, am ddim), tecstiwch SHOUT i 85258, neu ewch i'ch Adran Achosion Brys agosaf os ydych chi mewn perygl uniongyrchol."
       ]
     }
   },
@@ -553,18 +689,24 @@
     "patterns": [
       "disability support", "dyslexia support", "learning difficulties", "disabled student",
       "additional learning support", "ALSS", "DSA", "disabled students allowance",
-      "accommodation for disability", "cymorth anabledd", "cymorth dyslecsia",
-      "anawsterau dysgu", "myfyriwr anabl", "cymorth dysgu ychwanegol",
-      "CCYA", "lwfans myfyrwyr anabl"
+      "accommodation for disability", "extra time in exams", "learning support",
+      "ADHD support", "autism support", "support for dyspraxia", "neurodivergent support",
+      "visual impairment support", "hearing impairment support", "accessibility",
+      "special arrangements", "exam adjustments", "study support", "reading pen",
+      "note taker", "study skills support", "assistive technology",
+      "cymorth anabledd", "cymorth dyslecsia", "anawsterau dysgu", "myfyriwr anabl",
+      "cymorth dysgu ychwanegol", "CCYA", "lwfans myfyrwyr anabl",
+      "cymorth ADHD", "cymorth awtistiaeth", "cymhorthion technoleg",
+      "trefniadau arbennig arholiad", "amser ychwanegol mewn arholiad"
     ],
     "responses": {
       "en": [
-        "UWTSD has an Additional Learning Support Service (ALSS) to help students with disabilities, dyslexia, mental health conditions, and other learning difficulties. Support may include extra exam time, note-takers, assistive technology, and study skills sessions. You may also be eligible for a Disabled Students' Allowance (DSA) from Student Finance Wales. Contact alss@uwtsd.ac.uk to arrange an assessment.",
-        "The ALSS team at UWTSD supports students with: dyslexia, ADHD, autism, physical disabilities, mental health conditions, and more. Support is confidential and personalised. Start by contacting alss@uwtsd.ac.uk for an initial chat. DSA funding from Student Finance Wales can provide equipment and support workers. Early contact is recommended!"
+        "UWTSD has an Additional Learning Support Service (ALSS) for students with disabilities, dyslexia, mental health conditions, and other learning difficulties. Support includes extra exam time, note-takers, assistive technology, and study skills sessions. You may also qualify for a Disabled Students' Allowance (DSA). Contact alss@uwtsd.ac.uk.",
+        "The ALSS team supports students with dyslexia, ADHD, autism, physical disabilities, mental health conditions, and more. Support is confidential and personalised. Contact alss@uwtsd.ac.uk to arrange an initial assessment. DSA funding from Student Finance Wales can provide equipment and support workers."
       ],
       "cy": [
-        "Mae gan PCYDDS Wasanaeth Cymorth Dysgu Ychwanegol (CCYA) i helpu myfyrwyr ag anableddau, dyslecsia, cyflyrau iechyd meddwl, ac anawsterau dysgu eraill. Cysylltwch ag alss@uwtsd.ac.uk i drefnu asesiad.",
-        "Mae tîm CCYA ym PCYDDS yn cefnogi myfyrwyr â: dyslecsia, ADHD, awtistiaeth, anableddau corfforol, cyflyrau iechyd meddwl, a mwy. Mae cymorth yn gyfrinachol ac wedi'i bersonoli. Dechreuwch drwy gysylltu ag alss@uwtsd.ac.uk."
+        "Mae gan PCYDDS Wasanaeth Cymorth Dysgu Ychwanegol (CCYA) i helpu myfyrwyr ag anableddau, dyslecsia, cyflyrau iechyd meddwl, ac anawsterau dysgu eraill. Cysylltwch ag alss@pcydds.ac.uk i drefnu asesiad.",
+        "Mae tîm CCYA ym PCYDDS yn cefnogi myfyrwyr â: dyslecsia, ADHD, awtistiaeth, anableddau corfforol, cyflyrau iechyd meddwl, a mwy. Mae cymorth yn gyfrinachol ac wedi'i bersonoli. Cysylltwch ag alss@pcydds.ac.uk."
       ]
     }
   },
@@ -572,18 +714,23 @@
     "tag": "students_union",
     "patterns": [
       "students union", "SU", "student union events", "social life", "clubs and societies",
-      "student activities", "fresher's week", "undeb myfyrwyr", "UMy",
-      "digwyddiadau undeb myfyrwyr", "bywyd cymdeithasol", "clybiau a chymdeithasau",
-      "gweithgareddau myfyrwyr", "wythnos y gwyrddion"
+      "student activities", "freshers week", "what societies are there", "joining clubs",
+      "student union bar", "student union shop", "student rep", "student elections",
+      "student welfare officer", "NUS", "student council", "union events",
+      "what's on at university", "social events", "sports teams uwtsd",
+      "art society", "drama society", "student volunteering", "student newspaper",
+      "undeb myfyrwyr", "UMy", "digwyddiadau undeb myfyrwyr", "bywyd cymdeithasol",
+      "clybiau a chymdeithasau", "gweithgareddau myfyrwyr", "wythnos y gwyrddion",
+      "digwyddiadau cymdeithasol", "timau chwaraeon myfyrwyr"
     ],
     "responses": {
       "en": [
-        "UWTSD Students' Union (UWTSD SU) is at uwtsdsu.co.uk. They organise events, clubs, societies, and represent student interests to the university. From sports clubs to arts societies, film nights to volunteering, there's something for everyone! The SU also has welfare officers and a free advice service. Get involved — it makes your university experience so much better!",
-        "The Students' Union is the heart of student social life at UWTSD! Find clubs and societies at uwtsdsu.co.uk. They run freshers' events, sports teams, cultural societies, and provide student representation. The SU bar is also a popular social hub at some campuses. Join early in the year to make the most of it!"
+        "UWTSD Students' Union is at uwtsdsu.co.uk. They organise events, clubs, societies, and represent student interests. From sports clubs to arts societies, film nights to volunteering, there's something for everyone. The SU also has welfare officers and a free advice service.",
+        "The Students' Union is the heart of student social life at UWTSD. Find clubs and societies at uwtsdsu.co.uk. They run freshers' events, sports teams, cultural societies, and provide student representation. Join early in the year to make the most of it."
       ],
       "cy": [
-        "Mae Undeb Myfyrwyr PCYDDS ar uwtsdsu.co.uk. Maent yn trefnu digwyddiadau, clybiau, cymdeithasau, ac yn cynrychioli buddiannau myfyrwyr i'r brifysgol. O glybiau chwaraeon i gymdeithasau celf, nosweithiau ffilm i wirfoddoli, mae rhywbeth i bawb!",
-        "Undeb y Myfyrwyr yw calon bywyd cymdeithasol myfyrwyr ym PCYDDS! Dewch o hyd i glybiau a chymdeithasau ar uwtsdsu.co.uk. Maent yn rhedeg digwyddiadau gwyrddion, timau chwaraeon, cymdeithasau diwylliannol, ac yn darparu cynrychiolaeth myfyrwyr."
+        "Mae Undeb Myfyrwyr PCYDDS ar uwtsdsu.co.uk. Maent yn trefnu digwyddiadau, clybiau, cymdeithasau, ac yn cynrychioli buddiannau myfyrwyr i'r brifysgol. O glybiau chwaraeon i gymdeithasau celf, mae rhywbeth i bawb.",
+        "Undeb y Myfyrwyr yw calon bywyd cymdeithasol myfyrwyr ym PCYDDS. Dewch o hyd i glybiau a chymdeithasau ar uwtsdsu.co.uk. Maent yn rhedeg digwyddiadau gwyrddion, timau chwaraeon, cymdeithasau diwylliannol, ac yn darparu cynrychiolaeth myfyrwyr."
       ]
     }
   },
@@ -591,18 +738,23 @@
     "tag": "graduation",
     "patterns": [
       "graduation", "graduation ceremony", "when is graduation", "how to graduate",
-      "graduation dress", "gown hire", "degree certificate", "when do I graduate",
+      "gown hire", "degree certificate", "when do I graduate", "graduating this year",
+      "graduation date", "when are graduation ceremonies", "how to book graduation",
+      "bring guests to graduation", "graduation guest tickets", "graduation dress code",
+      "mortar board", "academic dress", "degree award ceremony", "get my degree",
+      "certificate collection", "graduation registration", "graduation invitations",
       "seremoni raddio", "pryd mae'r seremoni raddio", "sut i raddio", "gwisg raddio",
-      "llogi gŵn", "tystysgrif gradd", "pryd fydda i'n graddio"
+      "llogi gŵn", "tystysgrif gradd", "pryd fydda i'n graddio",
+      "dyddiad graddio", "tocynnau gwesteion graddio", "cofrestru ar gyfer graddio"
     ],
     "responses": {
       "en": [
-        "UWTSD graduation ceremonies are typically held in summer (July) and winter (December/January) each year. You'll receive an invitation when you've completed your degree. Gown hire is arranged through the graduation service. Ceremonies are usually held at the campuses or local venues. Check uwtsd.ac.uk/graduation for ceremony dates and how to register.",
-        "Graduation at UWTSD is a fantastic celebration! Ceremonies are usually in summer. You'll need to register your attendance and arrange gown hire. Family and friends are invited — normally 2-3 guests per graduate. Your degree certificate is presented on the day. Visit uwtsd.ac.uk/graduation for the latest information."
+        "UWTSD graduation ceremonies are typically held in summer (July) and winter (December/January). You'll receive an invitation once you've completed your degree. Gown hire is arranged through the graduation service. Ceremonies are usually at campuses or local venues. Visit uwtsd.ac.uk/graduation for dates and how to register.",
+        "Graduation at UWTSD is a fantastic celebration. Ceremonies are usually in summer. Register your attendance and arrange gown hire. Family and friends are normally invited — about 2 to 3 guests per graduate. Your degree certificate is presented on the day. See uwtsd.ac.uk/graduation for the latest information."
       ],
       "cy": [
-        "Mae seremonïau graddio PCYDDS fel arfer yn cael eu cynnal yn yr haf (Gorffennaf) a'r gaeaf (Rhagfyr/Ionawr) bob blwyddyn. Byddwch yn derbyn gwahoddiad pan fyddwch chi wedi cwblhau eich gradd. Edrychwch ar pcydds.ac.uk/graddio am ddyddiadau seremoni.",
-        "Mae graddio ym PCYDDS yn ddathliad gwych! Mae seremonïau fel arfer yn yr haf. Bydd angen i chi gofrestru eich presenoldeb a threfnu llogi gŵn. Mae teulu a ffrindiau'n cael gwahoddiad — fel arfer 2-3 gwestai fesul graddiad."
+        "Mae seremonïau graddio PCYDDS fel arfer yn cael eu cynnal yn yr haf (Gorffennaf) a'r gaeaf (Rhagfyr/Ionawr). Byddwch yn derbyn gwahoddiad pan fyddwch chi wedi cwblhau eich gradd. Edrychwch ar pcydds.ac.uk/graddio am ddyddiadau seremoni.",
+        "Mae graddio ym PCYDDS yn ddathliad gwych. Mae seremonïau fel arfer yn yr haf. Bydd angen i chi gofrestru eich presenoldeb a threfnu llogi gŵn. Gweler pcydds.ac.uk/graddio am y wybodaeth ddiweddaraf."
       ]
     }
   },
@@ -611,17 +763,23 @@
     "patterns": [
       "how to check results", "exam results", "grades", "when are results out",
       "how do I see my marks", "assignment results", "module results", "degree classification",
-      "sut i wirio canlyniadau", "canlyniadau arholiad", "graddau", "pryd mae canlyniadau allan",
-      "sut i weld fy marciau", "canlyniadau aseiniad", "canlyniadau modiwl", "dosbarthiad gradd"
+      "check my grades", "view results", "academic results", "got my results",
+      "what grade did I get", "where to see marks", "results portal", "results online",
+      "when do I find out my grade", "failed my assignment", "resit information",
+      "appeal a grade", "grade boundary", "pass mark", "dissertation result",
+      "sut i wirio canlyniadau", "canlyniadau arholiad", "graddau",
+      "pryd mae canlyniadau allan", "sut i weld fy marciau",
+      "canlyniadau aseiniad", "canlyniadau modiwl", "dosbarthiad gradd",
+      "gweld fy marciau", "canlyniadau ar-lein", "ble i weld canlyniadau"
     ],
     "responses": {
       "en": [
-        "Your results and grades are available through the MyStudy portal at mystudy.uwtsd.ac.uk. You can view module results, assignment feedback, and your overall academic record there. Results are usually released within a few weeks of completing assessments. For any queries about marks, contact your lecturer or academic department directly.",
-        "Check your grades on MyStudy (mystudy.uwtsd.ac.uk) — results are posted there after each assessment period. UK degree classifications are: First Class (70%+), 2:1 (60-69%), 2:2 (50-59%), Third (40-49%). If you believe a mark is wrong, you can formally appeal — contact your Student Registry for the appeals process."
+        "Your results and grades are available through the MyStudy portal at mystudy.uwtsd.ac.uk. View module results, assignment feedback, and your overall academic record there. Results are usually released within a few weeks of completing assessments. For queries about marks, contact your lecturer or academic department.",
+        "Check your grades on MyStudy (mystudy.uwtsd.ac.uk). UK degree classifications are: First Class (70%+), 2:1 (60-69%), 2:2 (50-59%), Third (40-49%). If you believe a mark is wrong, you can formally appeal. Contact your Student Registry for the appeals process."
       ],
       "cy": [
         "Mae eich canlyniadau a graddau ar gael drwy borth MyStudy ar mystudy.uwtsd.ac.uk. Gallwch weld canlyniadau modiwlau, adborth aseiniad, a'ch cofnod academaidd cyffredinol yno.",
-        "Gwiriwch eich graddau ar MyStudy (mystudy.uwtsd.ac.uk) — mae canlyniadau'n cael eu postio yno ar ôl pob cyfnod asesu. Dosbarthiadau gradd DU: Dosbarth Cyntaf (70%+), 2:1 (60-69%), 2:2 (50-59%), Trydedd (40-49%)."
+        "Gwiriwch eich graddau ar MyStudy (mystudy.uwtsd.ac.uk). Dosbarthiadau gradd DU: Dosbarth Cyntaf (70%+), 2:1 (60-69%), 2:2 (50-59%), Trydedd (40-49%). Os ydych chi'n credu bod marc yn anghywir, gallwch apelio'n ffurfiol."
       ]
     }
   },
@@ -629,18 +787,23 @@
     "tag": "welsh_language",
     "patterns": [
       "welsh medium", "study in welsh", "cymraeg", "welsh language courses",
-      "welsh teaching", "study through welsh", "gwers cymraeg", "Welsh speaking",
+      "welsh teaching", "study through welsh", "welsh speaking campus",
+      "can I study in welsh", "welsh medium degree", "welsh bursary",
+      "learn welsh at university", "improve welsh", "welsh culture",
+      "welsh language support", "bilingual teaching", "cymraeg courses uwtsd",
+      "welsh language policy", "study with welsh language", "cymraeg degree",
       "dysgu trwy gyfrwng y gymraeg", "cyrsiau Cymraeg", "addysgu cymraeg",
-      "astudio trwy'r gymraeg", "siarad cymraeg", "cyfrwng cymraeg"
+      "astudio trwy'r gymraeg", "siarad cymraeg", "cyfrwng cymraeg",
+      "gradd cyfrwng cymraeg", "bwrsari cymraeg", "cymorth cymraeg"
     ],
     "responses": {
       "en": [
-        "UWTSD is a proudly bilingual university! Many courses are available through the medium of Welsh, especially at Carmarthen and Lampeter campuses. You can also receive additional support in Welsh and there are Welsh-medium social spaces and events. Welsh medium students may be eligible for a Welsh Language Bursary. Contact cymraeg@uwtsd.ac.uk for more information.",
-        "Welsh is at the heart of UWTSD! The university offers Welsh-medium and bilingual teaching across many subjects. The Carmarthen and Lampeter campuses especially have a strong Welsh culture. If you want to study or get support in Welsh, contact cymraeg@uwtsd.ac.uk. There are also Welsh language improvement courses available for non-Welsh speakers!"
+        "UWTSD is a proudly bilingual university. Many courses are available through the medium of Welsh, especially at Carmarthen and Lampeter campuses. Welsh medium students may be eligible for a Welsh Language Bursary. Contact cymraeg@uwtsd.ac.uk for more information.",
+        "Welsh is at the heart of UWTSD. The university offers Welsh-medium and bilingual teaching across many subjects. Carmarthen and Lampeter campuses have a strong Welsh culture. For support in Welsh or to study through Welsh, contact cymraeg@uwtsd.ac.uk. Welsh language improvement courses are also available."
       ],
       "cy": [
-        "Mae PCYDDS yn brifysgol ddwyieithog falch! Mae llawer o gyrsiau ar gael trwy gyfrwng y Gymraeg, yn enwedig ar gampysau Caerfyrddin a Llanbedr Pont Steffan. Gallwch hefyd gael cymorth ychwanegol yn Gymraeg. Cysylltwch â cymraeg@pcydds.ac.uk am fwy o wybodaeth.",
-        "Mae'r Gymraeg wrth galon PCYDDS! Mae'r brifysgol yn cynnig addysgu cyfrwng Cymraeg a dwyieithog ar draws llawer o bynciau. Cysylltwch â cymraeg@pcydds.ac.uk. Mae cyrsiau gwella Cymraeg hefyd ar gael ar gyfer y rhai nad ydynt yn siarad Cymraeg!"
+        "Mae PCYDDS yn brifysgol ddwyieithog falch. Mae llawer o gyrsiau ar gael trwy gyfrwng y Gymraeg, yn enwedig ar gampysau Caerfyrddin a Llanbedr Pont Steffan. Cysylltwch â cymraeg@pcydds.ac.uk am fwy o wybodaeth.",
+        "Mae'r Gymraeg wrth galon PCYDDS. Mae'r brifysgol yn cynnig addysgu cyfrwng Cymraeg a dwyieithog ar draws llawer o bynciau. Cysylltwch â cymraeg@pcydds.ac.uk. Mae cyrsiau gwella Cymraeg hefyd ar gael."
       ]
     }
   },
@@ -649,17 +812,24 @@
     "patterns": [
       "about uwtsd", "what is uwtsd", "uwtsd history", "when was uwtsd founded",
       "tell me about uwtsd", "uwtsd ranking", "uwtsd reputation", "is uwtsd a good university",
+      "uwtsd review", "what does uwtsd stand for", "UWTSD full name",
+      "university of wales trinity saint david", "is uwtsd accredited",
+      "uwtsd league table", "student satisfaction uwtsd", "uwtsd teaching quality",
+      "how big is uwtsd", "how many students uwtsd", "uwtsd achievements",
+      "uwtsd vs other universities", "good reasons to study at uwtsd",
       "am pcydds", "beth yw pcydds", "hanes pcydds", "pryd sefydlwyd pcydds",
-      "dywedwch wrthyf am pcydds", "safle pcydds", "enw da pcydds", "ydy pcydds yn brifysgol dda"
+      "dywedwch wrthyf am pcydds", "safle pcydds", "enw da pcydds",
+      "ydy pcydds yn brifysgol dda", "prifysgol cymru y drindod dewi sant",
+      "faint o fyfyrwyr sydd ym pcydds"
     ],
     "responses": {
       "en": [
-        "UWTSD (University of Wales Trinity Saint David) was formed in 2010 through a merger of Trinity University College Carmarthen and Swansea Metropolitan University. It's one of Wales' leading universities with a heritage dating back to 1822 (Lampeter campus). UWTSD is known for excellent teaching quality, student satisfaction, and strong links to Welsh culture and language. The university has around 10,000+ students.",
-        "UWTSD is a proud Welsh university with roots going back 200 years! Known for strong teaching, practical courses, and a focus on student wellbeing. It performs well in student satisfaction surveys and has received commendations for teaching quality. UWTSD is accredited by the Quality Assurance Agency (QAA) and many courses have professional accreditations."
+        "UWTSD (University of Wales Trinity Saint David) was formed in 2010 through a merger of Trinity University College Carmarthen and Swansea Metropolitan University, with heritage dating back to 1822 at Lampeter. Known for excellent teaching quality, student satisfaction, and strong links to Welsh culture. Around 10,000 students study here.",
+        "UWTSD is a proud Welsh university with 200 years of history. Known for strong teaching, practical courses, and a focus on student wellbeing. It performs well in student satisfaction surveys and is accredited by the Quality Assurance Agency (QAA) with many courses holding professional accreditations."
       ],
       "cy": [
-        "Sefydlwyd PCYDDS (Prifysgol Cymru Y Drindod Dewi Sant) yn 2010 drwy uno Coleg Prifysgol y Drindod Caerfyrddin a Phrifysgol Fetropolitan Abertawe. Mae'n un o brifysgolion blaenllaw Cymru gyda threftadaeth yn dyddio'n ôl i 1822 (campws Llanbedr Pont Steffan). Mae PCYDDS yn adnabyddus am ansawdd addysgu rhagorol a boddhad myfyrwyr.",
-        "Mae PCYDDS yn brifysgol Gymreig falch gyda gwreiddiau'n mynd yn ôl 200 mlynedd! Yn adnabyddus am addysgu cryf, cyrsiau ymarferol, a ffocws ar les myfyrwyr. Mae PCYDDS wedi'i achredu gan yr Asiantaeth Sicrhau Ansawdd (QAA)."
+        "Sefydlwyd PCYDDS (Prifysgol Cymru Y Drindod Dewi Sant) yn 2010 drwy uno Coleg Prifysgol y Drindod Caerfyrddin a Phrifysgol Fetropolitan Abertawe, gyda threftadaeth yn dyddio'n ôl i 1822 yn Llanbedr Pont Steffan. Mae'n adnabyddus am ansawdd addysgu rhagorol a boddhad myfyrwyr.",
+        "Mae PCYDDS yn brifysgol Gymreig falch gyda 200 mlynedd o hanes. Yn adnabyddus am addysgu cryf, cyrsiau ymarferol, a ffocws ar les myfyrwyr. Mae PCYDDS wedi'i achredu gan yr Asiantaeth Sicrhau Ansawdd (QAA)."
       ]
     }
   },
@@ -667,18 +837,22 @@
     "tag": "contact_general",
     "patterns": [
       "contact uwtsd", "phone number", "email uwtsd", "how to contact",
-      "general enquiries", "uwtsd email", "get in touch",
+      "general enquiries", "uwtsd email", "get in touch", "uwtsd phone",
+      "call uwtsd", "email address uwtsd", "contact details", "how do I reach you",
+      "who do I contact", "main number", "reception uwtsd", "contact admissions",
+      "contact student services", "switchboard", "uwtsd head office",
       "cysylltu â pcydds", "rhif ffôn", "e-bostio pcydds", "sut i gysylltu",
-      "ymholiadau cyffredinol", "e-bost pcydds", "cysylltu"
+      "ymholiadau cyffredinol", "e-bost pcydds", "cysylltu",
+      "manylion cyswllt", "ffonio pcydds", "swyddfa pcydds"
     ],
     "responses": {
       "en": [
-        "To contact UWTSD: General enquiries: 01267 676767 or enquiries@uwtsd.ac.uk. Admissions: admissions@uwtsd.ac.uk or 01267 676767. Student Services: studentservices@uwtsd.ac.uk. IT Services: itservices@uwtsd.ac.uk or 01792 481 111. Wellbeing: wellbeing@uwtsd.ac.uk. Website: uwtsd.ac.uk",
-        "Main UWTSD contact details: Phone: 01267 676767 (general), Website: uwtsd.ac.uk, Email: enquiries@uwtsd.ac.uk. Each department has its own contact — just ask me what you need and I can give you the right contact details!"
+        "UWTSD main contacts: General enquiries: 01267 676767 or enquiries@uwtsd.ac.uk. Admissions: admissions@uwtsd.ac.uk. Student Services: studentservices@uwtsd.ac.uk. IT Services: itservices@uwtsd.ac.uk or 01792 481 111. Wellbeing: wellbeing@uwtsd.ac.uk. Website: uwtsd.ac.uk.",
+        "Main UWTSD contact: Phone 01267 676767, website uwtsd.ac.uk, email enquiries@uwtsd.ac.uk. Each department has its own contact. Ask me what you need and I can give you the right details."
       ],
       "cy": [
-        "I gysylltu â PCYDDS: Ymholiadau cyffredinol: 01267 676767 neu enquiries@pcydds.ac.uk. Derbyniadau: admissions@pcydds.ac.uk. Gwasanaethau Myfyrwyr: studentservices@pcydds.ac.uk. Gwasanaethau TG: itservices@pcydds.ac.uk neu 01792 481 111. Lles: wellbeing@pcydds.ac.uk. Gwefan: pcydds.ac.uk",
-        "Prif fanylion cyswllt PCYDDS: Ffôn: 01267 676767, Gwefan: pcydds.ac.uk, E-bost: enquiries@pcydds.ac.uk. Mae gan bob adran ei gyswllt ei hun — gofynnwch i mi beth sydd ei angen arnoch chi!"
+        "Prif gysylltiadau PCYDDS: Ymholiadau cyffredinol: 01267 676767 neu enquiries@pcydds.ac.uk. Derbyniadau: admissions@pcydds.ac.uk. Gwasanaethau Myfyrwyr: studentservices@pcydds.ac.uk. Gwasanaethau TG: itservices@pcydds.ac.uk neu 01792 481 111. Lles: wellbeing@pcydds.ac.uk. Gwefan: pcydds.ac.uk.",
+        "Prif gyswllt PCYDDS: Ffôn 01267 676767, gwefan pcydds.ac.uk, e-bost enquiries@pcydds.ac.uk. Gofynnwch i mi beth sydd ei angen arnoch chi a gallaf roi'r manylion cywir."
       ]
     }
   },
@@ -687,18 +861,24 @@
     "patterns": [
       "careers", "job help", "graduate jobs", "career advice", "work placement",
       "internship", "employability", "CV help", "finding a job after university",
+      "career guidance", "job search help", "career planning", "interview tips",
+      "cv writing", "covering letter", "job application", "graduate scheme",
+      "placement year", "year in industry", "professional development",
+      "LinkedIn for students", "what jobs can I get", "employment after degree",
+      "career centre uwtsd", "mock interview", "careers fair", "work experience",
       "gyrfaoedd", "help swydd", "swyddi graddedigion", "cyngor gyrfa",
       "lleoliad gwaith", "interniaeth", "cyflogadwyedd", "help CV",
-      "dod o hyd i swydd ar ôl y brifysgol"
+      "dod o hyd i swydd ar ôl y brifysgol", "cynllunio gyrfa",
+      "blwyddyn leoliad", "datblygu proffesiynol"
     ],
     "responses": {
       "en": [
-        "UWTSD has a Careers and Employability service to help you with job searching, CV writing, interview preparation, and career planning. You can access careers advice throughout your studies and after graduation. Contact careers@uwtsd.ac.uk or visit the Careers Service in Student Services on campus. Many courses also include work placements to boost your employability!",
-        "The Careers team at UWTSD offers 1-to-1 appointments, CV reviews, mock interviews, and access to job vacancy boards. Get in touch at careers@uwtsd.ac.uk. UWTSD also has strong links with local and national employers — many run placement years and graduate schemes. Start engaging with the Careers Service early in your degree!"
+        "UWTSD has a Careers and Employability service helping with job searching, CV writing, interview preparation, and career planning. Available throughout your studies and after graduation. Contact careers@uwtsd.ac.uk or visit the Careers Service in Student Services on campus.",
+        "The Careers team at UWTSD offers 1-to-1 appointments, CV reviews, mock interviews, and access to job vacancy boards. Contact careers@uwtsd.ac.uk. UWTSD has strong links with local and national employers, many of whom run placement years and graduate schemes. Start engaging early in your degree."
       ],
       "cy": [
         "Mae gan PCYDDS wasanaeth Gyrfaoedd a Chyflogadwyedd i'ch helpu gyda chwilio am swyddi, ysgrifennu CV, paratoi ar gyfer cyfweliadau, a chynllunio gyrfa. Cysylltwch â careers@pcydds.ac.uk.",
-        "Mae tîm Gyrfaoedd ym PCYDDS yn cynnig apwyntiadau un-i-un, adolygiadau CV, cyfweliadau ffug, a mynediad at fyrddau swyddi gwag. Cysylltwch â careers@pcydds.ac.uk. Mae PCYDDS hefyd yn cael cysylltiadau cryf â chyflogwyr lleol a chenedlaethol."
+        "Mae tîm Gyrfaoedd ym PCYDDS yn cynnig apwyntiadau un-i-un, adolygiadau CV, cyfweliadau ffug, a mynediad at fyrddau swyddi gwag. Cysylltwch â careers@pcydds.ac.uk."
       ]
     }
   },
@@ -707,19 +887,25 @@
     "patterns": [
       "stressed about assignments", "worried about exams", "behind on coursework",
       "struggling with workload", "deadline pressure", "academic pressure",
-      "overwhelmed with work", "worried about failing",
+      "overwhelmed with work", "worried about failing", "too much work",
+      "cant keep up", "falling behind", "stressed at uni", "exam anxiety",
+      "revision help", "how to manage workload", "work life balance",
+      "procrastinating", "cant concentrate", "study tips", "time management",
+      "extension for assignment", "missed a deadline", "imposter syndrome",
+      "feeling like I don't belong", "not smart enough", "going to fail",
       "dan straen am aseiniadau", "pryderu am arholiadau", "ar ei hôl hi gyda gwaith cwrs",
       "yn cael trafferth â llwyth gwaith", "pwysau dyddiad cau", "pwysau academaidd",
-      "wedi'i lethu gan waith", "yn pryderu am fethu"
+      "wedi'i lethu gan waith", "yn pryderu am fethu", "rhy lawer o waith",
+      "yn methu dal i fyny", "straen arholiad", "pryder arholiad"
     ],
     "responses": {
       "en": [
-        "It sounds like you're going through a really tough time — this is very common and completely understandable! Here's what can help: 1) Talk to your personal tutor — they can offer extensions or support. 2) Contact Wellbeing at wellbeing@uwtsd.ac.uk. 3) Use the library for study skills help. 4) Break work into small chunks and tackle one thing at a time. You've got this! 💪",
-        "Exam and assignment stress is something most students experience. UWTSD has great support: your personal tutor can advise on extensions, Wellbeing (wellbeing@uwtsd.ac.uk) offers counselling, and the Students' Union has a welfare officer. Also check out study skills workshops through the library — they really help with time management and revision techniques!"
+        "Academic stress is very common and completely understandable. Here's what can help: 1) Talk to your personal tutor, they can advise on extensions or support. 2) Contact Wellbeing at wellbeing@uwtsd.ac.uk. 3) Use the library for study skills help. 4) Break work into smaller chunks. You've got this.",
+        "Exam and assignment stress affects most students. UWTSD support includes: your personal tutor who can advise on extensions, Wellbeing at wellbeing@uwtsd.ac.uk for counselling, and study skills workshops through the library. The Students' Union welfare officer can also help with practical issues."
       ],
       "cy": [
-        "Mae'n swnio fel eich bod chi'n mynd drwy gyfnod anodd iawn — mae hyn yn gyffredin iawn ac yn gwbl ddealladwy! Dyma beth all helpu: 1) Siaradwch â'ch tiwtor personol — gallant gynnig estyniadau neu gymorth. 2) Cysylltwch â Lles ar wellbeing@pcydds.ac.uk. 3) Defnyddiwch y llyfrgell am help sgiliau astudio. Mae gyda chi! 💪",
-        "Mae straen arholiadau ac aseiniad yn rhywbeth y mae'r rhan fwyaf o fyfyrwyr yn ei brofi. Mae PCYDDS yn cynnig cymorth gwych: gall eich tiwtor personol gynghori ar estyniadau, mae Lles (wellbeing@pcydds.ac.uk) yn cynnig cwnsela, a gallwch fynychu gweithdai sgiliau astudio."
+        "Mae straen academaidd yn gyffredin iawn ac yn gwbl ddealladwy. Dyma beth all helpu: 1) Siaradwch â'ch tiwtor personol. 2) Cysylltwch â Lles ar wellbeing@pcydds.ac.uk. 3) Defnyddiwch y llyfrgell am help sgiliau astudio. 4) Rhannwch y gwaith yn ddarnau llai.",
+        "Mae straen arholiadau ac aseiniad yn effeithio ar y rhan fwyaf o fyfyrwyr. Mae cymorth PCYDDS yn cynnwys: eich tiwtor personol, Lles ar wellbeing@pcydds.ac.uk am gwnsela, a gweithdai sgiliau astudio trwy'r llyfrgell."
       ]
     }
   },
@@ -727,17 +913,23 @@
     "tag": "timetable",
     "patterns": [
       "my timetable", "class schedule", "lecture times", "when are my classes",
-      "view timetable", "study schedule",
+      "view timetable", "study schedule", "when do I start", "first lecture",
+      "timetable not showing", "missing from timetable", "timetable clash",
+      "when does term start", "semester dates", "term dates", "reading week",
+      "when are my seminars", "lecture schedule", "when is my next class",
+      "how to see my schedule", "class times", "teaching timetable",
       "fy amserlen", "amserlen dosbarth", "amseroedd darlithoedd",
-      "pryd mae fy nosweithiau i", "gweld amserlen", "amserlen astudio"
+      "pryd mae fy nosweithiau i", "gweld amserlen", "amserlen astudio",
+      "gwrthdrawiad amserlen", "pryd mae'r tymor yn dechrau",
+      "dyddiadau'r tymor", "amserlen ddysgu"
     ],
     "responses": {
       "en": [
-        "Your timetable is available on the MyStudy portal at mystudy.uwtsd.ac.uk. Log in with your student credentials and look for the timetable section. Timetables are usually published a few weeks before the start of term. If your timetable looks wrong or you're missing a module, contact your department administrator or Student Registry.",
-        "Check MyStudy (mystudy.uwtsd.ac.uk) for your personal timetable. It shows all your lectures, seminars, and lab sessions. If you have a timetable clash or issue, speak to your Programme Director or contact Student Registry at registry@uwtsd.ac.uk."
+        "Your timetable is on the MyStudy portal at mystudy.uwtsd.ac.uk. Log in with your student credentials and find the timetable section. Timetables are usually published a few weeks before term starts. Timetable issue or missing module? Contact your department administrator or Student Registry.",
+        "Check MyStudy (mystudy.uwtsd.ac.uk) for your personal timetable. It shows all lectures, seminars, and lab sessions. If you have a timetable clash, speak to your Programme Director or contact Student Registry at registry@uwtsd.ac.uk."
       ],
       "cy": [
-        "Mae eich amserlen ar gael ar borth MyStudy ar mystudy.uwtsd.ac.uk. Mewngofnodwch gyda'ch manylion myfyrwyr a chwiliwch am yr adran amserlen.",
+        "Mae eich amserlen ar borth MyStudy ar mystudy.uwtsd.ac.uk. Mewngofnodwch gyda'ch manylion myfyrwyr a chwiliwch am yr adran amserlen. Mae amserlenni fel arfer yn cael eu cyhoeddi ychydig wythnosau cyn dechrau'r tymor.",
         "Gwiriwch MyStudy (mystudy.uwtsd.ac.uk) am eich amserlen bersonol. Mae'n dangos eich holl ddarlithoedd, seminarau, a sesiynau labordy. Os oes gwrthdrawiad amserlen, siaradwch â'ch Cyfarwyddwr Rhaglen."
       ]
     }
@@ -746,17 +938,23 @@
     "tag": "printing",
     "patterns": [
       "printing on campus", "how to print", "print documents", "campus printers",
-      "student printing", "argraffu ar y campws", "sut i argraffu",
-      "argraffu dogfennau", "argraffwyr campws", "argraffu myfyrwyr"
+      "student printing", "where can I print", "print credits", "how to pay for printing",
+      "printing cost", "colour printing", "black and white printing", "scan documents",
+      "print my assignment", "print from laptop", "print from phone",
+      "where are the printers", "print shop campus", "free printing uwtsd",
+      "how much is printing", "top up print credit", "argraffu ar y campws",
+      "sut i argraffu", "argraffu dogfennau", "argraffwyr campws",
+      "argraffu myfyrwyr", "ble mae'r argraffwyr", "credydau argraffu",
+      "faint yw argraffu", "argraffu mewn lliw", "argraffu o liniadur"
     ],
     "responses": {
       "en": [
-        "UWTSD provides printing facilities across all campuses. You can print from library computers or connect your own device to the print system. Printing is usually charged to a print credit account — you can top this up on campus. Contact IT Services at itservices@uwtsd.ac.uk or your campus library for details on how to set up and use printing.",
-        "Printing is available in UWTSD libraries and computer labs. You'll need print credits on your student account — these can be purchased on campus. Black and white printing is cheaper than colour. For help setting up printing on your personal device, visit the IT Services page or call 01792 481 111."
+        "UWTSD provides printing facilities across all campuses in libraries and computer labs. Printing is charged to a print credit account which you can top up on campus. Contact IT Services at itservices@uwtsd.ac.uk or your campus library for setup help.",
+        "Printing is available in UWTSD libraries and computer labs. You need print credits on your student account, purchasable on campus. Black and white printing is cheaper than colour. For help setting up printing on your device, visit uwtsd.ac.uk/it or call 01792 481 111."
       ],
       "cy": [
-        "Mae PCYDDS yn darparu cyfleusterau argraffu ar draws pob campws. Gallwch argraffu o gyfrifiaduron y llyfrgell neu gysylltu eich dyfais eich hun â'r system argraffu. Mae argraffu fel arfer yn cael ei godi i gyfrif credyd argraffu.",
-        "Mae argraffu ar gael mewn llyfrgelloedd a labordai cyfrifiadur PCYDDS. Bydd angen credydau argraffu arnoch chi ar eich cyfrif myfyrwyr — gellir eu prynu ar y campws."
+        "Mae PCYDDS yn darparu cyfleusterau argraffu ar draws pob campws mewn llyfrgelloedd a labordai cyfrifiadur. Mae argraffu'n cael ei godi i gyfrif credyd argraffu. Cysylltwch â Gwasanaethau TG ar itservices@pcydds.ac.uk am help.",
+        "Mae argraffu ar gael mewn llyfrgelloedd a labordai cyfrifiadur PCYDDS. Bydd angen credydau argraffu arnoch chi ar eich cyfrif myfyrwyr, y gellir eu prynu ar y campws."
       ]
     }
   },
@@ -764,19 +962,23 @@
     "tag": "student_services",
     "patterns": [
       "student services", "where are student services", "what does student services do",
-      "help at university", "support services",
+      "help at university", "support services", "student support", "who can help me",
+      "personal support", "advice at uni", "student advice", "student affairs",
+      "how to get help", "student hub", "one stop shop uwtsd", "support team",
+      "student support office", "help centre", "student help desk",
       "gwasanaethau myfyrwyr", "ble mae gwasanaethau myfyrwyr",
       "beth mae gwasanaethau myfyrwyr yn ei wneud", "help yn y brifysgol",
-      "gwasanaethau cymorth"
+      "gwasanaethau cymorth", "cymorth myfyrwyr", "canolfan gymorth",
+      "sut i gael cymorth", "hwb myfyrwyr"
     ],
     "responses": {
       "en": [
-        "Student Services at UWTSD is your one-stop shop for support! They offer help with: Wellbeing and counselling, Disability and additional learning support, Careers advice, Financial hardship, International student support, Accommodation queries. Find Student Services at your campus or email studentservices@uwtsd.ac.uk.",
-        "UWTSD Student Services covers almost everything you need outside of your studies! Wellbeing, careers, finance, accommodation, disability support, and more. They're based on each campus and also reachable at studentservices@uwtsd.ac.uk. Don't be afraid to reach out — they're there to help you succeed!"
+        "Student Services at UWTSD is your one-stop support hub, covering: Wellbeing and counselling, Disability and learning support, Careers advice, Financial hardship, International student support, and Accommodation queries. Find them on campus or email studentservices@uwtsd.ac.uk.",
+        "UWTSD Student Services covers almost everything outside your studies: wellbeing, careers, finance, accommodation, disability support, and more. They're on each campus and reachable at studentservices@uwtsd.ac.uk. Do not hesitate to reach out, they are there to help you succeed."
       ],
       "cy": [
-        "Gwasanaethau Myfyrwyr ym PCYDDS yw eich siop-un-stop am gymorth! Maent yn cynnig help gyda: Lles a chwnsela, Cymorth anabledd a dysgu ychwanegol, Cyngor gyrfaoedd, Caledi ariannol, Cymorth myfyrwyr rhyngwladol, Ymholiadau llety. Anfonwch e-bost at studentservices@pcydds.ac.uk.",
-        "Mae Gwasanaethau Myfyrwyr PCYDDS yn ymdrin â bron popeth sydd ei angen arnoch chi y tu allan i'ch astudiaethau! Lles, gyrfaoedd, cyllid, llety, cymorth anabledd, a mwy. Cysylltwch â studentservices@pcydds.ac.uk."
+        "Gwasanaethau Myfyrwyr ym PCYDDS yw eich canolfan cymorth, yn ymdrin â: Lles a chwnsela, Cymorth anabledd a dysgu ychwanegol, Cyngor gyrfaoedd, Caledi ariannol, Cymorth myfyrwyr rhyngwladol, ac Ymholiadau llety. Anfonwch e-bost at studentservices@pcydds.ac.uk.",
+        "Mae Gwasanaethau Myfyrwyr PCYDDS yn ymdrin â bron popeth y tu allan i'ch astudiaethau. Cysylltwch â studentservices@pcydds.ac.uk. Peidiwch ag oedi cyn cysylltu, maent yno i'ch helpu chi i lwyddo."
       ]
     }
   },
@@ -785,18 +987,24 @@
     "patterns": [
       "english language help", "academic english", "writing skills",
       "academic writing support", "improve my english", "writing centre", "grammar help",
+      "essay writing help", "report writing", "referencing help", "harvard referencing",
+      "academic writing skills", "structure an essay", "how to write an essay",
+      "dissertation help", "proofreading", "ESOL", "english for academic purposes",
+      "EAP support", "international student english", "writing workshop",
+      "citation help", "plagiarism guidance", "paraphrasing help",
       "cymorth iaith Saesneg", "Saesneg academaidd", "sgiliau ysgrifennu",
       "cymorth ysgrifennu academaidd", "gwella fy Saesneg", "canolfan ysgrifennu",
-      "help gramadeg"
+      "help gramadeg", "help traethawd", "cymorth cyfeiriadaeth",
+      "sgiliau ysgrifennu academaidd"
     ],
     "responses": {
       "en": [
-        "UWTSD offers academic English language support through the library and Learning Support teams. Help includes academic writing workshops, grammar support, and 1-to-1 writing consultations. International students can also access additional ESOL support. Contact learningsupport@uwtsd.ac.uk for information on available sessions.",
-        "Need help with your academic writing or English language skills? UWTSD's Learning Support team runs workshops and drop-in sessions. The library also has academic writing guides and resources. Contact alss@uwtsd.ac.uk or the library at library@uwtsd.ac.uk. Many departments also have subject-specific writing support."
+        "UWTSD offers academic English language support through the library and Learning Support teams. Help includes academic writing workshops, grammar support, and 1-to-1 writing consultations. International students can also access additional ESOL support. Contact learningsupport@uwtsd.ac.uk for available sessions.",
+        "Need help with academic writing or English language skills? UWTSD's Learning Support team runs workshops and drop-in sessions. The library also has academic writing guides. Contact alss@uwtsd.ac.uk or library@uwtsd.ac.uk. Many departments also offer subject-specific writing support."
       ],
       "cy": [
         "Mae PCYDDS yn cynnig cymorth iaith Saesneg academaidd trwy'r llyfrgell a thimau Cymorth Dysgu. Mae cymorth yn cynnwys gweithdai ysgrifennu academaidd, cymorth gramadeg, ac ymgynghoriadau ysgrifennu un-i-un. Cysylltwch â learningsupport@pcydds.ac.uk.",
-        "Oes angen help arnoch chi gyda'ch ysgrifennu academaidd neu sgiliau iaith Saesneg? Mae tîm Cymorth Dysgu PCYDDS yn rhedeg gweithdai a sesiynau galw-i-mewn. Cysylltwch ag alss@pcydds.ac.uk neu'r llyfrgell ar library@pcydds.ac.uk."
+        "Oes angen help arnoch chi gyda'ch ysgrifennu academaidd? Mae tîm Cymorth Dysgu PCYDDS yn rhedeg gweithdai a sesiynau galw-i-mewn. Cysylltwch ag alss@pcydds.ac.uk neu library@pcydds.ac.uk."
       ]
     }
   }

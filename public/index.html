@@ -586,12 +586,14 @@
               <template x-if="m.msgLang === 'cy'">
                 <span class="cy-chip">Cymraeg</span>
               </template>
-              <div class="bubble bot" x-html="m.html"></div>
+              <div class="bubble bot" x-html="m._showAlt ? m.altHtml : m.html"></div>
               <template x-if="m.altHtml">
                 <button
                   class="translate-btn"
-                  @click="m._showAlt = !m._showAlt; $el.previousElementSibling.innerHTML = m._showAlt ? m.altHtml : m.html; $el.textContent = m._showAlt ? (lang==='cy' ? 'Nol i Gymraeg' : 'Back to English') : (lang==='cy' ? 'Cyfieithwch i Saesneg' : 'Translate to Welsh')"
-                  x-text="lang === 'cy' ? 'Cyfieithwch i Saesneg' : 'Translate to Welsh'"
+                  @click="m._showAlt = !m._showAlt"
+                  x-text="m._showAlt
+                    ? (m.msgLang === 'cy' ? 'Nôl i Gymraeg' : 'Back to English')
+                    : (m.msgLang === 'cy' ? 'Cyfieithwch i Saesneg' : 'Translate to Welsh')"
                 ></button>
               </template>
             </div>
