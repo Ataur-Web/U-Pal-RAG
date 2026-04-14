@@ -4,8 +4,8 @@ const path            = require('path');
 const fs              = require('fs');
 const natural         = require('natural');
 const { MongoClient } = require('mongodb');
-const dialogflow      = require('@google-cloud/dialogflow');
-const { v4: uuidv4 }  = require('uuid');
+const { v4: uuidv4 }      = require('uuid');
+const dfRest              = require('./dialogflow-rest');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -20,66 +20,46 @@ const knowledge = JSON.parse(fs.readFileSync(path.join(__dirname, 'knowledge.jso
 //  DIALOGFLOW — Primary intent classifier
 //  Falls back to local TF-IDF + Naive Bayes if Dialogflow is unavailable.
 // ═════════════════════════════════════════════════════════════════════════
+// ── Dialogflow REST credentials ──────────────────────────────────────────────
 const DIALOGFLOW_PROJECT_ID = process.env.DIALOGFLOW_PROJECT_ID;
-let   dfSessionsClient      = null;
+let   dfCredentials         = null;
 
 if (DIALOGFLOW_PROJECT_ID && process.env.GOOGLE_CREDENTIALS) {
   try {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-    dfSessionsClient  = new dialogflow.SessionsClient({ credentials });
-    console.log('Dialogflow initialised for project:', DIALOGFLOW_PROJECT_ID);
+    dfCredentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+    console.log('Dialogflow REST client ready for project:', DIALOGFLOW_PROJECT_ID);
   } catch (e) {
-    console.warn('Dialogflow credentials could not be parsed:', e.message);
+    console.warn('Could not parse GOOGLE_CREDENTIALS:', e.message);
   }
 }
 
 /**
- * detectIntentWithDialogflow — calls Dialogflow ES detectIntent.
- * Returns { tag, confidence, needsClarification } or null (use local fallback).
- * Confidence thresholds mirror the local pipeline:
- *   < 0.30 → treat as unrecognised (null)
+ * detectIntentWithDialogflow — calls Dialogflow ES via lightweight REST client.
+ * Returns { tag, confidence, needsClarification } or null (local fallback).
+ *   < 0.30 → unrecognised → null
  *   < 0.50 → low confidence → ask clarification
  *   ≥ 0.50 → recognised
  */
 async function detectIntentWithDialogflow(text, lang, sessionId) {
-  if (!dfSessionsClient || !DIALOGFLOW_PROJECT_ID) return null;
-
-  const sessionPath = dfSessionsClient.projectAgentSessionPath(
-    DIALOGFLOW_PROJECT_ID, sessionId
-  );
-
-  const request = {
-    session:    sessionPath,
-    queryInput: {
-      text: {
-        text:         text,
-        languageCode: lang === 'cy' ? 'en' : 'en', // agent trained in English
-      }
-    }
-  };
+  if (!dfCredentials || !DIALOGFLOW_PROJECT_ID) return null;
 
   try {
-    const [response]   = await dfSessionsClient.detectIntent(request);
-    const result       = response.queryResult;
-    const intentName   = result?.intent?.displayName;
-    const confidence   = result?.intentDetectionConfidence ?? 0;
+    const result = await dfRest.detectIntent(
+      dfCredentials, DIALOGFLOW_PROJECT_ID, sessionId, text, 'en'
+    );
 
-    // No match or built-in fallback intent
+    const { intentName, confidence } = result;
+
     if (!intentName || intentName.startsWith('Default') || confidence < 0.30) {
       return null;
     }
 
-    // Verify the intent maps to a knowledge.json tag
     const matched = knowledge.find(i => i.tag === intentName);
     if (!matched) return null;
 
-    return {
-      tag:                intentName,
-      confidence,
-      needsClarification: confidence < 0.50
-    };
+    return { tag: intentName, confidence, needsClarification: confidence < 0.50 };
   } catch (err) {
-    console.warn('Dialogflow API error (using local fallback):', err.message);
+    console.warn('Dialogflow REST error (using local fallback):', err.message);
     return null;
   }
 }
