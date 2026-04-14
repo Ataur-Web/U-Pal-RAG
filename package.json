@@ -8,9 +8,11 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "@google-cloud/dialogflow": "^7.5.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^7.1.1",
-    "natural": "^6.10.4"
+    "natural": "^6.10.4",
+    "uuid": "^13.0.0"
   }
 }

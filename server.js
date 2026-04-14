@@ -4,6 +4,8 @@ const path            = require('path');
 const fs              = require('fs');
 const natural         = require('natural');
 const { MongoClient } = require('mongodb');
+const dialogflow      = require('@google-cloud/dialogflow');
+const { v4: uuidv4 }  = require('uuid');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +15,74 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ── Knowledge base ────────────────────────────────────────────────────────
 const knowledge = JSON.parse(fs.readFileSync(path.join(__dirname, 'knowledge.json'), 'utf8'));
+
+// ═════════════════════════════════════════════════════════════════════════
+//  DIALOGFLOW — Primary intent classifier
+//  Falls back to local TF-IDF + Naive Bayes if Dialogflow is unavailable.
+// ═════════════════════════════════════════════════════════════════════════
+const DIALOGFLOW_PROJECT_ID = process.env.DIALOGFLOW_PROJECT_ID;
+let   dfSessionsClient      = null;
+
+if (DIALOGFLOW_PROJECT_ID && process.env.GOOGLE_CREDENTIALS) {
+  try {
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+    dfSessionsClient  = new dialogflow.SessionsClient({ credentials });
+    console.log('Dialogflow initialised for project:', DIALOGFLOW_PROJECT_ID);
+  } catch (e) {
+    console.warn('Dialogflow credentials could not be parsed:', e.message);
+  }
+}
+
+/**
+ * detectIntentWithDialogflow — calls Dialogflow ES detectIntent.
+ * Returns { tag, confidence, needsClarification } or null (use local fallback).
+ * Confidence thresholds mirror the local pipeline:
+ *   < 0.30 → treat as unrecognised (null)
+ *   < 0.50 → low confidence → ask clarification
+ *   ≥ 0.50 → recognised
+ */
+async function detectIntentWithDialogflow(text, lang, sessionId) {
+  if (!dfSessionsClient || !DIALOGFLOW_PROJECT_ID) return null;
+
+  const sessionPath = dfSessionsClient.projectAgentSessionPath(
+    DIALOGFLOW_PROJECT_ID, sessionId
+  );
+
+  const request = {
+    session:    sessionPath,
+    queryInput: {
+      text: {
+        text:         text,
+        languageCode: lang === 'cy' ? 'en' : 'en', // agent trained in English
+      }
+    }
+  };
+
+  try {
+    const [response]   = await dfSessionsClient.detectIntent(request);
+    const result       = response.queryResult;
+    const intentName   = result?.intent?.displayName;
+    const confidence   = result?.intentDetectionConfidence ?? 0;
+
+    // No match or built-in fallback intent
+    if (!intentName || intentName.startsWith('Default') || confidence < 0.30) {
+      return null;
+    }
+
+    // Verify the intent maps to a knowledge.json tag
+    const matched = knowledge.find(i => i.tag === intentName);
+    if (!matched) return null;
+
+    return {
+      tag:                intentName,
+      confidence,
+      needsClarification: confidence < 0.50
+    };
+  } catch (err) {
+    console.warn('Dialogflow API error (using local fallback):', err.message);
+    return null;
+  }
+}
 
 // ═════════════════════════════════════════════════════════════════════════
 //  STEP 1 — NLP PRE-PROCESSING
@@ -223,18 +293,19 @@ function isCrisis(text) {
 
 // ═════════════════════════════════════════════════════════════════════════
 //  CHAT ENDPOINT
-//  Flow: Safety check → Pre-process → Vectorize → Classify → Response
+//  Flow: Safety check → Dialogflow → Local TF-IDF fallback → Response
 // ═════════════════════════════════════════════════════════════════════════
-app.post('/api/chat', (req, res) => {
-  const { message } = req.body;
+app.post('/api/chat', async (req, res) => {
+  const { message, sessionId } = req.body;
   if (!message || typeof message !== 'string')
     return res.status(400).json({ error: 'message is required' });
 
   const raw          = message.trim();
-  const detectedLang = detectLanguage(raw);           // auto-detect every time
+  const detectedLang = detectLanguage(raw);
   const altLang      = detectedLang === 'cy' ? 'en' : 'cy';
+  const session      = sessionId || uuidv4();
 
-  // ── Safety override — always respond to crisis phrases ───────────────
+  // ── 1. Safety override — crisis phrases always win ───────────────────
   if (isCrisis(raw)) {
     return res.json({
       response:    getResponse('wellbeing_crisis', detectedLang),
@@ -243,9 +314,30 @@ app.post('/api/chat', (req, res) => {
     });
   }
 
+  // ── 2. Dialogflow — primary classifier (Google NLP) ──────────────────
+  const dfResult = await detectIntentWithDialogflow(raw, detectedLang, session);
+
+  if (dfResult) {
+    if (dfResult.needsClarification) {
+      return res.json({
+        response:    CLARIFICATION[detectedLang],
+        altResponse: CLARIFICATION[altLang],
+        tag: 'clarification', lang: detectedLang, confidence: dfResult.confidence
+      });
+    }
+    return res.json({
+      response:    getResponse(dfResult.tag, detectedLang),
+      altResponse: getResponse(dfResult.tag, altLang),
+      tag:         dfResult.tag,
+      lang:        detectedLang,
+      confidence:  dfResult.confidence,
+      source:      'dialogflow'
+    });
+  }
+
+  // ── 3. Local TF-IDF + Naive Bayes — fallback ─────────────────────────
   const result = findBestIntent(raw, detectedLang);
 
-  // ── Is Intent Recognised? — NO → Fallback ────────────────────────────
   if (!result) {
     return res.json({
       response:    FALLBACK[detectedLang],
@@ -254,7 +346,6 @@ app.post('/api/chat', (req, res) => {
     });
   }
 
-  // ── Is Intent Recognised? — LOW confidence → Ask Clarification ───────
   if (result.needsClarification) {
     return res.json({
       response:    CLARIFICATION[detectedLang],
@@ -263,13 +354,13 @@ app.post('/api/chat', (req, res) => {
     });
   }
 
-  // ── Intent Recognised — Generate Response ────────────────────────────
   res.json({
     response:    getResponse(result.tag, detectedLang),
     altResponse: getResponse(result.tag, altLang),
     tag:         result.tag,
     lang:        detectedLang,
-    confidence:  result.score
+    confidence:  result.score,
+    source:      'local'
   });
 });
 
