@@ -4,7 +4,7 @@ const path            = require('path');
 const fs              = require('fs');
 const natural         = require('natural');
 const { MongoClient } = require('mongodb');
-const { v4: uuidv4 }      = require('uuid');
+const { randomUUID }      = require('crypto');  // built-in — no package needed
 const dfRest              = require('./dialogflow-rest');
 
 const app  = express();
@@ -283,7 +283,7 @@ app.post('/api/chat', async (req, res) => {
   const raw          = message.trim();
   const detectedLang = detectLanguage(raw);
   const altLang      = detectedLang === 'cy' ? 'en' : 'cy';
-  const session      = sessionId || uuidv4();
+  const session      = sessionId || randomUUID();
 
   // ── 1. Safety override — crisis phrases always win ───────────────────
   if (isCrisis(raw)) {
