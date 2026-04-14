@@ -194,8 +194,36 @@ const CLARIFICATION = {
 };
 
 // ═════════════════════════════════════════════════════════════════════════
+//  SAFETY OVERRIDE — Crisis keywords bypass TF-IDF entirely.
+//  These phrases ALWAYS route to wellbeing_crisis, regardless of score.
+//  This runs before any NLP processing.
+// ═════════════════════════════════════════════════════════════════════════
+const CRISIS_KEYWORDS = [
+  // Direct statements of suicidal/dying intent
+  'going to die','want to die','wanna die','want to kill myself','kill myself',
+  'end my life','end it all','take my life','take my own life',
+  'dont want to live','don\'t want to live',"don't want to be alive",
+  'no reason to live','not worth living','life not worth',
+  'thinking about suicide','thinking of suicide','suicidal','suicide',
+  'self harm','self-harm','selfharm','hurt myself','harm myself',
+  'overdose','cutting myself',
+  // Crisis / emergency
+  'in crisis','mental health crisis','having a breakdown','cant cope anymore',
+  "can't cope anymore",'breaking down','losing my mind',
+  // Welsh equivalents
+  'eisiau marw','eisiau lladd fy hun','lladd fy hun','diwedd fy mywyd',
+  'meddyliau hunanladdol','hunan-niweidio','hunan niweidio',
+  'argyfwng','alla i ddim ymdopi'
+];
+
+function isCrisis(text) {
+  const lower = text.toLowerCase();
+  return CRISIS_KEYWORDS.some(kw => lower.includes(kw));
+}
+
+// ═════════════════════════════════════════════════════════════════════════
 //  CHAT ENDPOINT
-//  Flow: Pre-process → Vectorize → Classify → Recognised? → Response
+//  Flow: Safety check → Pre-process → Vectorize → Classify → Response
 // ═════════════════════════════════════════════════════════════════════════
 app.post('/api/chat', (req, res) => {
   const { message } = req.body;
@@ -205,7 +233,17 @@ app.post('/api/chat', (req, res) => {
   const raw          = message.trim();
   const detectedLang = detectLanguage(raw);           // auto-detect every time
   const altLang      = detectedLang === 'cy' ? 'en' : 'cy';
-  const result       = findBestIntent(raw, detectedLang);
+
+  // ── Safety override — always respond to crisis phrases ───────────────
+  if (isCrisis(raw)) {
+    return res.json({
+      response:    getResponse('wellbeing_crisis', detectedLang),
+      altResponse: getResponse('wellbeing_crisis', altLang),
+      tag: 'wellbeing_crisis', lang: detectedLang, confidence: 1.0
+    });
+  }
+
+  const result = findBestIntent(raw, detectedLang);
 
   // ── Is Intent Recognised? — NO → Fallback ────────────────────────────
   if (!result) {
