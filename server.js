@@ -6,7 +6,6 @@ const path            = require('path');
 const fs              = require('fs');
 const natural         = require('natural');
 const { MongoClient } = require('mongodb');
-const https           = require('https');
 const crypto          = require('crypto');
 
 const app  = express();
@@ -15,124 +14,17 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ── Health check (runs first, no dependencies) ────────────────────────────
-app.get('/health', (_req, res) => {
-  res.json({ status: 'OK', ts: Date.now() });
-});
+// ── Health check ───────────────────────────────────────────────────────────
+app.get('/health', (_req, res) => res.json({ status: 'OK' }));
 
-// ── Knowledge base ────────────────────────────────────────────────────────
+// ── Knowledge base ─────────────────────────────────────────────────────────
 const knowledge = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'knowledge.json'), 'utf8')
 );
 
 // ═════════════════════════════════════════════════════════════════════════
-//  DIALOGFLOW REST — Inline (no separate file, avoids Vercel bundle issues)
-//  Uses Node built-ins only: https + crypto. No npm packages needed.
-// ═════════════════════════════════════════════════════════════════════════
-
-const DF_PROJECT_ID = process.env.DIALOGFLOW_PROJECT_ID || null;
-let   DF_CREDS      = null;
-
-if (DF_PROJECT_ID && process.env.GOOGLE_CREDENTIALS) {
-  try {
-    DF_CREDS = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-  } catch (e) {
-    console.warn('[Dialogflow] Could not parse GOOGLE_CREDENTIALS:', e.message);
-  }
-}
-
-// Token cache
-let _dfToken  = null;
-let _dfExpiry = 0;
-
-function _b64url(data) {
-  const s = Buffer.isBuffer(data) ? data.toString('base64') : Buffer.from(data).toString('base64');
-  return s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-
-function _makeJwt(creds) {
-  const now = Math.floor(Date.now() / 1000);
-  const hdr  = _b64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
-  const pay  = _b64url(JSON.stringify({
-    iss: creds.client_email, sub: creds.client_email,
-    aud: 'https://oauth2.googleapis.com/token',
-    scope: 'https://www.googleapis.com/auth/dialogflow',
-    iat: now, exp: now + 3600
-  }));
-  const unsigned = `${hdr}.${pay}`;
-  const sign = crypto.createSign('RSA-SHA256');
-  sign.update(unsigned);
-  return `${unsigned}.${_b64url(sign.sign(creds.private_key))}`;
-}
-
-function _fetchToken(jwt) {
-  return new Promise((resolve, reject) => {
-    const body = `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`;
-    const req  = https.request({
-      hostname: 'oauth2.googleapis.com', path: '/token', method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': Buffer.byteLength(body) }
-    }, res => {
-      let raw = '';
-      res.on('data', d => raw += d);
-      res.on('end', () => {
-        try {
-          const p = JSON.parse(raw);
-          if (p.error) return reject(new Error(p.error_description || p.error));
-          resolve(p);
-        } catch (e) { reject(e); }
-      });
-    });
-    req.on('error', reject);
-    req.write(body); req.end();
-  });
-}
-
-async function _getToken() {
-  if (_dfToken && Date.now() < _dfExpiry) return _dfToken;
-  const res = await _fetchToken(_makeJwt(DF_CREDS));
-  _dfToken  = res.access_token;
-  _dfExpiry = Date.now() + (res.expires_in - 300) * 1000;
-  return _dfToken;
-}
-
-function _httpsPost(hostname, urlPath, body, token) {
-  return new Promise((resolve, reject) => {
-    const data = JSON.stringify(body);
-    const req  = https.request({
-      hostname, path: urlPath, method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), Authorization: `Bearer ${token}` }
-    }, res => {
-      let raw = '';
-      res.on('data', d => raw += d);
-      res.on('end', () => { try { resolve(JSON.parse(raw)); } catch (e) { reject(e); } });
-    });
-    req.on('error', reject);
-    req.write(data); req.end();
-  });
-}
-
-async function dfDetect(text, sessionId) {
-  if (!DF_CREDS || !DF_PROJECT_ID) return null;
-  try {
-    const token  = await _getToken();
-    const urlPath = `/v2/projects/${DF_PROJECT_ID}/agent/sessions/${sessionId}:detectIntent`;
-    const result = await _httpsPost('dialogflow.googleapis.com', urlPath,
-      { queryInput: { text: { text, languageCode: 'en' } } }, token);
-    if (result.error) throw new Error(result.error.message);
-    const qr   = result.queryResult;
-    const name = qr?.intent?.displayName;
-    const conf = qr?.intentDetectionConfidence || 0;
-    if (!name || name.startsWith('Default') || conf < 0.30) return null;
-    if (!knowledge.find(i => i.tag === name)) return null;
-    return { tag: name, confidence: conf, needsClarification: conf < 0.50 };
-  } catch (e) {
-    console.warn('[Dialogflow] REST error — using local fallback:', e.message);
-    return null;
-  }
-}
-
-// ═════════════════════════════════════════════════════════════════════════
 //  NLP PRE-PROCESSING
+//  Normalisation → Tokenization → Stop-word removal → Stemming
 // ═════════════════════════════════════════════════════════════════════════
 
 const tokenizer = new natural.WordTokenizer();
@@ -156,24 +48,33 @@ const CY_STOP = new Set([
 ]);
 
 function preprocess(text, lang) {
-  const norm     = text.toLowerCase().replace(/[^\w\u00C0-\u024F\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  const norm     = text.toLowerCase()
+    .replace(/[^\w\u00C0-\u024F\s]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
   const tokens   = tokenizer.tokenize(norm) || norm.split(/\s+/);
   const stopSet  = lang === 'cy' ? CY_STOP : EN_STOP;
   const filtered = tokens.filter(t => t.length > 1 && !stopSet.has(t));
-  const stemmed  = lang === 'en' ? filtered.map(t => natural.PorterStemmer.stem(t)) : filtered;
+  const stemmed  = lang === 'en'
+    ? filtered.map(t => natural.PorterStemmer.stem(t))
+    : filtered;
   return stemmed.join(' ');
 }
 
 // ═════════════════════════════════════════════════════════════════════════
-//  WELSH LANGUAGE DETECTION
+//  WELSH / ENGLISH AUTO-DETECTION
 // ═════════════════════════════════════════════════════════════════════════
 
 const WELSH_WORDS = new Set([
+  // Question words
   'sut','beth','ble','pryd','pam','pwy','faint','pa',
+  // Verbs
   'sydd','mae','oes','ydy','yw','wyt','bydd','gallaf','gallwch','gall',
   'hoffwn','hoffech','allaf','allech','allwch','ydych','ydw',
+  // Prepositions / particles
   'gyda','drwy','trwy','dros','rhwng','oherwydd','achos',
+  // Greetings / expressions
   'shwmae','diolch','hwyl','iawn','cymraeg','cymru','pcydds',
+  // Unique Welsh vocabulary
   'myfyriwr','myfyrwyr','prifysgol','cwrs','cyrsiau','llety','llyfrgell',
   'gofynion','mynediad','ffioedd','cymorth','lles','anabledd',
   'graddio','canlyniadau','amserlen','argraffu','gwasanaethau',
@@ -186,14 +87,15 @@ const WELSH_WORDS = new Set([
 ]);
 
 function detectLanguage(text) {
-  const words = text.toLowerCase().replace(/[^a-z\u00C0-\u024F\s']/g, ' ').split(/\s+/);
+  const words = text.toLowerCase()
+    .replace(/[^a-z\u00C0-\u024F\s']/g, ' ').split(/\s+/);
   let count = 0;
   for (const w of words) { if (WELSH_WORDS.has(w)) count++; }
   return count >= 2 ? 'cy' : 'en';
 }
 
 // ═════════════════════════════════════════════════════════════════════════
-//  TF-IDF + NAIVE BAYES (local fallback)
+//  INTENT CLASSIFICATION — TF-IDF + Naive Bayes
 // ═════════════════════════════════════════════════════════════════════════
 
 const tfidf     = new natural.TfIdf();
@@ -209,7 +111,9 @@ knowledge.forEach(intent => {
 const bayesClassifier = new natural.BayesClassifier();
 knowledge.forEach(intent => {
   intent.patterns.forEach(pattern => {
-    bayesClassifier.addDocument(preprocess(pattern, detectLanguage(pattern)), intent.tag);
+    bayesClassifier.addDocument(
+      preprocess(pattern, detectLanguage(pattern)), intent.tag
+    );
   });
 });
 bayesClassifier.train();
@@ -219,23 +123,19 @@ const THRESHOLD_CLARIFY  = 0.18;
 
 function findBestIntent(msg, lang) {
   const processed = preprocess(msg, lang);
-  let tfidfScore = 0, tfidfIndex = -1;
+  let best = 0, bestIdx = -1;
   tfidf.tfidfs(processed, (i, score) => {
-    if (score > tfidfScore) { tfidfScore = score; tfidfIndex = i; }
+    if (score > best) { best = score; bestIdx = i; }
   });
-  if (tfidfIndex === -1 || tfidfScore < THRESHOLD_FALLBACK) return null;
-  const tfidfTag = intentMap[tfidfIndex];
+  if (bestIdx === -1 || best < THRESHOLD_FALLBACK) return null;
+  const tag = intentMap[bestIdx];
   let bayesTag = null;
   try { bayesTag = bayesClassifier.classify(processed); } catch (_) {}
-  const boost      = bayesTag && bayesTag === tfidfTag ? 1.35 : 1.0;
-  const finalScore = tfidfScore * boost;
-  return { tag: tfidfTag, score: finalScore, needsClarification: finalScore < THRESHOLD_CLARIFY };
+  const score = best * (bayesTag === tag ? 1.35 : 1.0);
+  return { tag, score, needsClarification: score < THRESHOLD_CLARIFY };
 }
 
-// ═════════════════════════════════════════════════════════════════════════
-//  RESPONSE HELPERS
-// ═════════════════════════════════════════════════════════════════════════
-
+// ─── Response helpers ──────────────────────────────────────────────────────
 function getResponse(tag, lang) {
   const intent = knowledge.find(i => i.tag === tag);
   if (!intent) return null;
@@ -254,7 +154,7 @@ const CLARIFICATION = {
 };
 
 // ═════════════════════════════════════════════════════════════════════════
-//  SAFETY OVERRIDE — runs before all NLP
+//  CRISIS SAFETY OVERRIDE — always runs before NLP
 // ═════════════════════════════════════════════════════════════════════════
 
 const CRISIS_KEYWORDS = [
@@ -281,70 +181,59 @@ function isCrisis(text) {
 //  CHAT ENDPOINT
 // ═════════════════════════════════════════════════════════════════════════
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', (req, res) => {
   try {
-    const { message, sessionId } = req.body;
+    const { message } = req.body;
     if (!message || typeof message !== 'string')
       return res.status(400).json({ error: 'message is required' });
 
-    const raw          = message.trim();
-    const detectedLang = detectLanguage(raw);
-    const altLang      = detectedLang === 'cy' ? 'en' : 'cy';
-    const session      = sessionId || crypto.randomUUID();
+    const raw  = message.trim();
+    const lang = detectLanguage(raw);
+    const alt  = lang === 'cy' ? 'en' : 'cy';
 
-    // 1. Safety override
+    // 1. Safety override — crisis phrases always win
     if (isCrisis(raw)) {
       return res.json({
-        response:    getResponse('wellbeing_crisis', detectedLang),
-        altResponse: getResponse('wellbeing_crisis', altLang),
-        tag: 'wellbeing_crisis', lang: detectedLang, confidence: 1.0
+        response:    getResponse('wellbeing_crisis', lang),
+        altResponse: getResponse('wellbeing_crisis', alt),
+        tag: 'wellbeing_crisis', lang, confidence: 1.0
       });
     }
 
-    // 2. Dialogflow (primary)
-    const dfResult = await dfDetect(raw, session);
-    if (dfResult) {
-      if (dfResult.needsClarification) {
-        return res.json({
-          response: CLARIFICATION[detectedLang], altResponse: CLARIFICATION[altLang],
-          tag: 'clarification', lang: detectedLang, confidence: dfResult.confidence
-        });
-      }
-      return res.json({
-        response:    getResponse(dfResult.tag, detectedLang),
-        altResponse: getResponse(dfResult.tag, altLang),
-        tag: dfResult.tag, lang: detectedLang, confidence: dfResult.confidence, source: 'dialogflow'
-      });
-    }
+    // 2. Intent classification
+    const result = findBestIntent(raw, lang);
 
-    // 3. Local TF-IDF + Bayes (fallback)
-    const result = findBestIntent(raw, detectedLang);
+    // No match
     if (!result) {
       return res.json({
-        response: FALLBACK[detectedLang], altResponse: FALLBACK[altLang],
-        tag: 'fallback', lang: detectedLang, confidence: 0
+        response: FALLBACK[lang], altResponse: FALLBACK[alt],
+        tag: 'fallback', lang, confidence: 0
       });
     }
+
+    // Low confidence — ask clarification
     if (result.needsClarification) {
       return res.json({
-        response: CLARIFICATION[detectedLang], altResponse: CLARIFICATION[altLang],
-        tag: 'clarification', lang: detectedLang, confidence: result.score
+        response: CLARIFICATION[lang], altResponse: CLARIFICATION[alt],
+        tag: 'clarification', lang, confidence: result.score
       });
     }
+
+    // Match found
     return res.json({
-      response:    getResponse(result.tag, detectedLang),
-      altResponse: getResponse(result.tag, altLang),
-      tag: result.tag, lang: detectedLang, confidence: result.score, source: 'local'
+      response:    getResponse(result.tag, lang),
+      altResponse: getResponse(result.tag, alt),
+      tag: result.tag, lang, confidence: result.score
     });
 
   } catch (err) {
-    console.error('[/api/chat] Error:', err.message, err.stack);
-    res.status(500).json({ error: 'Internal server error', detail: err.message });
+    console.error('[/api/chat]', err.message);
+    return res.status(500).json({ error: 'Something went wrong, please try again.' });
   }
 });
 
 // ═════════════════════════════════════════════════════════════════════════
-//  MONGODB FEEDBACK
+//  FEEDBACK — MongoDB or local file fallback
 // ═════════════════════════════════════════════════════════════════════════
 
 const MONGODB_URI   = process.env.MONGODB_URI;
@@ -382,19 +271,19 @@ async function readFeedback() {
 }
 
 // ═════════════════════════════════════════════════════════════════════════
-//  ADMIN AUTH
+//  ADMIN
 // ═════════════════════════════════════════════════════════════════════════
 
 function requireAdminAuth(req, res, next) {
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  if (!adminPassword) return res.status(503).json({ error: 'Admin access not configured.' });
+  const pw = process.env.ADMIN_PASSWORD;
+  if (!pw) return res.status(503).json({ error: 'Admin access not configured.' });
   const auth = req.headers['authorization'];
   if (!auth || !auth.startsWith('Basic ')) {
     res.set('WWW-Authenticate', 'Basic realm="U-Pal Admin"');
     return res.status(401).json({ error: 'Authentication required.' });
   }
   const [, password] = Buffer.from(auth.split(' ')[1], 'base64').toString().split(':');
-  if (password !== adminPassword) {
+  if (password !== pw) {
     res.set('WWW-Authenticate', 'Basic realm="U-Pal Admin"');
     return res.status(401).json({ error: 'Incorrect password.' });
   }
@@ -415,7 +304,7 @@ app.post('/api/feedback', async (req, res) => {
     await saveFeedback(entry);
     res.status(201).json({ success: true });
   } catch (err) {
-    console.error('Feedback save error:', err.message);
+    console.error('Feedback error:', err.message);
     res.status(500).json({ error: 'Could not save feedback' });
   }
 });
@@ -425,18 +314,17 @@ app.get('/api/feedback', requireAdminAuth, async (req, res) => {
   catch (err) { res.status(500).json({ error: 'Could not read feedback' }); }
 });
 
-app.get('/admin', requireAdminAuth, (req, res) => {
+app.get('/admin', requireAdminAuth, (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
-app.get('/api/logout', (req, res) => {
+app.get('/api/logout', (_req, res) => {
   res.set('WWW-Authenticate', 'Basic realm="U-Pal Admin"');
   res.status(401).json({ message: 'Logged out' });
 });
 
-// ── Start ──────────────────────────────────────────────────────────────────
 if (require.main === module) {
-  app.listen(PORT, () => console.log(`U-Pal running at http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`U-Pal running on http://localhost:${PORT}`));
 }
 
 module.exports = app;
