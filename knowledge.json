@@ -2032,5 +2032,306 @@
         "Oes angen help arnoch chi gyda'ch ysgrifennu academaidd? Mae tîm Cymorth Dysgu PCYDDS yn rhedeg gweithdai a sesiynau galw-i-mewn. Cysylltwch ag alss@pcydds.ac.uk neu library@pcydds.ac.uk."
       ]
     }
+  },
+  {
+    "tag": "fees_and_finance",
+    "patterns": [
+      "how much does it cost",
+      "what are the fees",
+      "tuition fees",
+      "how much is tuition",
+      "cost of studying",
+      "undergraduate fees",
+      "postgraduate fees",
+      "fee information",
+      "how much do I pay",
+      "tuition cost",
+      "student fees",
+      "annual fees",
+      "course fees",
+      "what's the price",
+      "cost per year",
+      "faint yw'r ffioedd",
+      "cost astudio",
+      "faint yw'r tâl",
+      "ffioedd myfyrwyr"
+    ],
+    "responses": {
+      "en": [
+        "Full-time undergraduate fees are £9,535 per year for 2025/26. Postgraduate taught fees start at £7,800 on campus or £6,800 online. International fees vary. For detailed information, visit our fees page at www.uwtsd.ac.uk/study/fees-and-finance.",
+        "Undergraduate tuition: £9,535/year. Postgraduate tuition: £7,800 on campus or £6,800 online. International students pay different rates. For a full fee schedule, check www.uwtsd.ac.uk/study/fees-and-finance/tuition-fee-schedule"
+      ],
+      "cy": [
+        "Ffioedd israddedig amser llawn: £9,535 y flwyddyn am 2025/26. Ffioedd ôl-radd addysgu: £7,800 ar y campws neu £6,800 ar-lein. Mae ffioedd rhyngwladol yn amrywio. Am fanylion llawn, ewch i www.uwtsd.ac.uk/study/fees-and-finance.",
+        "Ffioedd israddedig: £9,535 y flwyddyn. Ffioedd ôl-radd: £7,800 ar y campws neu £6,800 ar-lein. Mae myfyrwyr rhyngwladol yn talu cyfraddau gwahanol. Am restr ffioedd gyflawn, gwiriwch www.uwtsd.ac.uk/study/fees-and-finance"
+      ]
+    }
+  },
+  {
+    "tag": "financial_support",
+    "patterns": [
+      "financial help",
+      "student funding",
+      "bursaries",
+      "loan support",
+      "money support",
+      "can I get a bursary",
+      "hardship fund",
+      "financial support",
+      "help with fees",
+      "student finance",
+      "do I qualify for a bursary",
+      "financial aid",
+      "cymorth ariannol",
+      "grant",
+      "student loan"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD offers various financial support options including bursaries, hardship funds, and digital connectivity grants. We have specific bursaries for care leavers, minority ethnic groups, and disabled students. Visit www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/money-support for details.",
+        "Financial support available includes the Student Financial Support Fund (for hardship), bursaries, and digital connectivity bursaries. You can apply weekly online. Contact our Money Support team at moneysupport@uwtsd.ac.uk for personalized guidance."
+      ],
+      "cy": [
+        "Mae PCYDDS yn cynnig amrywiad o opsiynau seiliau ariannol gan gynnwys ysgoloriaeth, cronfeydd galedi, a grantiau cysylltedd digidol.",
+        "Mae cymorth ariannol ar gael gan gynnwys y Cronfa Seiliau Ariannol Myfyrwyr (am galedi), ysgoloriaeth, a bursari cysylltedd digidol. Gallwch chi wneud cais yn wythnosol ar-lein."
+      ]
+    }
+  },
+  {
+    "tag": "how_to_apply",
+    "patterns": [
+      "how do I apply",
+      "how to apply",
+      "application process",
+      "how do I apply to UWTSD",
+      "applying to university",
+      "application deadline",
+      "how long does it take",
+      "application requirements",
+      "what do I need to apply",
+      "apply for a course",
+      "courses application",
+      "where do I apply",
+      "sut dwi'n gwneud cais",
+      "proses gwneud cais",
+      "cais i'r brifysgol"
+    ],
+    "responses": {
+      "en": [
+        "Undergraduate students typically apply through UCAS. Postgraduate students can apply directly to UWTSD or through our agents abroad. The application process includes submitting your qualifications, personal statement, and references. Visit www.uwtsd.ac.uk/study/how-apply for step-by-step guidance.",
+        "For undergraduates, use UCAS. For postgraduate courses, apply directly to us at www.uwtsd.ac.uk/apply/postgraduate/applying-direct-postgraduate. For PGCE teacher training, apply via UCAS. Our International team can help: iru@uwtsd.ac.uk"
+      ],
+      "cy": [
+        "Mae myfyrwyr israddedig fel arfer yn gwneud cais drwy UCAS. Mae myfyrwyr ôl-radd yn gallu gwneud cais yn uniongyrchol i PCYDDS. Ewch i www.uwtsd.ac.uk/study/how-apply am arweiniad cam-wrth-gam.",
+        "Ar gyfer myfyrwyr israddedig, defnyddiwch UCAS. Ar gyfer cyrsiau ôl-radd, gwneud cais yn uniongyrchol i ni."
+      ]
+    }
+  },
+  {
+    "tag": "accommodation",
+    "patterns": [
+      "accommodation",
+      "student housing",
+      "where to live",
+      "halls of residence",
+      "student halls",
+      "on campus housing",
+      "off campus housing",
+      "where can I stay",
+      "relocation",
+      "llety",
+      "preswylfa myfyrwyr",
+      "neuaddau preswylio",
+      "ble rwy'n gallu byw",
+      "help with housing"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD offers accommodation at various locations. Carmarthen has on-campus halls, while Swansea, Cardiff, London, and Birmingham have nearby private student accommodation. The lowest priced university rooms are £100 per week. For options by campus, visit www.uwtsd.ac.uk/study/experience-facilities/accommodation",
+        "Accommodation varies by campus. University halls in Carmarthen start at £100/week. Private student housing is available in Swansea, Cardiff, Birmingham, and London. For help, email accommodation@uwtsd.ac.uk"
+      ],
+      "cy": [
+        "Mae PCYDDS yn cynnig llety mewn amrywiad o leoliadau. Mae neuaddau ar y campws yn Aberteifi. Ar gyfer manylion yn ôl campws, ewch i www.uwtsd.ac.uk/study/experience-facilities/accommodation",
+        "Mae llety yn amrywio yn ôl campws. Dechreua ystafelloedd neuadda'r Brifysgol yn Aberteifi am £100 yr wythnos."
+      ]
+    }
+  },
+  {
+    "tag": "library_services",
+    "patterns": [
+      "library",
+      "library hours",
+      "library opening times",
+      "book search",
+      "library resources",
+      "library support",
+      "study spaces",
+      "library help",
+      "library chat",
+      "learning resources",
+      "librarian",
+      "llyfrgell",
+      "adnoddau dysgu",
+      "ystafelloedd astudio"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD has libraries at all six campuses with extended opening hours, online resources, and digital collections. You can access library chat support, search our collections online, and book study spaces. Call 01792 481200 or email library@uwtsd.ac.uk for help. Visit www.uwtsd.ac.uk/library for locations and hours.",
+        "Our libraries offer bright study spaces, expert support, and extensive digital resources. You can use the chat service, email library@uwtsd.ac.uk, or call 01792 481200. Special Collections are also available for research."
+      ],
+      "cy": [
+        "Mae gan PCYDDS lyfrgelloedd ym mhob un o'r chwe champws. Gallwch gysylltu â'r lyfrgell drwy www.uwtsd.ac.uk/library",
+        "Mae ein llyfrgelloedd yn cynnig ystafelloedd astudio disglair a chefnogaeth arbenigol."
+      ]
+    }
+  },
+  {
+    "tag": "wellbeing_support",
+    "patterns": [
+      "mental health support",
+      "counselling",
+      "wellbeing",
+      "stress support",
+      "anxiety help",
+      "depression help",
+      "psychological support",
+      "mental health",
+      "emotional support",
+      "how can I get help",
+      "I'm struggling",
+      "need support",
+      "support services",
+      "lles meddwl",
+      "cymorth iechyd meddwl",
+      "teimlad yn drist"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD offers comprehensive wellbeing support including counselling, mental health mentoring, and access to external services. We provide free services such as Sorted (mental health app), Togetherall (24/7 peer support), and a Student Assistance Programme. Submit a support request at www.uwtsd.ac.uk or call 0800 028 3766 (24/7) for immediate help.",
+        "Wellbeing services available include counselling, specialist mental health support, and crisis resources. If you're in crisis, call 999. For non-emergency mental health support, call 111 (option 2) or contact our Wellbeing Team. You can also access Togetherall (free 24/7 online support) and the Sorted app (mental health training)."
+      ],
+      "cy": [
+        "Mae PCYDDS yn cynnig tŷ cynhwysfawr o gymorth lles gan gynnwys cynghori ac fynediad at wasanaethau allanol. Darperir gwasanaethau am ddim yn cynnwys Sorted (ap iechyd meddwl). Rhowch gais am gymorth ym: www.uwtsd.ac.uk",
+        "Mae'r gwasanaethau lles sydd ar gael yn cynnwys cynghori a chymorth iechyd meddwl arbenigol."
+      ]
+    }
+  },
+  {
+    "tag": "careers_advice",
+    "patterns": [
+      "careers",
+      "careers advice",
+      "job search",
+      "employment",
+      "work experience",
+      "internship",
+      "placement",
+      "graduate jobs",
+      "career guidance",
+      "CV help",
+      "interview prep",
+      "career support",
+      "career development",
+      "swyddi",
+      "cyngor gyrfa",
+      "profiad gwaith"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD's Careers Service provides one-to-one appointments, CV reviews, interview prep, and job search guidance. Access MyCareer platform for job boards, career planning tools, and employer events. Graduates receive support for 2 years after completing their degree. Contact careers@uwtsd.ac.uk or visit www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/careers-service",
+        "The Careers Service offers personalized guidance, work experience opportunities, and access to our MyCareer online platform. We organize employer fairs and networking events. You can book an appointment at www.uwtsd.ac.uk or email careers@uwtsd.ac.uk. We also offer a 'Your Career Pathway' programme with dedicated support."
+      ],
+      "cy": [
+        "Mae Gwasanaeth Gyrfa PCYDDS yn darparu sesiynau un-ar-un, adolygiadau CV, a chanllawi chwilio am swydd. Ewch i www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/careers-service",
+        "Mae'r Gwasanaeth Gyrfa yn cynnig canllaw personol a chyfleoedd profiad gwaith."
+      ]
+    }
+  },
+  {
+    "tag": "postgraduate_courses",
+    "patterns": [
+      "postgraduate courses",
+      "master's degree",
+      "masters",
+      "postgraduate study",
+      "PGCE",
+      "teacher training",
+      "research degree",
+      "PhD",
+      "MPhil",
+      "postgraduate programs",
+      "further study",
+      "professional development",
+      "ôl-radd",
+      "addysg uwch",
+      "cymhwyster ôl-radd"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD offers a range of postgraduate programs including taught Master's degrees (MA, MSc, MBA), research degrees (PhD, MPhil), professional doctorates, and PGCE teacher training. Many courses are available full-time, part-time, or online. Postgraduate fees start at £7,800 (on campus) or £6,800 (online). Apply directly or visit www.uwtsd.ac.uk/study/postgraduate-and-pgce",
+        "Postgraduate options include Master's degrees across 20+ subjects, professional doctorates (DProf, EDD), PhDs, and PGCE courses for teacher training. Study full-time, part-time, or online. View all courses and apply at www.uwtsd.ac.uk or contact our postgraduate team."
+      ],
+      "cy": [
+        "Mae PCYDDS yn cynnig amrywiaeth o raglenni ôl-radd gan gynnwys graddau Master, cyrsiau PGCE, a graddau ymchwil. Ewch i www.uwtsd.ac.uk/study/postgraduate-and-pgce",
+        "Mae opsiynau ôl-radd yn cynnwys graddau Master ar draws 20+ pwnc a chyrsiau hyfforddi athrawon."
+      ]
+    }
+  },
+  {
+    "tag": "campus_locations",
+    "patterns": [
+      "campuses",
+      "campus locations",
+      "where are you located",
+      "which campus should I attend",
+      "Carmarthen campus",
+      "Swansea campus",
+      "Lampeter campus",
+      "London campus",
+      "Birmingham campus",
+      "Cardiff campus",
+      "how many campuses",
+      "lledleoedd campws",
+      "ble mae'r campws"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD has six campuses: Carmarthen (main campus), Swansea, Lampeter, Cardiff, London, and Birmingham. Different programs are available at different locations. Each campus has its own library, student support services, and accommodation options. Visit individual campus pages for more details at www.uwtsd.ac.uk",
+        "Our six campuses are: Carmarthen, Swansea, Lampeter (Wales), plus London, Birmingham, and Cardiff. Each offers different programs and facilities. Check www.uwtsd.ac.uk for campus-specific course offerings and services."
+      ],
+      "cy": [
+        "Mae gan PCYDDS chwe champws: Aberteifi (prif campws), Abertawe, Llambed, Caerdydd, Llundain, ac Birmingham. Mae gwahanol raglenni ar gael mewn gwahanol leoliadau. Ewch i www.uwtsd.ac.uk am fanylion campws penodol.",
+        "Ein chwe champws yw: Aberteifi, Abertawe, Llambed (Cymru), ac yna Llundain, Birmingham, a Chaerdydd."
+      ]
+    }
+  },
+  {
+    "tag": "undergraduate_courses",
+    "patterns": [
+      "undergraduate courses",
+      "bachelor's degree",
+      "BSc",
+      "BA",
+      "foundation degree",
+      "diploma in higher education",
+      "degree program",
+      "course search",
+      "what courses do you offer",
+      "available courses",
+      "course options",
+      "israddedig",
+      "cyrsiau gradd",
+      "beth yw'r cyrsiau"
+    ],
+    "responses": {
+      "en": [
+        "UWTSD offers undergraduate degrees across 20+ subject areas including Business, Engineering, Creative Arts, Education, Healthcare, Law, Science, and more. Most programs are 3 years full-time. We also offer degree apprenticeships, sandwich placement years, and international year options. Search all courses at www.uwtsd.ac.uk/programme-search",
+        "We offer Bachelor degrees (BA, BSc), Foundation degrees, and degree apprenticeships in 20+ subjects. Programs can be studied full-time (3 years), part-time, with a placement year, or with an international year. View program details and entry requirements at www.uwtsd.ac.uk/study/undergraduate"
+      ],
+      "cy": [
+        "Mae PCYDDS yn cynnig graddau israddedig ar draws 20+ maes pwnc gan gynnwys Busnes, Peirianneg, Celfyddydau Creadigol, Addysg, a mwy. Ewch i www.uwtsd.ac.uk/programme-search",
+        "Rydym yn cynnig graddau Bachelor (BA, BSc) a Graddau Sylfaen mewn 20+ pwnc."
+      ]
+    }
   }
 ]
