@@ -86,12 +86,93 @@ const WELSH_WORDS = new Set([
   'darlith','darlithydd','tiwtorial','adborth','cofrestru'
 ]);
 
-function detectLanguage(text) {
-  const words = text.toLowerCase()
-    .replace(/[^a-z\u00C0-\u024F\s']/g, ' ').split(/\s+/);
-  let count = 0;
-  for (const w of words) { if (WELSH_WORDS.has(w)) count++; }
-  return count >= 2 ? 'cy' : 'en';
+// Words that are unambiguously Welsh — a single one is enough to flip.
+// (Things like 'iawn' overlap with English 'I own' transcriptions so they
+// stay in WELSH_WORDS and need count>=2, but 'shwmae' / 'diolch' etc never
+// appear in English text and should flip the conversation on their own.)
+const WELSH_STRONG = new Set([
+  'shwmae','shwmai','shw','helo','helô',
+  'diolch','diolchwch','diolchus',
+  'hwyl','hwylfawr',
+  'bore','prynhawn','noswaith','nos','da',
+  'dwi','rwyf','dwin','wyt','ydw','ydy','yw',
+  'cymraeg','cymru','pcydds',
+  'myfyriwr','myfyrwyr','prifysgol','llyfrgell','llety',
+  'ffioedd','bwrsari','bwrsariaeth','neuaddau','preswyl',
+  'cwrs','cyrsiau','modiwl','darlith','darlithydd','tiwtorial',
+  'aseiniad','arholiad','graddio','cofrestru',
+  'anabledd','dyslecsia','lles','cymorth',
+  'caerfyrddin','abertawe','llambed','caerdydd',
+  // Common sentence particles and demonstratives
+  'hyn','hynny','hwn','honno','yna','yma',
+  // 'n-clitics (common in spoken Welsh)
+  "hynny'n","dwi'n","rwy'n","ti'n","wedi'n","mae'n",
+  // Frequently mutated common words — hard to detect otherwise
+  'ddefnyddiol','defnyddiol','angenrheidiol','gwybodaeth',
+  'fwrdd','ddim','fawr','yn',
+  // Common Welsh verbs/nouns in student context
+  'rhaglen','myfyriwr','astudio','darllen','ysgrifennu',
+  'ymgeisio','derbyn','dewis','dechrau','gorffen',
+]);
+
+// Common English words that almost never appear in Welsh — used as a
+// positive English signal so we can recognise English sentences even when
+// they don't contain the -ing/-tion suffix.
+const ENGLISH_HINTS = new Set([
+  // Pronouns + question words
+  'how','where','when','why','what','which','who','whose',
+  'you','your','yours','my','mine','our','ours','their',
+  'this','that','these','those','there','here',
+  // Verbs and auxiliaries (English-specific forms)
+  'can','could','would','should','will','shall','may','might','must',
+  'do','does','did','doing','done',
+  'have','has','had','having',
+  'is','are','was','were','been','being',
+  'get','got','getting','make','makes','made','take','took',
+  // Common English prepositions/conjunctions
+  'the','with','from','about','into','onto','over','under',
+  'because','though','although','while','unless','until',
+  // Common request/help vocabulary
+  'help','helps','helping','please','thanks','thank','hello','hi','hey',
+  'need','needs','want','wants','looking','find','tell','show',
+  'know','knows','say','says','said','actually','really','very',
+  // University-context English
+  'apply','application','hardship','bursary','accommodation','library',
+  'financial','english','welsh','explain','question','answer',
+]);
+
+function detectLanguage(text, runningLang) {
+  const lower = text.toLowerCase();
+  const words = lower
+    .replace(/[^a-z\u00C0-\u024F\s']/g, ' ').split(/\s+/).filter(Boolean);
+  let welshTotal = 0, welshStrong = 0, englishHits = 0;
+  for (const w of words) {
+    if (WELSH_STRONG.has(w))   { welshStrong++; welshTotal++; continue; }
+    if (WELSH_WORDS.has(w))    { welshTotal++; continue; }
+    if (ENGLISH_HINTS.has(w))  { englishHits++; }
+  }
+
+  // Welsh-diacritic check — ŵ/ŷ/â/ê/ô/û appear in Welsh but never in English.
+  const hasWelshDiacritic = /[ŵŷâêîôûẁỳẃýÿï]/i.test(text);
+
+  // -ing / -tion morphology is an English-only signal.
+  const englishMorph = (lower.match(/\b[a-z]+(ing|tion)\b/g) || []).length;
+  const englishSignal = englishHits + englishMorph;
+
+  // Clear Welsh signal wins (diacritic, single strong word, or multiple matches).
+  if (welshStrong >= 1 && welshStrong >= englishSignal) return 'cy';
+  if (hasWelshDiacritic) return 'cy';
+  if (welshTotal >= 2 && englishSignal === 0) return 'cy';
+
+  // Clear English signal wins.
+  if (englishSignal >= 1 && welshTotal === 0) return 'en';
+  if (englishSignal > welshTotal) return 'en';
+
+  // Genuinely ambiguous (e.g. "ok", "yes", or a word we don't recognise).
+  // Stay with the running conversation language so short replies feel natural.
+  if (runningLang === 'cy' || runningLang === 'en') return runningLang;
+
+  return 'en';
 }
 
 // ═════════════════════════════════════════════════════════════════════════
@@ -183,12 +264,12 @@ function isCrisis(text) {
 
 app.post('/api/chat', (req, res) => {
   try {
-    const { message } = req.body;
+    const { message, runningLang } = req.body;
     if (!message || typeof message !== 'string')
       return res.status(400).json({ error: 'message is required' });
 
     const raw  = message.trim();
-    const lang = detectLanguage(raw);
+    const lang = detectLanguage(raw, runningLang);
     const alt  = lang === 'cy' ? 'en' : 'cy';
 
     // 1. Safety override — crisis phrases always win

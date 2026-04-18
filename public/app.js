@@ -7,6 +7,7 @@
 
   // ── State ──────────────────────────────────────────
   let currentLang   = 'en';
+  let runningLang   = null;   // server-confirmed conversation language; null until first reply
   let isTyping      = false;
   let selectedStars = 0;
   let helpfulVal    = null;
@@ -255,7 +256,11 @@
         fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text.trim(), lang: currentLang })
+          body: JSON.stringify({
+            message: text.trim(),
+            lang: currentLang,
+            runningLang: runningLang
+          })
         }).then(r => r.json()),
         new Promise(resolve => setTimeout(resolve, 600))
       ]);
@@ -265,6 +270,12 @@
       if (data.error) {
         appendBotMessage(UI[currentLang].error, null, currentLang);
       } else {
+        // Remember the language the server settled on — this is what
+        // keeps short follow-ups like "ok" / "thanks" in Welsh when the
+        // conversation is already Welsh.
+        if (data.lang === 'en' || data.lang === 'cy') {
+          runningLang = data.lang;
+        }
         // Auto-detect Welsh from server response
         if (data.lang && data.lang !== currentLang) {
           showLangDetectedBanner(data.lang);
