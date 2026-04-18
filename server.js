@@ -15,7 +15,23 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ── Health check ───────────────────────────────────────────────────────────
-app.get('/health', (_req, res) => res.json({ status: 'OK' }));
+app.get('/health', async (_req, res) => {
+  let ollamaStatus = 'not_configured';
+  if (OLLAMA_URL) {
+    try {
+      const r = await fetch(`${OLLAMA_URL}/api/tags`, { signal: AbortSignal.timeout(3000) });
+      ollamaStatus = r.ok ? 'connected' : 'error';
+    } catch {
+      ollamaStatus = 'offline';
+    }
+  }
+  res.json({
+    status: 'OK',
+    ollama: ollamaStatus,
+    model: OLLAMA_MODEL,
+    intents: knowledge.length
+  });
+});
 
 // ── Knowledge base ─────────────────────────────────────────────────────────
 const knowledge = JSON.parse(
@@ -224,6 +240,26 @@ function getResponse(tag, lang) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// Get top N matching intents for richer context to send to Ollama
+function getTopIntents(msg, lang, n = 3) {
+  const processed = preprocess(msg, lang);
+  const scores = [];
+  tfidf.tfidfs(processed, (i, score) => scores.push({ i, score }));
+  scores.sort((a, b) => b.score - a.score);
+  const seen = new Set();
+  const results = [];
+  for (const { i, score } of scores) {
+    const tag = intentMap[i];
+    if (!seen.has(tag) && score > 0.05) {
+      seen.add(tag);
+      const intent = knowledge.find(k => k.tag === tag);
+      if (intent) results.push({ tag, score, intent });
+    }
+    if (results.length >= n) break;
+  }
+  return results;
+}
+
 const FALLBACK = {
   en: "I'm not sure I understand that. Could you rephrase? You can ask me about admissions, courses, fees, accommodation, campus locations, IT support, wellbeing, or the library.",
   cy: "Nid wyf yn siŵr fy mod yn deall hynny. Allwch chi aileirio? Gallwch ofyn i mi am dderbyniadau, cyrsiau, ffioedd, llety, lleoliadau campws, cymorth TG, lles, neu'r llyfrgell."
@@ -233,6 +269,67 @@ const CLARIFICATION = {
   en: "I want to make sure I help you correctly. Are you asking about admissions, courses, fees, accommodation, IT support, campus locations, wellbeing, the library, or something else?",
   cy: "Rwyf am wneud yn siŵr fy mod yn eich helpu'n gywir. Ydych chi'n gofyn am dderbyniadau, cyrsiau, ffioedd, llety, cymorth TG, lleoliadau campws, lles, y llyfrgell, neu rywbeth arall?"
 };
+
+// ═════════════════════════════════════════════════════════════════════════
+//  OLLAMA INTEGRATION
+//  Ollama runs on the dev machine and is exposed via a Cloudflare tunnel.
+//  Set OLLAMA_URL in Vercel env vars. If not set, we fall back to
+//  pre-written responses from knowledge.json — the site works either way.
+// ═════════════════════════════════════════════════════════════════════════
+
+const OLLAMA_URL   = (process.env.OLLAMA_URL || '').replace(/\/$/, '');
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.1:8b';
+
+async function askOllama(userMessage, context, lang) {
+  if (!OLLAMA_URL) return null; // not configured — use pre-written responses
+
+  const langInstruction = lang === 'cy'
+    ? 'You MUST reply entirely in Welsh (Cymraeg). Use natural, friendly Welsh.'
+    : 'Reply in English. Be warm and conversational.';
+
+  const system = `You are U-Pal, a friendly student support assistant for the University of Wales Trinity Saint David (UWTSD / PCYDDS).
+${langInstruction}
+Answer the student's question using ONLY the information in the CONTEXT section below.
+Keep your reply to 2-4 short sentences. Sound like a helpful person, not a robot.
+If the context does not cover what the student asked, say so honestly and suggest they contact Student Services.
+Never invent phone numbers, email addresses, URLs, or facts not in the context.`;
+
+  const prompt = `CONTEXT:\n${context}\n\nSTUDENT QUESTION: ${userMessage}\n\nAnswer:`;
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 25000);
+
+    const res = await fetch(`${OLLAMA_URL}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
+      body: JSON.stringify({
+        model: OLLAMA_MODEL,
+        prompt,
+        system,
+        stream: false,
+        options: { temperature: 0.4, num_predict: 300 }
+      })
+    });
+
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return (data.response || '').trim() || null;
+  } catch (e) {
+    // Ollama is offline or tunnel is down — silent fallback
+    console.warn('[Ollama] unavailable:', e.message);
+    return null;
+  }
+}
+
+function buildContext(topIntents, lang) {
+  return topIntents.map(({ intent }) => {
+    const responses = intent.responses[lang] || intent.responses['en'] || [];
+    return responses.join(' ');
+  }).join('\n\n');
+}
 
 // ═════════════════════════════════════════════════════════════════════════
 //  CRISIS SAFETY OVERRIDE — always runs before NLP
@@ -262,7 +359,7 @@ function isCrisis(text) {
 //  CHAT ENDPOINT
 // ═════════════════════════════════════════════════════════════════════════
 
-app.post('/api/chat', (req, res) => {
+app.post('/api/chat', async (req, res) => {
   try {
     const { message, runningLang } = req.body;
     if (!message || typeof message !== 'string')
@@ -272,39 +369,62 @@ app.post('/api/chat', (req, res) => {
     const lang = detectLanguage(raw, runningLang);
     const alt  = lang === 'cy' ? 'en' : 'cy';
 
-    // 1. Safety override — crisis phrases always win
+    // 1. Safety override — crisis phrases always bypass Ollama
     if (isCrisis(raw)) {
       return res.json({
         response:    getResponse('wellbeing_crisis', lang),
         altResponse: getResponse('wellbeing_crisis', alt),
-        tag: 'wellbeing_crisis', lang, confidence: 1.0
+        tag: 'wellbeing_crisis', lang, confidence: 1.0, source: 'safety'
       });
     }
 
     // 2. Intent classification
     const result = findBestIntent(raw, lang);
 
-    // No match
+    // No match at all
     if (!result) {
       return res.json({
         response: FALLBACK[lang], altResponse: FALLBACK[alt],
-        tag: 'fallback', lang, confidence: 0
+        tag: 'fallback', lang, confidence: 0, source: 'fallback'
       });
     }
 
-    // Low confidence — ask clarification
+    // 3. Get top matching intents for context
+    const topIntents = getTopIntents(raw, lang, 3);
+    const context    = buildContext(topIntents, lang);
+
+    // 4. Try Ollama first — it generates a natural response grounded in context
+    if (OLLAMA_URL && context) {
+      const ollamaReply = await askOllama(raw, context, lang);
+      if (ollamaReply) {
+        // Ollama succeeded — send its natural reply
+        return res.json({
+          response:    ollamaReply,
+          altResponse: null, // Ollama handles the language directly
+          tag:         result.tag,
+          lang,
+          confidence:  result.score,
+          source:      'ollama'
+        });
+      }
+      // Ollama failed/offline — fall through to pre-written responses below
+    }
+
+    // 5. Pre-written response fallback (also used when Ollama isn't configured)
     if (result.needsClarification) {
       return res.json({
         response: CLARIFICATION[lang], altResponse: CLARIFICATION[alt],
-        tag: 'clarification', lang, confidence: result.score
+        tag: 'clarification', lang, confidence: result.score, source: 'clarification'
       });
     }
 
-    // Match found
     return res.json({
       response:    getResponse(result.tag, lang),
       altResponse: getResponse(result.tag, alt),
-      tag: result.tag, lang, confidence: result.score
+      tag:         result.tag,
+      lang,
+      confidence:  result.score,
+      source:      'knowledge'
     });
 
   } catch (err) {
