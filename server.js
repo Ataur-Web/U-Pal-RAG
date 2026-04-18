@@ -19,8 +19,20 @@ app.get('/health', async (_req, res) => {
   let ollamaStatus = 'not_configured';
   if (OLLAMA_URL) {
     try {
-      const r = await fetch(`${OLLAMA_URL}/api/tags`, { signal: AbortSignal.timeout(3000) });
-      ollamaStatus = r.ok ? 'connected' : 'error';
+      const r = await fetch(`${OLLAMA_URL}/api/tags`, {
+        signal: AbortSignal.timeout(5000),
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'UPal-UWTSD-Chatbot/1.0',
+        }
+      });
+      if (r.ok) {
+        ollamaStatus = 'connected';
+      } else {
+        const text = await r.text().catch(() => '');
+        ollamaStatus = `http_${r.status}`;
+        console.error('[Ollama health] HTTP', r.status, text.slice(0, 200));
+      }
     } catch {
       ollamaStatus = 'offline';
     }
@@ -302,7 +314,11 @@ Never invent phone numbers, email addresses, URLs, or facts not in the context.`
 
     const res = await fetch(`${OLLAMA_URL}/api/generate`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'UPal-UWTSD-Chatbot/1.0',
+        'CF-Access-Client-Id': 'upal-chatbot',
+      },
       signal: controller.signal,
       body: JSON.stringify({
         model: OLLAMA_MODEL,
