@@ -1022,16 +1022,43 @@
       "ystafelloedd ar gael",
       "sut i gael ystafell",
       "oes neuaddau gennych chi",
-      "llety ar gampws"
+      "llety ar gampws",
+      "accommodation",
+      "university halls",
+      "room on campus",
+      "how to apply for halls",
+      "accommodation application",
+      "room availability",
+      "is accommodation available",
+      "live at university",
+      "accommodation fees",
+      "how much is accommodation",
+      "cost of halls",
+      "accommodation at uwtsd",
+      "university flat",
+      "off campus housing",
+      "accommodation office",
+      "hallpad",
+      "llety",
+      "neuaddau myfyrwyr",
+      "tai prifysgol",
+      "ymgeisio am lety",
+      "llety ar y campws",
+      "cost llety",
+      "faint yw llety"
     ],
     "responses": {
       "en": [
         "UWTSD offers student accommodation at the Swansea and Carmarthen campuses with en-suite and shared bathroom options in halls of residence. Great for first-year students. Apply at uwtsd.ac.uk/accommodation or email accommodation@uwtsd.ac.uk. Places are popular so apply early.",
-        "UWTSD has on-campus accommodation at Swansea and Carmarthen. Rooms range from standard to en-suite. Halls are self-catered or catered depending on the campus. Private student accommodation is also available nearby. Contact accommodation@uwtsd.ac.uk for availability."
+        "UWTSD has on-campus accommodation at Swansea and Carmarthen. Rooms range from standard to en-suite. Halls are self-catered or catered depending on the campus. Private student accommodation is also available nearby. Contact accommodation@uwtsd.ac.uk for availability.",
+        "UWTSD offers student accommodation at several campuses. Apply through HallPad at uwtsd.ac.uk/accommodation. Rooms are available at Carmarthen and Lampeter campuses. Costs vary by room type — check the accommodation pages for current prices. Email accommodation@uwtsd.ac.uk for specific queries.",
+        "Student halls are available at Carmarthen and Lampeter. Applications go through HallPad — visit uwtsd.ac.uk/accommodation to check availability and apply. For questions about costs, room types, or your application, email accommodation@uwtsd.ac.uk."
       ],
       "cy": [
         "Mae PCYDDS yn cynnig llety myfyrwyr ar gampysau Abertawe a Chaerfyrddin gydag ystafelloedd en-suite a chyfleusterau ymolchi a rennir. Gwych ar gyfer myfyrwyr blwyddyn gyntaf. Ymgeisiwch ar pcydds.ac.uk/llety neu anfonwch e-bost at accommodation@pcydds.ac.uk.",
-        "Mae gan PCYDDS lety ar y campws yn Abertawe a Chaerfyrddin. Mae ystafelloedd yn amrywio o safonol i en-suite. Cysylltwch ag accommodation@pcydds.ac.uk am argaeledd."
+        "Mae gan PCYDDS lety ar y campws yn Abertawe a Chaerfyrddin. Mae ystafelloedd yn amrywio o safonol i en-suite. Cysylltwch ag accommodation@pcydds.ac.uk am argaeledd.",
+        "Mae PCYDDS yn cynnig llety myfyrwyr ar sawl campws. Ymgeisiwch drwy HallPad ar uwtsd.ac.uk/accommodation. Mae ystafelloedd ar gael yng Nghaerfyrddin a Llambed. E-bostiwch accommodation@uwtsd.ac.uk am ymholiadau penodol.",
+        "Mae neuaddau preswyl ar gael yng Nghaerfyrddin a Llambed. Ewch i uwtsd.ac.uk/accommodation i wirio argaeledd ac ymgeisio drwy HallPad. Am gwestiynau am gostau, mathau o ystafelloedd, neu eich cais, e-bostiwch accommodation@uwtsd.ac.uk."
       ]
     }
   },
@@ -1272,16 +1299,42 @@
       "adnoddau ymchwil",
       "ble mae'r llyfrgell",
       "cerdyn llyfrgell",
-      "adnoddau ar-lein"
+      "adnoddau ar-lein",
+      "find a book",
+      "borrow a book",
+      "is the library open",
+      "ebooks",
+      "research databases",
+      "reference books",
+      "study space",
+      "quiet study area",
+      "library help",
+      "interlibrary loan",
+      "renew library book",
+      "overdue library book",
+      "return a book",
+      "printing in library",
+      "computer in library",
+      "search for journals",
+      "find academic articles",
+      "benthyca llyfr",
+      "e-lyfrau",
+      "cyfnodolion academaidd",
+      "lle i astudio",
+      "help llyfrgell"
     ],
     "responses": {
       "en": [
         "UWTSD has libraries at each campus with extensive physical and digital resources. Search the catalogue at library.uwtsd.ac.uk using your student login. Students can borrow up to 6 books at once and access 24/7 online resources including databases, e-books, and journals. For hours contact library@uwtsd.ac.uk.",
-        "UWTSD libraries offer books, e-books, academic journals, study spaces, and printing. Access the catalogue at library.uwtsd.ac.uk. Key features: inter-library loans, 1-to-1 sessions with library staff, and access to databases like JSTOR and ProQuest."
+        "UWTSD libraries offer books, e-books, academic journals, study spaces, and printing. Access the catalogue at library.uwtsd.ac.uk. Key features: inter-library loans, 1-to-1 sessions with library staff, and access to databases like JSTOR and ProQuest.",
+        "UWTSD libraries are on all campuses with physical books, ebooks, and academic journals. Search the catalogue at library.uwtsd.ac.uk using your student login. You can borrow up to 6 books, access thousands of online journals, and book quiet study spaces. Email library@uwtsd.ac.uk for help.",
+        "The library offers books, ebooks, journals, databases (like JSTOR and ProQuest), and study spaces. Access everything online at library.uwtsd.ac.uk with your student credentials. Need help finding sources for an essay? Library staff run research help sessions — ask at your campus library desk."
       ],
       "cy": [
         "Mae gan PCYDDS lyfrgelloedd ym mhob campws gydag adnoddau ffisegol a digidol helaeth. Chwiliwch y catalog ar library.uwtsd.ac.uk gan ddefnyddio'ch mewngofnodiad myfyrwyr. Gall myfyrwyr fenthyca hyd at 6 llyfr ar y tro.",
-        "Mae llyfrgelloedd PCYDDS yn cynnig llyfrau, e-lyfrau, cyfnodolion academaidd, mannau astudio, ac argraffu. Cyrchwch y catalog ar library.uwtsd.ac.uk. Am oriau, cysylltwch â library@pcydds.ac.uk."
+        "Mae llyfrgelloedd PCYDDS yn cynnig llyfrau, e-lyfrau, cyfnodolion academaidd, mannau astudio, ac argraffu. Cyrchwch y catalog ar library.uwtsd.ac.uk. Am oriau, cysylltwch â library@pcydds.ac.uk.",
+        "Mae llyfrgelloedd PCYDDS ar bob campws gyda llyfrau, e-lyfrau, a chyfnodolion academaidd. Chwiliwch y catalog ar library.uwtsd.ac.uk gyda'ch mewngofnodiad myfyrwyr. Gallwch fenthyca hyd at 6 llyfr a defnyddio cannoedd o gyfnodolion ar-lein. E-bostiwch library@uwtsd.ac.uk am help.",
+        "Mae'r llyfrgell yn cynnig llyfrau, e-lyfrau, cyfnodolion, cronfeydd data, a mannau astudio. Cyrchwch y cyfan ar-lein ar library.uwtsd.ac.uk. Angen help dod o hyd i ffynonellau? Cysylltwch â staff y llyfrgell."
       ]
     }
   },
@@ -1323,16 +1376,49 @@
       "cymorth emosiynol",
       "yn teimlo'n isel",
       "pryder ym mhrifysgol",
-      "cymorth iechyd meddwl"
+      "cymorth iechyd meddwl",
+      "I need someone to talk to",
+      "I'm not coping",
+      "feeling anxious",
+      "feeling depressed",
+      "struggling with uni life",
+      "stressed about everything",
+      "need counselling",
+      "can I see a counsellor",
+      "therapy at university",
+      "mental health services",
+      "I feel alone",
+      "nobody to talk to",
+      "wellbeing support",
+      "feeling burned out",
+      "I'm really struggling",
+      "university is too much",
+      "panic attacks",
+      "anxiety at uni",
+      "overwhelmed by work",
+      "who can I talk to",
+      "I need help",
+      "feeling hopeless",
+      "angen siarad â rhywun",
+      "yn teimlo'n llethol",
+      "ddim yn ymdopi",
+      "yn teimlo'n bryderus",
+      "cwnselydd",
+      "ar ben fy hun",
+      "yn bryder"
     ],
     "responses": {
       "en": [
         "UWTSD has a dedicated Student Wellbeing team to support you through any difficulties. Whether you're feeling stressed, anxious, or struggling with personal issues, help is available. Contact Wellbeing at wellbeing@uwtsd.ac.uk or drop in to Student Services on campus. Asking for help is a sign of strength.",
-        "Your wellbeing matters at UWTSD. The Student Wellbeing service offers counselling, mental health support, and crisis guidance. Email wellbeing@uwtsd.ac.uk to make an appointment. There are also free workshops on managing stress, anxiety, and study-life balance."
+        "Your wellbeing matters at UWTSD. The Student Wellbeing service offers counselling, mental health support, and crisis guidance. Email wellbeing@uwtsd.ac.uk to make an appointment. There are also free workshops on managing stress, anxiety, and study-life balance.",
+        "You don't have to cope alone. UWTSD's Wellbeing team is here for you — email wellbeing@uwtsd.ac.uk or drop in to Student Services on your campus. They offer counselling, mental health support, and just a listening ear. If you're in crisis right now, call Health Assured free on 0800 028 3766 (24/7).",
+        "Reach out to UWTSD's Wellbeing Service — they provide free, confidential counselling and mental health support for all students. Email wellbeing@uwtsd.ac.uk to book an appointment. For immediate support, Health Assured is available 24/7 on 0800 028 3766."
       ],
       "cy": [
         "Mae gan PCYDDS dîm Lles Myfyrwyr pwrpasol i'ch cefnogi drwy unrhyw anawsterau. P'un a ydych chi'n teimlo dan straen, yn bryderus, neu'n cael trafferth â phroblemau personol, mae help ar gael. Cysylltwch â'r tîm Lles ar wellbeing@pcydds.ac.uk.",
-        "Mae eich lles yn bwysig ym PCYDDS. Mae'r gwasanaeth Lles Myfyrwyr yn cynnig cwnsela, cymorth iechyd meddwl, a chanllawiau argyfwng. Anfonwch e-bost at wellbeing@pcydds.ac.uk i wneud apwyntiad."
+        "Mae eich lles yn bwysig ym PCYDDS. Mae'r gwasanaeth Lles Myfyrwyr yn cynnig cwnsela, cymorth iechyd meddwl, a chanllawiau argyfwng. Anfonwch e-bost at wellbeing@pcydds.ac.uk i wneud apwyntiad.",
+        "Does dim rhaid i chi ymdopi ar eich pen eich hun. Mae tîm Lles PCYDDS yma i chi — e-bostiwch wellbeing@uwtsd.ac.uk neu galwch heibio Gwasanaethau Myfyrwyr. Maent yn cynnig cwnsela, cymorth iechyd meddwl, a chlust i wrando. Os ydych chi mewn argyfwng, ffoniwch Health Assured am ddim ar 0800 028 3766 (24/7).",
+        "Cysylltwch â Gwasanaeth Lles PCYDDS — maent yn darparu cwnsela cyfrinachol am ddim a chymorth iechyd meddwl. E-bostiwch wellbeing@uwtsd.ac.uk i drefnu apwyntiad."
       ]
     }
   },
@@ -1785,16 +1871,44 @@
       "dod o hyd i swydd ar ôl y brifysgol",
       "cynllunio gyrfa",
       "blwyddyn leoliad",
-      "datblygu proffesiynol"
+      "datblygu proffesiynol",
+      "careers advice",
+      "career help",
+      "what job can I get",
+      "help finding a job",
+      "write my cv",
+      "cv advice",
+      "job application help",
+      "interview practice",
+      "job after uni",
+      "what career suits me",
+      "career options",
+      "linkedin help",
+      "career fair",
+      "employer events",
+      "I don't know what to do after uni",
+      "career support",
+      "mycareer portal",
+      "careers service uwtsd",
+      "help gyrfa",
+      "pa swydd",
+      "help dod o hyd i swydd",
+      "cais swydd",
+      "profiad gwaith",
+      "gwasanaeth gyrfaoedd"
     ],
     "responses": {
       "en": [
         "UWTSD has a Careers and Employability service helping with job searching, CV writing, interview preparation, and career planning. Available throughout your studies and after graduation. Contact careers@uwtsd.ac.uk or visit the Careers Service in Student Services on campus.",
-        "The Careers team at UWTSD offers 1-to-1 appointments, CV reviews, mock interviews, and access to job vacancy boards. Contact careers@uwtsd.ac.uk. UWTSD has strong links with local and national employers, many of whom run placement years and graduate schemes. Start engaging early in your degree."
+        "The Careers team at UWTSD offers 1-to-1 appointments, CV reviews, mock interviews, and access to job vacancy boards. Contact careers@uwtsd.ac.uk. UWTSD has strong links with local and national employers, many of whom run placement years and graduate schemes. Start engaging early in your degree.",
+        "UWTSD's Careers Service can help with CV writing, interview prep, job searching, and career planning. Access the MyCareer portal or email careers@uwtsd.ac.uk to book a one-to-one appointment. Graduates get support for 2 years after completing their degree too.",
+        "The Careers Service offers personalised guidance for finding work experience, internships, and graduate jobs. They run CV clinics, mock interviews, and employer events. Email careers@uwtsd.ac.uk or visit uwtsd.ac.uk/careers."
       ],
       "cy": [
         "Mae gan PCYDDS wasanaeth Gyrfaoedd a Chyflogadwyedd i'ch helpu gyda chwilio am swyddi, ysgrifennu CV, paratoi ar gyfer cyfweliadau, a chynllunio gyrfa. Cysylltwch â careers@pcydds.ac.uk.",
-        "Mae tîm Gyrfaoedd ym PCYDDS yn cynnig apwyntiadau un-i-un, adolygiadau CV, cyfweliadau ffug, a mynediad at fyrddau swyddi gwag. Cysylltwch â careers@pcydds.ac.uk."
+        "Mae tîm Gyrfaoedd ym PCYDDS yn cynnig apwyntiadau un-i-un, adolygiadau CV, cyfweliadau ffug, a mynediad at fyrddau swyddi gwag. Cysylltwch â careers@pcydds.ac.uk.",
+        "Gall Gwasanaeth Gyrfaoedd PCYDDS helpu gydag ysgrifennu CV, paratoi ar gyfer cyfweliad, chwilio am swyddi, a chynllunio gyrfa. E-bostiwch careers@uwtsd.ac.uk i drefnu apwyntiad un-i-un.",
+        "Mae'r Gwasanaeth Gyrfaoedd yn cynnig canllawiau personol am brofiad gwaith, lleoliadau, a swyddi graddedigion. Maent yn cynnal clinigau CV, cyfweliadau ymarfer, a digwyddiadau cyflogwyr. E-bostiwch careers@uwtsd.ac.uk."
       ]
     }
   },
@@ -1854,11 +1968,31 @@
   {
     "tag": "timetable",
     "patterns": [
+      "where can I find my timetable",
+      "can you help me find my timetable",
+      "help me with my timetable",
+      "where do I find my timetable",
+      "how do I find my timetable",
+      "I need to find my timetable",
+      "I need my timetable",
+      "where is my timetable",
+      "how do I check my timetable",
+      "how do I view my timetable",
+      "I can't find my timetable",
+      "I cannot find my timetable",
+      "where do I see my schedule",
+      "how do I see my classes",
+      "how do I see my lectures",
+      "timetable",
       "my timetable",
       "class schedule",
       "lecture times",
       "when are my classes",
       "view timetable",
+      "check timetable",
+      "find timetable",
+      "see timetable",
+      "access timetable",
       "study schedule",
       "when do I start",
       "first lecture",
@@ -1875,6 +2009,10 @@
       "how to see my schedule",
       "class times",
       "teaching timetable",
+      "where are lecture times",
+      "what time are my lectures",
+      "what time does my class start",
+      "when does my course start",
       "fy amserlen",
       "amserlen dosbarth",
       "amseroedd darlithoedd",
@@ -1884,16 +2022,32 @@
       "gwrthdrawiad amserlen",
       "pryd mae'r tymor yn dechrau",
       "dyddiadau'r tymor",
-      "amserlen ddysgu"
+      "amserlen ddysgu",
+      "ble i ddod o hyd i fy amserlen",
+      "sut i weld fy amserlen",
+      "sut i gael fy amserlen",
+      "lle mae fy amserlen",
+      "amserlen darlithoedd",
+      "pryd mae fy narlithoedd",
+      "sut i edrych ar amserlen",
+      "help gyda amserlen",
+      "help with timetable",
+      "please help with timetable",
+      "timetable help",
+      "timetable problem",
+      "timetable issue",
+      "can you help with my timetable",
+      "sort my timetable",
+      "fix my timetable"
     ],
     "responses": {
       "en": [
-        "Your timetable is on the MyStudy portal at mystudy.uwtsd.ac.uk. Log in with your student credentials and find the timetable section. Timetables are usually published a few weeks before term starts. Timetable issue or missing module? Contact your department administrator or Student Registry.",
-        "Check MyStudy (mystudy.uwtsd.ac.uk) for your personal timetable. It shows all lectures, seminars, and lab sessions. If you have a timetable clash, speak to your Programme Director or contact Student Registry at registry@uwtsd.ac.uk."
+        "Your timetable is on the MyStudy portal — go to mystudy.uwtsd.ac.uk and log in with your student number and password. Once you're in, look for the 'Timetable' section in the menu. If your timetable isn't showing up or a module is missing, contact your department administrator or Student Registry at registry@uwtsd.ac.uk.",
+        "To find your timetable, log into MyStudy at mystudy.uwtsd.ac.uk using your student credentials. Your personal timetable shows all your lectures, seminars and lab sessions. If you have a clash or something looks wrong, speak to your Programme Director or email registry@uwtsd.ac.uk."
       ],
       "cy": [
-        "Mae eich amserlen ar borth MyStudy ar mystudy.uwtsd.ac.uk. Mewngofnodwch gyda'ch manylion myfyrwyr a chwiliwch am yr adran amserlen. Mae amserlenni fel arfer yn cael eu cyhoeddi ychydig wythnosau cyn dechrau'r tymor.",
-        "Gwiriwch MyStudy (mystudy.uwtsd.ac.uk) am eich amserlen bersonol. Mae'n dangos eich holl ddarlithoedd, seminarau, a sesiynau labordy. Os oes gwrthdrawiad amserlen, siaradwch â'ch Cyfarwyddwr Rhaglen."
+        "Mae eich amserlen ar borth MyStudy — ewch i mystudy.uwtsd.ac.uk a mewngofnodwch gyda'ch rhif myfyriwr a chyfrinair. Unwaith i chi fewngofnodi, edrychwch am yr adran 'Amserlen' yn y ddewislen. Os nad yw eich amserlen yn ymddangos, cysylltwch â'r cofrestrfa: registry@uwtsd.ac.uk.",
+        "I weld eich amserlen, mewngofnodwch i MyStudy ar mystudy.uwtsd.ac.uk gyda'ch manylion myfyriwr. Mae eich amserlen bersonol yn dangos eich holl ddarlithoedd, seminarau a sesiynau labordy. Os oes gwrthdrawiad neu rywbeth o'i le, siaradwch â'ch Cyfarwyddwr Rhaglen neu e-bostiwch registry@uwtsd.ac.uk."
       ]
     }
   },
@@ -2070,30 +2224,56 @@
   {
     "tag": "financial_support",
     "patterns": [
-      "financial help",
-      "student funding",
-      "bursaries",
-      "loan support",
-      "money support",
-      "can I get a bursary",
-      "hardship fund",
       "financial support",
-      "help with fees",
-      "student finance",
-      "do I qualify for a bursary",
-      "financial aid",
+      "help with money",
+      "I'm struggling financially",
+      "money problems",
+      "can't afford university",
+      "financial hardship",
+      "hardship fund",
+      "emergency money",
+      "I need financial help",
+      "struggling with money",
+      "can't pay rent",
+      "can't afford food",
+      "financial difficulties",
+      "bursary help",
+      "grant available",
+      "money for students",
+      "student financial help",
+      "help paying fees",
+      "I need money urgently",
+      "financial crisis",
+      "running out of money",
+      "where can I get financial help",
+      "who helps with money problems",
+      "student support fund",
+      "emergency fund",
+      "discretionary fund",
       "cymorth ariannol",
-      "grant",
-      "student loan"
+      "help gydag arian",
+      "trafferthion ariannol",
+      "cronfa argyfwng",
+      "arian at fyfyrwyr",
+      "help talu ffioedd",
+      "cronfa caledi",
+      "angen arian ar frys",
+      "problemau ariannol",
+      "sut dwi'n cael cymorth ariannol",
+      "angen cymorth ariannol",
+      "problemau arian",
+      "angen arian",
+      "help ariannol",
+      "grant brys"
     ],
     "responses": {
       "en": [
-        "UWTSD offers various financial support options including bursaries, hardship funds, and digital connectivity grants. We have specific bursaries for care leavers, minority ethnic groups, and disabled students. Visit www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/money-support for details.",
-        "Financial support available includes the Student Financial Support Fund (for hardship), bursaries, and digital connectivity bursaries. You can apply weekly online. Contact our Money Support team at moneysupport@uwtsd.ac.uk for personalized guidance."
+        "UWTSD has financial support available for students facing hardship. Contact the Money Support team at moneysupport@uwtsd.ac.uk or visit Student Services on campus. There are hardship funds, emergency grants, and bursaries available — don't struggle alone, reach out early.",
+        "If you're struggling financially, the Money Support team can help. Email moneysupport@uwtsd.ac.uk or drop into Student Services. Emergency funds and bursaries are available for eligible students. The earlier you contact them, the more options you have."
       ],
       "cy": [
-        "Mae PCYDDS yn cynnig amrywiad o opsiynau seiliau ariannol gan gynnwys ysgoloriaeth, cronfeydd galedi, a grantiau cysylltedd digidol.",
-        "Mae cymorth ariannol ar gael gan gynnwys y Cronfa Seiliau Ariannol Myfyrwyr (am galedi), ysgoloriaeth, a bursari cysylltedd digidol. Gallwch chi wneud cais yn wythnosol ar-lein."
+        "Mae cymorth ariannol ar gael i fyfyrwyr sy'n wynebu caledi. Cysylltwch â'r tîm Cymorth Arian ar moneysupport@uwtsd.ac.uk neu ewch i Wasanaethau Myfyrwyr ar y campws. Mae cronfeydd caledi, grantiau brys, a bwrsariaethau ar gael.",
+        "Os ydych chi'n cael trafferth yn ariannol, gall y tîm Cymorth Arian helpu. E-bostiwch moneysupport@uwtsd.ac.uk. Mae cronfeydd brys a bwrsariaethau ar gael i fyfyrwyr cymwys."
       ]
     }
   },
@@ -2124,126 +2304,6 @@
       "cy": [
         "Mae myfyrwyr israddedig fel arfer yn gwneud cais drwy UCAS. Mae myfyrwyr ôl-radd yn gallu gwneud cais yn uniongyrchol i PCYDDS. Ewch i www.uwtsd.ac.uk/study/how-apply am arweiniad cam-wrth-gam.",
         "Ar gyfer myfyrwyr israddedig, defnyddiwch UCAS. Ar gyfer cyrsiau ôl-radd, gwneud cais yn uniongyrchol i ni."
-      ]
-    }
-  },
-  {
-    "tag": "accommodation",
-    "patterns": [
-      "accommodation",
-      "student housing",
-      "where to live",
-      "halls of residence",
-      "student halls",
-      "on campus housing",
-      "off campus housing",
-      "where can I stay",
-      "relocation",
-      "llety",
-      "preswylfa myfyrwyr",
-      "neuaddau preswylio",
-      "ble rwy'n gallu byw",
-      "help with housing"
-    ],
-    "responses": {
-      "en": [
-        "UWTSD offers accommodation at various locations. Carmarthen has on-campus halls, while Swansea, Cardiff, London, and Birmingham have nearby private student accommodation. The lowest priced university rooms are £100 per week. For options by campus, visit www.uwtsd.ac.uk/study/experience-facilities/accommodation",
-        "Accommodation varies by campus. University halls in Carmarthen start at £100/week. Private student housing is available in Swansea, Cardiff, Birmingham, and London. For help, email accommodation@uwtsd.ac.uk"
-      ],
-      "cy": [
-        "Mae PCYDDS yn cynnig llety mewn amrywiad o leoliadau. Mae neuaddau ar y campws yn Aberteifi. Ar gyfer manylion yn ôl campws, ewch i www.uwtsd.ac.uk/study/experience-facilities/accommodation",
-        "Mae llety yn amrywio yn ôl campws. Dechreua ystafelloedd neuadda'r Brifysgol yn Aberteifi am £100 yr wythnos."
-      ]
-    }
-  },
-  {
-    "tag": "library_services",
-    "patterns": [
-      "library",
-      "library hours",
-      "library opening times",
-      "book search",
-      "library resources",
-      "library support",
-      "study spaces",
-      "library help",
-      "library chat",
-      "learning resources",
-      "librarian",
-      "llyfrgell",
-      "adnoddau dysgu",
-      "ystafelloedd astudio"
-    ],
-    "responses": {
-      "en": [
-        "UWTSD has libraries at all six campuses with extended opening hours, online resources, and digital collections. You can access library chat support, search our collections online, and book study spaces. Call 01792 481200 or email library@uwtsd.ac.uk for help. Visit www.uwtsd.ac.uk/library for locations and hours.",
-        "Our libraries offer bright study spaces, expert support, and extensive digital resources. You can use the chat service, email library@uwtsd.ac.uk, or call 01792 481200. Special Collections are also available for research."
-      ],
-      "cy": [
-        "Mae gan PCYDDS lyfrgelloedd ym mhob un o'r chwe champws. Gallwch gysylltu â'r lyfrgell drwy www.uwtsd.ac.uk/library",
-        "Mae ein llyfrgelloedd yn cynnig ystafelloedd astudio disglair a chefnogaeth arbenigol."
-      ]
-    }
-  },
-  {
-    "tag": "wellbeing_support",
-    "patterns": [
-      "mental health support",
-      "counselling",
-      "wellbeing",
-      "stress support",
-      "anxiety help",
-      "depression help",
-      "psychological support",
-      "mental health",
-      "emotional support",
-      "how can I get help",
-      "I'm struggling",
-      "need support",
-      "support services",
-      "lles meddwl",
-      "cymorth iechyd meddwl",
-      "teimlad yn drist"
-    ],
-    "responses": {
-      "en": [
-        "UWTSD offers comprehensive wellbeing support including counselling, mental health mentoring, and access to external services. We provide free services such as Sorted (mental health app), Togetherall (24/7 peer support), and a Student Assistance Programme. Submit a support request at www.uwtsd.ac.uk or call 0800 028 3766 (24/7) for immediate help.",
-        "Wellbeing services available include counselling, specialist mental health support, and crisis resources. If you're in crisis, call 999. For non-emergency mental health support, call 111 (option 2) or contact our Wellbeing Team. You can also access Togetherall (free 24/7 online support) and the Sorted app (mental health training)."
-      ],
-      "cy": [
-        "Mae PCYDDS yn cynnig tŷ cynhwysfawr o gymorth lles gan gynnwys cynghori ac fynediad at wasanaethau allanol. Darperir gwasanaethau am ddim yn cynnwys Sorted (ap iechyd meddwl). Rhowch gais am gymorth ym: www.uwtsd.ac.uk",
-        "Mae'r gwasanaethau lles sydd ar gael yn cynnwys cynghori a chymorth iechyd meddwl arbenigol."
-      ]
-    }
-  },
-  {
-    "tag": "careers_advice",
-    "patterns": [
-      "careers",
-      "careers advice",
-      "job search",
-      "employment",
-      "work experience",
-      "internship",
-      "placement",
-      "graduate jobs",
-      "career guidance",
-      "CV help",
-      "interview prep",
-      "career support",
-      "career development",
-      "swyddi",
-      "cyngor gyrfa",
-      "profiad gwaith"
-    ],
-    "responses": {
-      "en": [
-        "UWTSD's Careers Service provides one-to-one appointments, CV reviews, interview prep, and job search guidance. Access MyCareer platform for job boards, career planning tools, and employer events. Graduates receive support for 2 years after completing their degree. Contact careers@uwtsd.ac.uk or visit www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/careers-service",
-        "The Careers Service offers personalized guidance, work experience opportunities, and access to our MyCareer online platform. We organize employer fairs and networking events. You can book an appointment at www.uwtsd.ac.uk or email careers@uwtsd.ac.uk. We also offer a 'Your Career Pathway' programme with dedicated support."
-      ],
-      "cy": [
-        "Mae Gwasanaeth Gyrfa PCYDDS yn darparu sesiynau un-ar-un, adolygiadau CV, a chanllawi chwilio am swydd. Ewch i www.uwtsd.ac.uk/study/experience-and-facilities/student-support-and-wellbeing/careers-service",
-        "Mae'r Gwasanaeth Gyrfa yn cynnig canllaw personol a chyfleoedd profiad gwaith."
       ]
     }
   },
