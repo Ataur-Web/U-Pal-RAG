@@ -253,9 +253,19 @@ function getResponse(tag, lang) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-// Get top N matching intents for richer context to send to Ollama
-function getTopIntents(msg, lang, n = 3) {
-  const processed = preprocess(msg, lang);
+// Get top N matching intents for richer context to send to Ollama.
+// If conversation history is provided, we concatenate recent turns into
+// the retrieval query — this way a follow-up like "where is it?" retrieves
+// the library-swansea intent because "library" and "Swansea" are still in scope.
+function getTopIntents(msg, lang, n = 3, history) {
+  // Build retrieval query from current message + last 2 user turns
+  let retrievalText = msg;
+  if (Array.isArray(history) && history.length > 0) {
+    const userTurns = history.filter(t => t.role === 'user').slice(-2);
+    retrievalText = [...userTurns.map(t => t.text), msg].join(' ');
+  }
+
+  const processed = preprocess(retrievalText, lang);
   const scores = [];
   tfidf.tfidfs(processed, (i, score) => scores.push({ i, score }));
   scores.sort((a, b) => b.score - a.score);
@@ -293,7 +303,7 @@ const CLARIFICATION = {
 const OLLAMA_URL   = (process.env.OLLAMA_URL || '').replace(/\/$/, '');
 const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.1:8b';
 
-async function askOllama(userMessage, context, lang) {
+async function askOllama(userMessage, context, lang, history) {
   if (!OLLAMA_URL) return null; // not configured — use pre-written responses
 
   const langInstruction = lang === 'cy'
@@ -302,12 +312,25 @@ async function askOllama(userMessage, context, lang) {
 
   const system = `You are U-Pal, a friendly student support assistant for the University of Wales Trinity Saint David (UWTSD / PCYDDS).
 ${langInstruction}
-Answer the student's question using ONLY the information in the CONTEXT section below.
-Keep your reply to 2-4 short sentences. Sound like a helpful person, not a robot.
-If the context does not cover what the student asked, say so honestly and suggest they contact Student Services.
-Never invent phone numbers, email addresses, URLs, or facts not in the context.`;
 
-  const prompt = `CONTEXT:\n${context}\n\nSTUDENT QUESTION: ${userMessage}\n\nAnswer:`;
+You have three jobs:
+1. Read the CONVERSATION HISTORY to understand what the student is really asking. Follow-up questions like "and for that one?" or "where is it?" refer back to what was discussed above.
+2. Answer using ONLY facts from the KNOWLEDGE section. Never invent addresses, phone numbers, URLs, or facts that aren't there.
+3. Keep replies to 2-4 short sentences. Sound like a helpful human, not a script.
+
+If the knowledge section does not contain the specific fact the student needs (e.g. they asked about a specific campus but only the general response is available), ask ONE clarifying question to narrow it down — for example "Which campus — Swansea, Carmarthen or Lampeter?" Do NOT invent the answer.`;
+
+  // Build conversation history block if we have one
+  let historyBlock = '';
+  if (Array.isArray(history) && history.length > 0) {
+    const recent = history.slice(-6); // last 3 exchanges max
+    historyBlock = 'CONVERSATION HISTORY:\n' + recent.map(t => {
+      const who = t.role === 'user' ? 'Student' : 'U-Pal';
+      return `${who}: ${t.text}`;
+    }).join('\n') + '\n\n';
+  }
+
+  const prompt = `${historyBlock}KNOWLEDGE:\n${context}\n\nSTUDENT NOW ASKS: ${userMessage}\n\nYour reply:`;
 
   try {
     const controller = new AbortController();
@@ -330,7 +353,11 @@ Never invent phone numbers, email addresses, URLs, or facts not in the context.`
     });
 
     clearTimeout(timeout);
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '');
+      console.warn('[Ollama] HTTP', res.status, errText.slice(0, 200));
+      return null;
+    }
     const data = await res.json();
     return (data.response || '').trim() || null;
   } catch (e) {
@@ -377,15 +404,24 @@ function isCrisis(text) {
 
 app.post('/api/chat', async (req, res) => {
   try {
-    const { message, runningLang } = req.body;
+    const { message, runningLang, history } = req.body;
     if (!message || typeof message !== 'string')
       return res.status(400).json({ error: 'message is required' });
+
+    // Sanitise history: accept only valid turns, limit to last 6, truncate text
+    let safeHistory = [];
+    if (Array.isArray(history)) {
+      safeHistory = history
+        .filter(t => t && (t.role === 'user' || t.role === 'assistant') && typeof t.text === 'string')
+        .slice(-6)
+        .map(t => ({ role: t.role, text: t.text.slice(0, 600) }));
+    }
 
     const raw  = message.trim();
     const lang = detectLanguage(raw, runningLang);
     const alt  = lang === 'cy' ? 'en' : 'cy';
 
-    // 1. Safety override — crisis phrases always bypass Ollama
+    // 1. Safety override — crisis phrases always bypass Ollama and history
     if (isCrisis(raw)) {
       return res.json({
         response:    getResponse('wellbeing_crisis', lang),
@@ -394,10 +430,40 @@ app.post('/api/chat', async (req, res) => {
       });
     }
 
-    // 2. Intent classification
-    const result = findBestIntent(raw, lang);
+    // 2. Intent classification — use history-aware retrieval
+    const topIntents = getTopIntents(raw, lang, 3, safeHistory);
+    const result = topIntents[0]
+      ? { tag: topIntents[0].tag, score: topIntents[0].score, needsClarification: topIntents[0].score < THRESHOLD_CLARIFY }
+      : null;
 
-    // No match at all
+    // No match at all — but if Ollama is on, still try it (with history it might answer)
+    if (!result && !OLLAMA_URL) {
+      return res.json({
+        response: FALLBACK[lang], altResponse: FALLBACK[alt],
+        tag: 'fallback', lang, confidence: 0, source: 'fallback'
+      });
+    }
+
+    // 3. Build context from retrieved intents
+    const context = buildContext(topIntents, lang);
+
+    // 4. Try Ollama first — it generates a natural response grounded in context + history
+    if (OLLAMA_URL && context) {
+      const ollamaReply = await askOllama(raw, context, lang, safeHistory);
+      if (ollamaReply) {
+        return res.json({
+          response:    ollamaReply,
+          altResponse: null, // Ollama handles the language directly
+          tag:         result ? result.tag : 'ollama',
+          lang,
+          confidence:  result ? result.score : 0,
+          source:      'ollama'
+        });
+      }
+      // Ollama failed/offline — fall through to pre-written responses below
+    }
+
+    // 5. Pre-written response fallback
     if (!result) {
       return res.json({
         response: FALLBACK[lang], altResponse: FALLBACK[alt],
@@ -405,28 +471,6 @@ app.post('/api/chat', async (req, res) => {
       });
     }
 
-    // 3. Get top matching intents for context
-    const topIntents = getTopIntents(raw, lang, 3);
-    const context    = buildContext(topIntents, lang);
-
-    // 4. Try Ollama first — it generates a natural response grounded in context
-    if (OLLAMA_URL && context) {
-      const ollamaReply = await askOllama(raw, context, lang);
-      if (ollamaReply) {
-        // Ollama succeeded — send its natural reply
-        return res.json({
-          response:    ollamaReply,
-          altResponse: null, // Ollama handles the language directly
-          tag:         result.tag,
-          lang,
-          confidence:  result.score,
-          source:      'ollama'
-        });
-      }
-      // Ollama failed/offline — fall through to pre-written responses below
-    }
-
-    // 5. Pre-written response fallback (also used when Ollama isn't configured)
     if (result.needsClarification) {
       return res.json({
         response: CLARIFICATION[lang], altResponse: CLARIFICATION[alt],

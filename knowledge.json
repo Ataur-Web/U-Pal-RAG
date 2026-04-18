@@ -2393,5 +2393,93 @@
         "Rydym yn cynnig graddau Bachelor (BA, BSc) a Graddau Sylfaen mewn 20+ pwnc."
       ]
     }
+  },
+  {
+    "tag": "library_swansea",
+    "patterns": [
+      "swansea library",
+      "library in swansea",
+      "sa1 library",
+      "library at sa1",
+      "where is the swansea library",
+      "swansea waterfront library",
+      "y fforwm library",
+      "y fforwm",
+      "library at swansea campus",
+      "where is the library at sa1",
+      "library swansea waterfront",
+      "swansea campus library location",
+      "how to get to swansea library",
+      "swansea library address",
+      "where is the library for that",
+      "library for that campus",
+      "llyfrgell abertawe",
+      "llyfrgell sa1",
+      "llyfrgell campws abertawe",
+      "ble mae'r llyfrgell yn abertawe",
+      "cyfeiriad llyfrgell abertawe"
+    ],
+    "responses": {
+      "en": [
+        "The Swansea SA1 Waterfront library is called Y Fforwm. You'll find it on Island Rd right next to the main car park. Full address: Y Fforwm Library, UWTSD, Island Rd, Swansea SA1 8EW. It's open Monday to Friday and has study spaces, books, and computers.",
+        "At SA1 Waterfront the library is Y Fforwm — it's the building next to the car park on Island Rd. Address: Y Fforwm Library, UWTSD, Island Rd, Swansea SA1 8EW. You can access online resources 24/7 at library.uwtsd.ac.uk with your student login."
+      ],
+      "cy": [
+        "Enw llyfrgell campws SA1 Abertawe yw Y Fforwm. Fe'i lleolir ar Island Rd drws nesaf i'r prif faes parcio. Y cyfeiriad llawn: Y Fforwm Library, UWTSD, Island Rd, Swansea SA1 8EW.",
+        "Ar gampws SA1 Abertawe, mae'r llyfrgell yn cael ei galw'n Y Fforwm — y gwrs wrth y maes parcio ar Island Rd. Cyfeiriad: Y Fforwm Library, UWTSD, Island Rd, Swansea SA1 8EW."
+      ]
+    }
+  },
+  {
+    "tag": "library_carmarthen",
+    "patterns": [
+      "carmarthen library",
+      "library in carmarthen",
+      "library at carmarthen",
+      "where is the carmarthen library",
+      "carmarthen campus library",
+      "carmarthen library address",
+      "how to get to carmarthen library",
+      "library at carmarthen campus",
+      "caerfyrddin library",
+      "llyfrgell caerfyrddin",
+      "llyfrgell campws caerfyrddin",
+      "ble mae'r llyfrgell yng nghaerfyrddin"
+    ],
+    "responses": {
+      "en": [
+        "The Carmarthen campus library is on the main Carmarthen campus on College Road. Address: UWTSD Carmarthen Library, College Road, Carmarthen SA31 3EP. Open Mon-Fri with books, journals, study rooms, and computers.",
+        "Carmarthen's library sits on College Road at the heart of the Carmarthen campus. Full address: UWTSD Carmarthen Library, College Road, Carmarthen SA31 3EP."
+      ],
+      "cy": [
+        "Mae llyfrgell campws Caerfyrddin ar brif gampws Caerfyrddin ar College Road. Cyfeiriad: UWTSD Carmarthen Library, College Road, Carmarthen SA31 3EP.",
+        "Mae llyfrgell Caerfyrddin ar College Road yng nghanol y campws. Cyfeiriad llawn: UWTSD Carmarthen Library, College Road, Carmarthen SA31 3EP."
+      ]
+    }
+  },
+  {
+    "tag": "library_lampeter",
+    "patterns": [
+      "lampeter library",
+      "library at lampeter",
+      "library in lampeter",
+      "where is the lampeter library",
+      "lampeter founders library",
+      "founders library",
+      "lampeter campus library",
+      "llambed library",
+      "llyfrgell llambed",
+      "llyfrgell campws llambed"
+    ],
+    "responses": {
+      "en": [
+        "The Lampeter library is called the Founders Library — it's a historic library on the main Lampeter campus. Address: UWTSD Lampeter Founders Library, College Street, Lampeter SA48 7ED. It holds the university's special collections and rare books.",
+        "Lampeter has the Founders Library at UWTSD Lampeter, College Street, Lampeter SA48 7ED. Famous for historic collections and a beautiful reading room."
+      ],
+      "cy": [
+        "Enw llyfrgell Llambed yw Llyfrgell y Sylfaenwyr — llyfrgell hanesyddol ar brif gampws Llambed. Cyfeiriad: UWTSD Lampeter Founders Library, College Street, Lampeter SA48 7ED.",
+        "Mae gan Llambed Lyfrgell y Sylfaenwyr yn UWTSD Lampeter, College Street, Lampeter SA48 7ED."
+      ]
+    }
   }
 ]
