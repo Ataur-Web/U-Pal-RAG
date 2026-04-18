@@ -23,6 +23,7 @@ app.get('/health', async (_req, res) => {
         signal: AbortSignal.timeout(5000),
         headers: {
           'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
           'User-Agent': 'UPal-UWTSD-Chatbot/1.0',
         }
       });
@@ -316,8 +317,7 @@ Never invent phone numbers, email addresses, URLs, or facts not in the context.`
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'UPal-UWTSD-Chatbot/1.0',
-        'CF-Access-Client-Id': 'upal-chatbot',
+        'ngrok-skip-browser-warning': 'true',
       },
       signal: controller.signal,
       body: JSON.stringify({
