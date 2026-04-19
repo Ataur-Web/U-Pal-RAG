@@ -564,20 +564,23 @@
       letter-spacing: 0.01em;
     }
 
-    .star-row { display: flex; gap: 5px; }
+    .star-row { display: flex; gap: 4px; }
     .star {
-      width: 36px; height: 36px;
+      width: 40px; height: 40px;
       border: none;
       background: transparent;
-      font-size: 24px;
+      font-size: 28px;
       color: var(--ink-3);
+      cursor: pointer;
       transition: all 150ms var(--ease);
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0;
+      line-height: 1;
     }
-    .star:hover { transform: scale(1.15); }
-    .star.on { color: #E6A817; }
+    .star:hover { transform: scale(1.2); }
+    .star.on { color: var(--green); filter: drop-shadow(0 0 4px color-mix(in srgb, var(--green) 40%, transparent)); }
 
     .toggle-row { display: flex; gap: 8px; }
     .toggle-btn {
@@ -816,9 +819,16 @@
 
         <div class="fb-section">
           <span class="fb-label" x-text="$store.fb.lang === 'cy' ? 'Boddhad cyffredinol' : 'Overall satisfaction'"></span>
-          <div class="star-row" id="starRow">
+          <div class="star-row" id="starRow" x-data="{ hovered: 0 }">
             <template x-for="n in [1,2,3,4,5]" :key="n">
-              <button class="star" :class="n <= $store.fb.stars ? 'lit' : ''" @click="$store.fb.stars = n" :aria-label="n + ' star'">&#9733;</button>
+              <button
+                class="star"
+                :class="(n <= $store.fb.stars || n <= hovered) ? 'on' : ''"
+                @click="$store.fb.stars = n"
+                @mouseenter="hovered = n"
+                @mouseleave="hovered = 0"
+                :aria-label="n + ' star'"
+              >&#9733;</button>
             </template>
           </div>
         </div>
