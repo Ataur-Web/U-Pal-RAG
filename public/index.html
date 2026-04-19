@@ -82,12 +82,19 @@
         --welsh-soft:  oklch(28% 0.04 25);
       }
     }
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='0.9' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+      }
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       height: 100%;
-      background: var(--paper);
+      background-color: var(--paper);
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='0.9' fill='%231a1e1a' fill-opacity='0.07'/%3E%3C/svg%3E");
+      background-size: 20px 20px;
       color: var(--ink);
       font-family: var(--sans);
       font-size: 16px;
@@ -266,13 +273,21 @@
       display: flex;
       gap: var(--space-md);
       align-items: flex-end;
-      animation: msgEnter 260ms var(--ease-out) both;
+      animation: rowEnter 280ms var(--ease-out) both;
     }
-    .row.user { justify-content: flex-end; }
-    .row.bot  { justify-content: flex-start; }
+    /* Direction-aware transform-origin: scale expands from the bubble's origin side */
+    .row.user {
+      justify-content: flex-end;
+      transform-origin: center right;
+    }
+    .row.bot {
+      justify-content: flex-start;
+      transform-origin: center left;
+    }
 
-    @keyframes msgEnter {
-      0%   { opacity: 0; transform: translateY(8px) scale(0.98); }
+    @keyframes rowEnter {
+      0%   { opacity: 0; transform: translateY(10px) scale(0.94); }
+      60%  { opacity: 1; }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
@@ -443,14 +458,18 @@
       font-size: 15.5px;
       line-height: 1.5;
       color: var(--ink);
-      transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
+      transition: border-color 220ms var(--ease-out), background 220ms var(--ease-out);
     }
-    .chat-input::placeholder { color: var(--ink-3); }
+    .chat-input::placeholder {
+      color: var(--ink-3);
+      transition: color 220ms var(--ease-out);
+    }
     .chat-input:focus {
       border-color: var(--green);
       outline: none;
       background: var(--surface);
     }
+    .chat-input:focus::placeholder { color: var(--ink-3); opacity: 0.6; }
 
     .send-btn {
       width: 48px;
@@ -463,8 +482,11 @@
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      transition: background 160ms var(--ease), transform 100ms var(--ease-out);
+      opacity: 0.82;
+      transition: background 200ms var(--ease), transform 100ms var(--ease-out), opacity 220ms var(--ease-out);
     }
+    /* Send button brightens when input is focused — the whole row feels 'activated' */
+    .input-row:focus-within .send-btn { opacity: 1; }
     .send-btn svg {
       width: 19px;
       height: 19px;
@@ -505,10 +527,9 @@
       place-items: center;
       z-index: 100;
       padding: var(--space-lg);
-      transition: opacity 200ms var(--ease-out);
+      animation: overlayIn 220ms var(--ease-out) both;
     }
-    .overlay-enter { animation: overlayIn 200ms var(--ease-out) both; }
-    .overlay-leave { animation: overlayOut 150ms var(--ease-in) both; }
+    .overlay.is-closing { animation: overlayOut 230ms var(--ease-in) both; }
     @keyframes overlayIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes overlayOut { from { opacity: 1; } to { opacity: 0; } }
 
@@ -520,11 +541,17 @@
       max-height: 90vh;
       overflow-y: auto;
       border: 1px solid var(--line);
-      animation: modalIn 280ms var(--ease-out) both;
+      animation: modalIn 300ms var(--ease-out) both;
     }
+    .modal.is-closing { animation: modalOut 200ms var(--ease-in) both; }
     @keyframes modalIn {
-      0%   { opacity: 0; transform: translateY(12px) scale(0.97); }
+      0%   { opacity: 0; transform: translateY(16px) scale(0.96); }
+      60%  { opacity: 1; }
       100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes modalOut {
+      0%   { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(10px) scale(0.97); }
     }
 
     .modal-head {
@@ -893,18 +920,17 @@
   class="overlay"
   x-data
   x-show="$store.fb.open"
-  x-transition:enter="overlay-enter"
-  x-transition:leave="overlay-leave"
-  @click.self="$store.fb.open = false"
+  :class="{ 'is-closing': $store.fb.closing }"
+  @click.self="$store.fb.closeModal()"
   x-cloak
 >
-  <div class="modal" @click.stop>
+  <div class="modal" :class="{ 'is-closing': $store.fb.closing }" @click.stop>
     <div class="modal-head">
       <div>
         <div class="modal-title" x-text="$store.fb.lang === 'cy' ? 'Sut oedd eich profiad?' : 'How was your experience?'"></div>
         <div class="modal-sub" x-text="$store.fb.lang === 'cy' ? 'Mae eich adborth yn helpu gwella U-Pal ar gyfer holl fyfyrwyr PCYDDS.' : 'Your feedback helps improve U-Pal for all UWTSD students.'"></div>
       </div>
-      <button class="modal-close" @click="$store.fb.open = false" aria-label="Close">&#x2715;</button>
+      <button class="modal-close" @click="$store.fb.closeModal()" aria-label="Close">&#x2715;</button>
     </div>
 
     <template x-if="!$store.fb.done">
@@ -961,8 +987,12 @@
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.store('fb', {
-      open: false, done: false, submitting: false,
+      open: false, done: false, submitting: false, closing: false,
       lang: 'en', stars: 0, helpful: null, langOk: null, comments: '',
+      closeModal() {
+        this.closing = true;
+        setTimeout(() => { this.open = false; this.closing = false; }, 240);
+      },
       async submit() {
         if (!this.stars) {
           const row = document.getElementById('starRow');
@@ -988,7 +1018,7 @@
         window.dispatchEvent(new CustomEvent('upal:toast', {
           detail: { msg: this.lang === 'cy' ? 'Diolch am eich adborth!' : 'Thanks for your feedback!' }
         }));
-        setTimeout(() => { this.open = false; }, 2000);
+        setTimeout(() => { this.closeModal(); }, 2000);
       }
     });
   });
