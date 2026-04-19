@@ -451,9 +451,14 @@ app.post('/api/chat', async (req, res) => {
     if (OLLAMA_URL && context) {
       const ollamaReply = await askOllama(raw, context, lang, safeHistory);
       if (ollamaReply) {
+        // Use the pre-written knowledge response as the alt-language version.
+        // This gives the translate button something to show without calling
+        // Ollama a second time (which would double latency).
+        const altResponse = result ? getResponse(result.tag, alt) : null;
+
         return res.json({
           response:    ollamaReply,
-          altResponse: null, // Ollama handles the language directly
+          altResponse: altResponse || null,
           tag:         result ? result.tag : 'ollama',
           lang,
           confidence:  result ? result.score : 0,
