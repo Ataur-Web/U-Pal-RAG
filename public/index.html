@@ -692,7 +692,7 @@
     /* ── Toast notifications ── */
     .toast-container {
       position: fixed;
-      bottom: 80px;
+      top: 72px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 200;
@@ -728,13 +728,13 @@
       flex-shrink: 0;
     }
     @keyframes toastIn {
-      0%   { opacity: 0; transform: translateY(16px) scale(0.88); }
+      0%   { opacity: 0; transform: translateY(-16px) scale(0.88); }
       60%  { opacity: 1; }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     @keyframes toastOut {
       0%   { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(8px) scale(0.92); }
+      100% { opacity: 0; transform: translateY(-8px) scale(0.92); }
     }
 
     /* ── Lang notice (inline in chat) ── */
