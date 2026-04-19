@@ -896,14 +896,30 @@
       googleFormsUrl: 'https://forms.gle/YOUR_GOOGLE_FORM_LINK',
 
       chips: [
-        { en: 'How do I apply?',       cy: 'Sut i wneud cais?' },
-        { en: 'Tuition fees',          cy: 'Ffioedd dysgu' },
-        { en: 'Student accommodation', cy: 'Llety myfyrwyr' },
-        { en: 'IT help',               cy: 'Cymorth TG' },
-        { en: 'Wellbeing support',     cy: 'Cymorth lles' },
-        { en: 'Courses available',     cy: 'Cyrsiau sydd ar gael' },
-        { en: 'Campus locations',      cy: 'Lleoliadau campws' },
-        { en: 'Student loans',         cy: 'Benthyciadau myfyrwyr' }
+        { en: 'How do I apply?',       cy: 'Sut i wneud cais?',
+          queryEn: 'How do I apply for a course at UWTSD?',
+          queryCy: 'Sut mae gwneud cais am gwrs yn PCYDDS?' },
+        { en: 'Tuition fees',          cy: 'Ffioedd dysgu',
+          queryEn: 'How much are the tuition fees at UWTSD?',
+          queryCy: 'Faint yw ffioedd dysgu PCYDDS?' },
+        { en: 'Student accommodation', cy: 'Llety myfyrwyr',
+          queryEn: 'Where can I find student accommodation at UWTSD?',
+          queryCy: 'Ble alla i ddod o hyd i lety myfyrwyr yn PCYDDS?' },
+        { en: 'IT help',               cy: 'Cymorth TG',
+          queryEn: 'I need help with IT, Moodle or the student portal',
+          queryCy: 'Dwi angen help gyda TG, Mwdl neu borth y myfyrwyr' },
+        { en: 'Wellbeing support',     cy: 'Cymorth lles',
+          queryEn: 'I need wellbeing support and mental health help',
+          queryCy: 'Dwi angen cymorth lles a help iechyd meddwl' },
+        { en: 'Courses available',     cy: 'Cyrsiau sydd ar gael',
+          queryEn: 'What courses and subjects are available at UWTSD?',
+          queryCy: 'Pa gyrsiau a phynciau sydd ar gael yn PCYDDS?' },
+        { en: 'Campus locations',      cy: 'Lleoliadau campws',
+          queryEn: 'Where are the UWTSD campuses located?',
+          queryCy: 'Ble mae campysau PCYDDS wedi eu lleoli?' },
+        { en: 'Student loans',         cy: 'Benthyciadau myfyrwyr',
+          queryEn: 'How do I apply for a student loan to fund my studies?',
+          queryCy: 'Sut mae gwneud cais am fenthyciad myfyriwr i ariannu fy astudiaethau?' }
       ],
 
       init() {
@@ -932,7 +948,18 @@
 
       async sendChip(chip) {
         this.chipsDismissed = true;
-        await this.dispatch(this.lang === 'cy' ? chip.cy : chip.en);
+        // Display the short label in the chat bubble but send the full
+        // query so TF-IDF can match the right intent
+        const displayText = this.lang === 'cy' ? chip.cy : chip.en;
+        const queryText   = this.lang === 'cy'
+          ? (chip.queryCy || chip.cy)
+          : (chip.queryEn || chip.en);
+        // Push the display label as the user message
+        this.msgs.push({ type: 'user', text: displayText });
+        this.msgs.push({ type: 'typing' });
+        this.$nextTick(() => this.scrollDown());
+        // But dispatch the full query to the backend
+        await this.dispatchQuery(queryText);
       },
 
       async send() {
@@ -947,13 +974,11 @@
         this.busy = true;
 
         // Build conversation history from prior turns (before we push this new one).
-        // We include only user + bot messages, not typing/notice; and cap to last 6.
         const history = this.msgs
           .filter(m => m.type === 'user' || m.type === 'bot')
           .slice(-6)
           .map(m => ({
             role: m.type === 'user' ? 'user' : 'assistant',
-            // Strip HTML tags so the LLM sees plain text
             text: (m.text || m.html || '').replace(/<[^>]+>/g, '').trim()
           }))
           .filter(t => t.text.length > 0);
@@ -961,14 +986,30 @@
         this.msgs.push({ type: 'user', text: userText });
         this.msgs.push({ type: 'typing' });
         this.$nextTick(() => this.scrollDown());
+        await this.dispatchQuery(userText, history);
+      },
 
+      // Send a query to the backend without pushing a user bubble.
+      // Used by sendChip so it can show a short label but send a full query.
+      async dispatchQuery(queryText, history) {
+        if (!history) {
+          history = this.msgs
+            .filter(m => m.type === 'user' || m.type === 'bot')
+            .slice(-6)
+            .map(m => ({
+              role: m.type === 'user' ? 'user' : 'assistant',
+              text: (m.text || m.html || '').replace(/<[^>]+>/g, '').trim()
+            }))
+            .filter(t => t.text.length > 0);
+        }
+        this.busy = true;
         try {
           const [data] = await Promise.all([
             fetch('/api/chat', {
               method:  'POST',
               headers: { 'Content-Type': 'application/json' },
               body:    JSON.stringify({
-                message: userText,
+                message: queryText,
                 runningLang: this.lang,
                 history: history
               })
