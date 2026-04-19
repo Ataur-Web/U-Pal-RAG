@@ -57,9 +57,13 @@
       --sans:        'Inter', 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --mono:        'JetBrains Mono', 'DM Mono', ui-monospace, Menlo, monospace;
 
-      /* Motion */
-      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      /* Motion — spring physics inspired (Emil Kowalski principles)
+         Spring: high initial velocity, natural deceleration, slight overshoot */
+      --spring:      cubic-bezier(0.34, 1.56, 0.64, 1);   /* bouncy spring */
+      --spring-sm:   cubic-bezier(0.22, 1.2,  0.36, 1);   /* gentle spring */
+      --ease:        cubic-bezier(0.16, 1,    0.3,  1);   /* fast out */
+      --ease-out:    cubic-bezier(0.22, 1,    0.36, 1);   /* smooth out */
+      --ease-in:     cubic-bezier(0.4,  0,    1,    1);   /* fast in */
     }
 
     @media (prefers-color-scheme: dark) {
@@ -253,13 +257,14 @@
       border: 3px solid var(--surface);
     }
 
-    .row { display: flex; gap: 10px; align-items: flex-end; animation: fadeUp 260ms var(--ease) both; }
+    .row { display: flex; gap: 10px; align-items: flex-end; animation: msgEnter 420ms var(--spring) both; }
     .row.user { justify-content: flex-end; }
     .row.bot  { justify-content: flex-start; }
 
-    @keyframes fadeUp {
-      0%   { opacity: 0; transform: translateY(8px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes msgEnter {
+      0%   { opacity: 0; transform: translateY(12px) scale(0.97); }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .msg-avatar {
@@ -360,18 +365,21 @@
       align-items: center;
       gap: 5px;
       box-shadow: var(--shadow-sm);
+      animation: msgEnter 380ms var(--spring) both;
     }
     .typing-bubble span {
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: var(--ink-3);
-      animation: bounce 1.1s infinite var(--ease);
+      background: var(--green);
+      opacity: 0.5;
+      animation: typingPop 1.2s infinite var(--spring);
     }
-    .typing-bubble span:nth-child(2) { animation-delay: 0.14s; }
-    .typing-bubble span:nth-child(3) { animation-delay: 0.28s; }
-    @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
-      30%           { transform: translateY(-4px); opacity: 1; }
+    .typing-bubble span:nth-child(1) { animation-delay: 0s; }
+    .typing-bubble span:nth-child(2) { animation-delay: 0.18s; }
+    .typing-bubble span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes typingPop {
+      0%, 60%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+      30%           { transform: translateY(-6px) scale(1.15); opacity: 1; }
     }
 
     /* ── Chips ── */
@@ -380,7 +388,6 @@
       flex-wrap: wrap;
       gap: 8px;
       padding: 4px 24px 8px;
-      animation: fadeUp 360ms var(--ease) 100ms both;
     }
     .chip {
       font-family: var(--sans);
@@ -391,14 +398,32 @@
       border: 1px solid var(--line-md);
       padding: 8px 14px;
       border-radius: 999px;
-      transition: all 180ms var(--ease);
+      transition: all 200ms var(--spring);
+      animation: chipPop 500ms var(--spring) both;
+    }
+    /* Stagger each chip using nth-child */
+    .chip:nth-child(1) { animation-delay: 60ms; }
+    .chip:nth-child(2) { animation-delay: 100ms; }
+    .chip:nth-child(3) { animation-delay: 140ms; }
+    .chip:nth-child(4) { animation-delay: 180ms; }
+    .chip:nth-child(5) { animation-delay: 220ms; }
+    .chip:nth-child(6) { animation-delay: 260ms; }
+    .chip:nth-child(7) { animation-delay: 300ms; }
+    .chip:nth-child(8) { animation-delay: 340ms; }
+    @keyframes chipPop {
+      0%   { opacity: 0; transform: translateY(8px) scale(0.92); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .chip:hover {
       color: var(--green);
       border-color: var(--green);
       background: var(--green-light);
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.03);
       box-shadow: var(--shadow-sm);
+    }
+    .chip:active {
+      transform: translateY(0) scale(0.97);
+      transition-duration: 80ms;
     }
 
     /* ── Input area ── */
@@ -489,11 +514,11 @@
       justify-content: center;
       z-index: 100;
       padding: 20px;
-      animation: fadeIn 200ms var(--ease);
+      animation: overlayIn 250ms var(--ease) both;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    @keyframes overlayIn {
+      from { opacity: 0; backdrop-filter: blur(0px); }
+      to   { opacity: 1; backdrop-filter: blur(6px); }
     }
 
     .modal {
@@ -504,12 +529,13 @@
       max-height: 90vh;
       overflow-y: auto;
       box-shadow: var(--shadow-lg);
-      animation: modalIn 320ms var(--ease);
+      animation: modalIn 400ms var(--spring) both;
       border: 1px solid var(--line);
     }
     @keyframes modalIn {
-      from { opacity: 0; transform: translateY(18px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+      0%   { opacity: 0; transform: translateY(24px) scale(0.94); }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .modal-head {
@@ -663,6 +689,68 @@
     }
     .shake { animation: shake 0.3s var(--ease); }
 
+    /* ── Toast notifications ── */
+    .toast-container {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--surface);
+      background: var(--ink);
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-lg);
+      white-space: nowrap;
+      pointer-events: auto;
+      animation: toastIn 400ms var(--spring) both;
+    }
+    .toast.exit {
+      animation: toastOut 300ms var(--ease-in) both;
+    }
+    .toast-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    @keyframes toastIn {
+      0%   { opacity: 0; transform: translateY(16px) scale(0.88); }
+      60%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+      0%   { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(8px) scale(0.92); }
+    }
+
+    /* ── Lang notice (inline in chat) ── */
+    .lang-notice {
+      align-self: center;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--welsh-red);
+      background: var(--welsh-red-soft);
+      padding: 7px 14px;
+      border-radius: 999px;
+      margin: 6px auto;
+      animation: msgEnter 320ms var(--spring) both;
+    }
+
     [x-cloak] { display: none !important; }
 
     @media (prefers-reduced-motion: reduce) {
@@ -795,6 +883,16 @@
     </div>
   </div>
 
+  <!-- ── Toast notifications ── -->
+  <div class="toast-container" aria-live="polite" aria-atomic="true">
+    <template x-for="(t, i) in toasts" :key="t.id">
+      <div class="toast" :class="t.exit ? 'exit' : ''">
+        <span class="toast-dot"></span>
+        <span x-text="t.msg"></span>
+      </div>
+    </template>
+  </div>
+
 </div>
 
 <!-- ── Feedback Modal ── -->
@@ -891,7 +989,11 @@
         } catch (_) {}
         this.done = true;
         this.submitting = false;
-        setTimeout(() => { this.open = false; }, 2400);
+        // Fire a custom event so the main upal() component can show a toast
+        window.dispatchEvent(new CustomEvent('upal:toast', {
+          detail: { msg: this.lang === 'cy' ? '✓ Diolch am eich adborth!' : '✓ Thanks for your feedback!' }
+        }));
+        setTimeout(() => { this.open = false; }, 2000);
       }
     });
   });
@@ -903,6 +1005,8 @@
       busy:           false,
       lang:           'en',
       chipsDismissed: false,
+      toasts:         [],
+      _toastId:       0,
       googleFormsUrl: 'https://forms.gle/YOUR_GOOGLE_FORM_LINK',
 
       chips: [
@@ -938,6 +1042,24 @@
           html: 'Hi there! I\'m <strong>U-Pal</strong>, your UWTSD student assistant. I can help with admissions, courses, fees, accommodation, IT support, wellbeing and more.<br><br>How can I help you today?',
           altHtml: null, _showAlt: false
         });
+        // Listen for toast events fired from other Alpine stores (e.g. feedback)
+        window.addEventListener('upal:toast', (e) => {
+          this.showToast(e.detail.msg);
+        });
+      },
+
+      // ── Toast system ────────────────────────────────────────────────
+      showToast(msg, duration) {
+        duration = duration || 2800;
+        const id = ++this._toastId;
+        this.toasts.push({ id, msg, exit: false });
+        setTimeout(() => {
+          const t = this.toasts.find(t => t.id === id);
+          if (t) t.exit = true;
+          setTimeout(() => {
+            this.toasts = this.toasts.filter(t => t.id !== id);
+          }, 320);
+        }, duration);
       },
 
       linkify(t) {
@@ -1040,6 +1162,12 @@
             this.lang = data.lang;
             document.documentElement.lang = this.lang;
             Alpine.store('fb').lang = this.lang;
+            this.showToast(
+              data.lang === 'cy'
+                ? '🏴󠁧󠁢󠁷󠁬󠁳󠁿 Cymraeg wedi ei ganfod'
+                : '🇬🇧 Switched to English',
+              2400
+            );
           }
 
           this.msgs.push({
